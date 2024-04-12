@@ -7,6 +7,7 @@ import time
 app = Flask(__name__)
 
 class Chatbot:
+
     def __init__(self):
         self.model_name = "microsoft/DialoGPT-medium"
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name,padding_side="left")
