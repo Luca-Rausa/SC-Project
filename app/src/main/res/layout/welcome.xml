@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="307dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="68dp"
+        android:fontFamily="@font/abeezee"
+        android:text="Let's Get Started!"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="379dp" />
+
+    <TextView
+        android:id="@+id/welcomeLabel"
+        android:layout_width="317dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="68dp"
+        android:fontFamily="@font/abeezee"
+        android:text="Hello."
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="316dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Sign Up"
+        android:textColor="#898989"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="559dp" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Sign In"
+        android:textColor="#3F51B5"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="497dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
