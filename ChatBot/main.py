@@ -17,7 +17,7 @@ class Chatbot:
         self.chat_history_ids = None
         self.intents = [
             {
-                "patterns": ["mission of Steger Center","mission of SC"],
+                "patterns": ["mission"],
                 "responses": ["The mission of Outreach and International Affairs at Virginia Tech is to share the best of Virginia Tech by working alongside communities across the world."]
             },
             {
@@ -29,13 +29,8 @@ class Chatbot:
                 "responses": ["Virginia Tech offers opportunities for project-based learning, directed research projects, and engagement with local schools or sports clubs to help students feel at home in Riva San Vitale."]
             },
             {
-                "patterns": ["location of Steger Center", "where is Steger Center"],
+                "patterns": ["location of Steger Center", "where is Steger Center","Location"],
                 "responses": ["The Steger Center for International Scholarship is located in Riva San Vitale, Ticino, Switzerland."]
-            },
-            {
-                "patterns": ["location of Riva", "where is Riva"],
-                "responses": [
-                    "Riva San Vitale is a municipality in the canton of Ticino in Switzerland, located in the district of Mendrisio"]
             },
             {
                 "patterns": ["accommodations", "where to stay", "hotels in the area", "lodging options"],
@@ -216,7 +211,7 @@ class Chatbot:
             },
             {
                 "patterns": ["address for the Steger Center", "Center address"],
-                "responses": ["The mailing address for the Steger Center is: Steger Center for International Scholarship, Villa Maderni, via Settala 8, 6826 Riva San Vitale, Switzerland."]
+                "responses": ["The address for the Steger Center is: Steger Center for International Scholarship, Villa Maderni, via Settala 8, 6826 Riva San Vitale, Switzerland."]
             },
             {
                 "patterns": ["Social media","Steger Center Instagram", "Center Instagram"],
@@ -227,7 +222,7 @@ class Chatbot:
                 "responses": ["In case of emergency in Switzerland, you can contact the following: General emergency number: 112, Ambulance: 144, Police: 117, Fire: 118."]
             },
             {
-                "patterns": ["General emergency number in Switzerland: 112", "Swiss emergency number"],
+                "patterns": ["General emergency number ", "Swiss emergency number"],
                 "responses": ["The general emergency number in Switzerland is 112."]
             },
             {
