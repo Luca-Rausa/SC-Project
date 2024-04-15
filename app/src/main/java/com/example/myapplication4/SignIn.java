@@ -21,7 +21,7 @@ public class SignIn extends AppCompatActivity {
 
         editTextUsername = findViewById(R.id.enterEmail);
         editTextPassword = findViewById(R.id.enterPass);
-        signInButton = findViewById(R.id.signInButton);
+        signInButton = findViewById(R.id.signin);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +34,8 @@ public class SignIn extends AppCompatActivity {
                 if (username.equals("testusername") && password.equals("testpassword")) {
                     // Set the global isLoggedIn variable to true
                     MainActivity.isLoggedIn = true;
+                    startActivity(new Intent(SignIn.this, Home.class));
+                    finish();
                 } else {
                     // Show error message if credentials are incorrect
                     Toast.makeText(SignIn.this, "Invalid username or password", Toast.LENGTH_SHORT).show();

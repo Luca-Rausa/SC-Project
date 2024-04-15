@@ -62,7 +62,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="#3F51B5"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/abeezee"
         android:text="Sign Up"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

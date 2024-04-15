@@ -2,9 +2,5 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/abeezee</item>
-        <item>@font/inter</item>
-        <item>@font/inter_bold</item>
-        <item>@font/inter_medium</item>
-        <item>@font/inter_thin</item>
     </array>
 </resources>
