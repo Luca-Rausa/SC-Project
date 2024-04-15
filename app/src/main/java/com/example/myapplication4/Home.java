@@ -17,8 +17,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.home);
 
         // Initialize buttons
-        mealPrepButton = findViewById(R.id.button);
-        travelItineraryButton = findViewById(R.id.button6);
+        mealPrepButton = findViewById(R.id.meal);
+        travelItineraryButton = findViewById(R.id.travel);
 
         // Set click listeners
         mealPrepButton.setOnClickListener(new View.OnClickListener() {

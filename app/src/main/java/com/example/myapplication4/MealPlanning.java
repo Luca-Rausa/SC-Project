@@ -32,62 +32,62 @@ public class MealPlanning extends AppCompatActivity {
         emailEditText = findViewById(R.id.editTextTextEmailAddress2);
 
         // Initialize RadioButtons
-        csButton = findViewById(R.id.csButton);
+        csButton = findViewById(R.id.cs);
         pgsButton = findViewById(R.id.pgsButton);
         archButton = findViewById(R.id.archButton);
         otherButton = findViewById(R.id.otherButton);
-
-        // Initialize EditText fields
-        startDateEditText = findViewById(R.id.editTextDate2);
-        endDateEditText = findViewById(R.id.editTextDate3);
-
-        // Initialize Spinners
-        breakfastSpinner = findViewById(R.id.breakfastSpinner);
-        lunchSpinner = findViewById(R.id.lunchSpinner);
-        dinnerSpinner = findViewById(R.id.dinnerSpinner);
-
-        // Configure RadioButtons to change background color on selection
-        configureRadioButtons();
-
-        // Handle submit button click
-        Button submitButton = findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Retrieve user input
-                String firstName = firstNameEditText.getText().toString();
-                String lastName = lastNameEditText.getText().toString();
-                String email = emailEditText.getText().toString();
-
-                // Retrieve selected program of study
-                String programOfStudy = getProgramOfStudy();
-
-                // Retrieve user input
-                String startDateString = startDateEditText.getText().toString();
-                String endDateString = endDateEditText.getText().toString();
-
-                // Convert start and end dates to Date objects
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
-                Date startDate = null;
-                Date endDate = null;
-                try {
-                    startDate = dateFormat.parse(startDateString);
-                    endDate = dateFormat.parse(endDateString);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                // Generate list of dates between start and end dates
-                List<String> daysOfWeek = generateDates(startDate, endDate);
-
-                // Populate Spinners with options
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(MealPlanning.this, android.R.layout.simple_spinner_item, daysOfWeek);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                breakfastSpinner.setAdapter(adapter);
-                lunchSpinner.setAdapter(adapter);
-                dinnerSpinner.setAdapter(adapter);
-            }
-        });
+//
+//        // Initialize EditText fields
+//        startDateEditText = findViewById(R.id.editTextDate2);
+//        endDateEditText = findViewById(R.id.editTextDate3);
+//
+//        // Initialize Spinners
+//        breakfastSpinner = findViewById(R.id.breakfastSpinner);
+//        lunchSpinner = findViewById(R.id.lunchSpinner);
+//        dinnerSpinner = findViewById(R.id.dinnerSpinner);
+//
+//        // Configure RadioButtons to change background color on selection
+//        configureRadioButtons();
+//
+//        // Handle submit button click
+//        Button submitButton = findViewById(R.id.submitButton);
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Retrieve user input
+//                String firstName = firstNameEditText.getText().toString();
+//                String lastName = lastNameEditText.getText().toString();
+//                String email = emailEditText.getText().toString();
+//
+//                // Retrieve selected program of study
+//                String programOfStudy = getProgramOfStudy();
+//
+//                // Retrieve user input
+//                String startDateString = startDateEditText.getText().toString();
+//                String endDateString = endDateEditText.getText().toString();
+//
+//                // Convert start and end dates to Date objects
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+//                Date startDate = null;
+//                Date endDate = null;
+//                try {
+//                    startDate = dateFormat.parse(startDateString);
+//                    endDate = dateFormat.parse(endDateString);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//                // Generate list of dates between start and end dates
+//                List<String> daysOfWeek = generateDates(startDate, endDate);
+//
+//                // Populate Spinners with options
+//                ArrayAdapter<String> adapter = new ArrayAdapter<>(MealPlanning.this, android.R.layout.simple_spinner_item, daysOfWeek);
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                breakfastSpinner.setAdapter(adapter);
+//                lunchSpinner.setAdapter(adapter);
+//                dinnerSpinner.setAdapter(adapter);
+//            }
+//        });
     }
 
     // Configure RadioButtons to change background color on selection
