@@ -28,6 +28,15 @@
 
         <!-- Welcome Activity -->
         <activity android:name=".Welcome" />
+
+        <!-- Sign In Activity -->
+        <activity android:name=".SignIn" />
+
+        <!-- Sign Up Activity -->
+        <activity android:name=".SignUp" />
+
+        <!-- Home Activity -->
+        <activity android:name=".Home" />
     </application>
 
 </manifest>
