@@ -4,4 +4,15 @@
         <item>Staff</item>
         <item>Student</item>
     </string-array>
+    <string-array name="destinations">
+        <item>Switzerland</item>
+        <item>Milan</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="groups">
+        <item>PGS</item>
+        <item>Architecture</item>
+        <item>CS</item>
+        <item>Other</item>
+    </string-array>
 </resources>
