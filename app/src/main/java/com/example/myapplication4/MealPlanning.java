@@ -17,7 +17,8 @@ import java.util.Locale;
 
 public class MealPlanning extends AppCompatActivity {
     private EditText firstNameEditText, lastNameEditText, emailEditText;
-    private RadioButton csButton, pgsButton, archButton, otherButton;
+    private Button csButton, pgsButton, archButton, otherButton;
+    private String programStudy;
     private EditText startDateEditText, endDateEditText;
     private Spinner breakfastSpinner, lunchSpinner, dinnerSpinner;
 
@@ -90,49 +91,48 @@ public class MealPlanning extends AppCompatActivity {
 //        });
     }
 
-    // Configure RadioButtons to change background color on selection
-    private void configureRadioButtons() {
-        csButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    private void configureButtons() {
+        csButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    csButton.setBackgroundResource(R.color.purple);
-                } else {
-                    csButton.setBackgroundResource(android.R.color.transparent);
-                }
+            public void onClick(View v) {
+                csButton.setBackgroundResource(R.color.purple);
+                pgsButton.setBackgroundResource(android.R.color.transparent);
+                archButton.setBackgroundResource(android.R.color.transparent);
+                otherButton.setBackgroundResource(android.R.color.transparent);
+                programStudy = "CS";
             }
         });
 
-        pgsButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        pgsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    pgsButton.setBackgroundResource(R.color.purple);
-                } else {
-                    pgsButton.setBackgroundResource(android.R.color.transparent);
-                }
+            public void onClick(View v) {
+                pgsButton.setBackgroundResource(R.color.purple);
+                csButton.setBackgroundResource(android.R.color.transparent);
+                archButton.setBackgroundResource(android.R.color.transparent);
+                otherButton.setBackgroundResource(android.R.color.transparent);
+                programStudy = "Postgraduate Studies";
             }
         });
 
-        archButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        archButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    archButton.setBackgroundResource(R.color.purple);
-                } else {
-                    archButton.setBackgroundResource(android.R.color.transparent);
-                }
+            public void onClick(View v) {
+                archButton.setBackgroundResource(R.color.purple);
+                csButton.setBackgroundResource(android.R.color.transparent);
+                pgsButton.setBackgroundResource(android.R.color.transparent);
+                otherButton.setBackgroundResource(android.R.color.transparent);
+                programStudy = "Architecture";
             }
         });
 
-        otherButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        otherButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    otherButton.setBackgroundResource(R.color.purple);
-                } else {
-                    otherButton.setBackgroundResource(android.R.color.transparent);
-                }
+            public void onClick(View v) {
+                otherButton.setBackgroundResource(R.color.purple);
+                csButton.setBackgroundResource(android.R.color.transparent);
+                pgsButton.setBackgroundResource(android.R.color.transparent);
+                archButton.setBackgroundResource(android.R.color.transparent);
+                programStudy = "Other";
             }
         });
     }
@@ -150,21 +150,6 @@ public class MealPlanning extends AppCompatActivity {
             calendar.add(Calendar.DATE, 1);
         }
         return daysOfWeek;
-    }
-
-    // Retrieve selected program of study
-    private String getProgramOfStudy() {
-        if (csButton.isChecked()) {
-            return "Computer Science";
-        } else if (pgsButton.isChecked()) {
-            return "Postgraduate Studies";
-        } else if (archButton.isChecked()) {
-            return "Architecture";
-        } else if (otherButton.isChecked()) {
-            return "Other";
-        } else {
-            return "";
-        }
     }
 
     // TODO: Connect to database
