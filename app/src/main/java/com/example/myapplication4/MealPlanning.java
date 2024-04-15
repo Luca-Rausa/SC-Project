@@ -7,14 +7,18 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MealPlanning extends AppCompatActivity {
     private EditText firstNameEditText, lastNameEditText, emailEditText;
     private RadioButton csButton, pgsButton, archButton, otherButton;
+    private EditText startDateEditText, endDateEditText;
     private Spinner breakfastSpinner, lunchSpinner, dinnerSpinner;
 
     @Override
@@ -33,6 +37,10 @@ public class MealPlanning extends AppCompatActivity {
         archButton = findViewById(R.id.archButton);
         otherButton = findViewById(R.id.otherButton);
 
+        // Initialize EditText fields
+        startDateEditText = findViewById(R.id.editTextDate2);
+        endDateEditText = findViewById(R.id.editTextDate3);
+
         // Initialize Spinners
         breakfastSpinner = findViewById(R.id.breakfastSpinner);
         lunchSpinner = findViewById(R.id.lunchSpinner);
@@ -40,9 +48,6 @@ public class MealPlanning extends AppCompatActivity {
 
         // Configure RadioButtons to change background color on selection
         configureRadioButtons();
-
-        // Populate Spinners with options
-        populateSpinners();
 
         // Handle submit button click
         Button submitButton = findViewById(R.id.submitButton);
@@ -57,10 +62,30 @@ public class MealPlanning extends AppCompatActivity {
                 // Retrieve selected program of study
                 String programOfStudy = getProgramOfStudy();
 
-                // Retrieve selected days for breakfast, lunch, and dinner
-                List<String> breakfastDays = getSelectedDays(breakfastSpinner);
-                List<String> lunchDays = getSelectedDays(lunchSpinner);
-                List<String> dinnerDays = getSelectedDays(dinnerSpinner);
+                // Retrieve user input
+                String startDateString = startDateEditText.getText().toString();
+                String endDateString = endDateEditText.getText().toString();
+
+                // Convert start and end dates to Date objects
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+                Date startDate = null;
+                Date endDate = null;
+                try {
+                    startDate = dateFormat.parse(startDateString);
+                    endDate = dateFormat.parse(endDateString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                // Generate list of dates between start and end dates
+                List<String> daysOfWeek = generateDates(startDate, endDate);
+
+                // Populate Spinners with options
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MealPlanning.this, android.R.layout.simple_spinner_item, daysOfWeek);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                breakfastSpinner.setAdapter(adapter);
+                lunchSpinner.setAdapter(adapter);
+                dinnerSpinner.setAdapter(adapter);
             }
         });
     }
@@ -112,24 +137,19 @@ public class MealPlanning extends AppCompatActivity {
         });
     }
 
-    // Populate Spinners with options
-    private void populateSpinners() {
-        // Dummy data for spinner options
+    // Generate list of dates between start and end dates
+    private List<String> generateDates(Date startDate, Date endDate) {
         List<String> daysOfWeek = new ArrayList<>();
-        daysOfWeek.add("Monday");
-        daysOfWeek.add("Tuesday");
-        daysOfWeek.add("Wednesday");
-        daysOfWeek.add("Thursday");
-        daysOfWeek.add("Friday");
-        daysOfWeek.add("Saturday");
-        daysOfWeek.add("Sunday");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, daysOfWeek);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        breakfastSpinner.setAdapter(adapter);
-        lunchSpinner.setAdapter(adapter);
-        dinnerSpinner.setAdapter(adapter);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        while (!calendar.getTime().after(endDate)) {
+            Date currentDate = calendar.getTime();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+            String dateString = dateFormat.format(currentDate);
+            daysOfWeek.add(dateString);
+            calendar.add(Calendar.DATE, 1);
+        }
+        return daysOfWeek;
     }
 
     // Retrieve selected program of study
@@ -145,15 +165,6 @@ public class MealPlanning extends AppCompatActivity {
         } else {
             return "";
         }
-    }
-
-    // Retrieve selected days from a spinner
-    private List<String> getSelectedDays(Spinner spinner) {
-        List<String> selectedDays = new ArrayList<>();
-        String selectedDay = spinner.getSelectedItem().toString();
-        selectedDays.add(selectedDay);
-        // Add logic here if you want to handle multiple selections
-        return selectedDays;
     }
 
     // TODO: Connect to database
