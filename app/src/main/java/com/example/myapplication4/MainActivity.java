@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextMessage;
     private RecyclerView recyclerView;
     private ChatAdapter chatAdapter;
-
-
+    public static boolean isLoggedIn = false;
 
     private void sendMessageToAPI(String message) {
         String url = "http://10.0.2.2:5000/chat";
@@ -53,9 +52,8 @@ public class MainActivity extends AppCompatActivity {
                     // Handle error
                     System.out.println("Error: " + error.toString());
                 });
-// Add the request to the RequestQueue
+        // Add the request to the RequestQueue
         Volley.newRequestQueue(this).add(request);
-
     }
 
     @Override
@@ -63,12 +61,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Check if the user is logged in or not
-        boolean userLoggedIn = checkIfUserIsLoggedIn();
-
         // If the user is not logged in, start the Welcome activity
-        if (!userLoggedIn) {
+        if (!isLoggedIn) {
             startActivity(new Intent(this, Welcome.class));
+            finish();
+        }
+        else {
+            startActivity(new Intent(this, Home.class));
             finish();
         }
 

@@ -17,7 +17,7 @@ public class Welcome extends AppCompatActivity {
         setContentView(R.layout.welcome);
 
         // Initialize buttons
-        signInButton = findViewById(R.id.signInButton);
+        signInButton = findViewById(R.id.signUp);
         signUpButton = findViewById(R.id.signUpButton);
 
         // Set click listeners

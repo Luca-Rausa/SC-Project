@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application4</string>
+    <string-array name="roles_array">
+        <item>Staff</item>
+        <item>Student</item>
+    </string-array>
 </resources>
