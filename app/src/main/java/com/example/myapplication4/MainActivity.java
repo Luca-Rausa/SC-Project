@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import android.content.Intent;
 import com.android.volley.DefaultRetryPolicy;
 
 
@@ -61,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check if the user is logged in or not
+        boolean userLoggedIn = checkIfUserIsLoggedIn();
+
+        // If the user is not logged in, start the Welcome activity
+        if (!userLoggedIn) {
+            startActivity(new Intent(this, Welcome.class));
+            finish();
+        }
 
         // Initialize views and RecyclerView adapter here
         buttonSend = findViewById(R.id.buttonSend);
