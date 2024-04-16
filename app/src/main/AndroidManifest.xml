@@ -37,6 +37,13 @@
 
         <!-- Home Activity -->
         <activity android:name=".Home" />
+
+        <!-- EventHub Activity -->
+        <activity android:name=".EventHub" />
+
+        <!-- NewEvent Activity -->
+        <activity android:name=".NewEvent" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
