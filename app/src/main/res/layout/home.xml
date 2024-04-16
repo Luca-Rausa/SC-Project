@@ -67,18 +67,22 @@
         android:id="@+id/button6"
         android:layout_width="345dp"
         android:layout_height="44dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="26dp"
         android:backgroundTint="#3F51B5"
         android:text="Feedback"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="351dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Events" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="341dp"
         android:layout_height="44dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="33dp"
         android:backgroundTint="#3F51B5"
         android:text="Chatbot"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="428dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
