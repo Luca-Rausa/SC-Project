@@ -1,17 +1,23 @@
 package com.example.myapplication4;
+
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import android.content.res.ColorStateList;
+import androidx.core.content.ContextCompat;
 
 public class MealPlanning extends AppCompatActivity {
     private EditText firstNameEditText, lastNameEditText, emailEditText;
@@ -30,13 +36,13 @@ public class MealPlanning extends AppCompatActivity {
         lastNameEditText = findViewById(R.id.editTextLastName);
         emailEditText = findViewById(R.id.editTextTextEmailAddress2);
 
-        // Initialize RadioButtons
+        // Initialize Buttons
         csButton = findViewById(R.id.cs);
         pgsButton = findViewById(R.id.pgsButton);
         archButton = findViewById(R.id.archButton);
         otherButton = findViewById(R.id.otherButton);
 
-        // Initialize EditText fields
+        // Initialize EditText fields for dates
         startDateEditText = findViewById(R.id.editTextDate2);
         endDateEditText = findViewById(R.id.editTextDate3);
 
@@ -45,55 +51,36 @@ public class MealPlanning extends AppCompatActivity {
         lunchSpinner = findViewById(R.id.lunchSpinner);
         dinnerSpinner = findViewById(R.id.dinnerSpinner);
 
+        // Add TextWatchers to date EditTexts
+        TextWatcher dateTextWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateDateSpinners();
+            }
+        };
+
+        startDateEditText.addTextChangedListener(dateTextWatcher);
+        endDateEditText.addTextChangedListener(dateTextWatcher);
+
         // Configure RadioButtons to change background color on selection
         configureButtons();
-
-        // Handle submit button click
-        Button submitButton = findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Retrieve user input
-                String firstName = firstNameEditText.getText().toString();
-                String lastName = lastNameEditText.getText().toString();
-                String email = emailEditText.getText().toString();
-
-                // Retrieve user input
-                String startDateString = startDateEditText.getText().toString();
-                String endDateString = endDateEditText.getText().toString();
-
-                // Convert start and end dates to Date objects
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
-                Date startDate = null;
-                Date endDate = null;
-                try {
-                    startDate = dateFormat.parse(startDateString);
-                    endDate = dateFormat.parse(endDateString);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                // Generate list of dates between start and end dates
-                List<String> daysOfWeek = generateDates(startDate, endDate);
-
-                // Populate Spinners with options
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(MealPlanning.this, android.R.layout.simple_spinner_item, daysOfWeek);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                breakfastSpinner.setAdapter(adapter);
-                lunchSpinner.setAdapter(adapter);
-                dinnerSpinner.setAdapter(adapter);
-            }
-        });
     }
 
     private void configureButtons() {
         csButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                csButton.setBackgroundResource(R.color.purple);
-                pgsButton.setBackgroundResource(android.R.color.transparent);
-                archButton.setBackgroundResource(android.R.color.transparent);
-                otherButton.setBackgroundResource(android.R.color.transparent);
+                csButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                csButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
+                resetOtherButtons(csButton);
                 programStudy = "CS";
             }
         });
@@ -101,10 +88,9 @@ public class MealPlanning extends AppCompatActivity {
         pgsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pgsButton.setBackgroundResource(R.color.purple);
-                csButton.setBackgroundResource(android.R.color.transparent);
-                archButton.setBackgroundResource(android.R.color.transparent);
-                otherButton.setBackgroundResource(android.R.color.transparent);
+                pgsButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                pgsButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
+                resetOtherButtons(pgsButton);
                 programStudy = "Postgraduate Studies";
             }
         });
@@ -112,10 +98,9 @@ public class MealPlanning extends AppCompatActivity {
         archButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                archButton.setBackgroundResource(R.color.purple);
-                csButton.setBackgroundResource(android.R.color.transparent);
-                pgsButton.setBackgroundResource(android.R.color.transparent);
-                otherButton.setBackgroundResource(android.R.color.transparent);
+                archButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                archButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
+                resetOtherButtons(archButton);
                 programStudy = "Architecture";
             }
         });
@@ -123,13 +108,46 @@ public class MealPlanning extends AppCompatActivity {
         otherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                otherButton.setBackgroundResource(R.color.purple);
-                csButton.setBackgroundResource(android.R.color.transparent);
-                pgsButton.setBackgroundResource(android.R.color.transparent);
-                archButton.setBackgroundResource(android.R.color.transparent);
+                otherButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                otherButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
+                resetOtherButtons(otherButton);
                 programStudy = "Other";
             }
         });
+    }
+
+    private void resetOtherButtons(Button activeButton) {
+        Button[] buttons = {csButton, pgsButton, archButton, otherButton};
+        for (Button btn : buttons) {
+            if (btn != activeButton) {
+                btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, android.R.color.transparent)));
+                btn.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.black));
+            }
+        }
+    }
+
+    private void updateDateSpinners() {
+        String startDateString = startDateEditText.getText().toString();
+        String endDateString = endDateEditText.getText().toString();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        Date startDate = null;
+        Date endDate = null;
+        try {
+            startDate = dateFormat.parse(startDateString);
+            endDate = dateFormat.parse(endDateString);
+            if (startDate != null && endDate != null && !startDate.after(endDate)) {
+                List<String> daysOfWeek = generateDates(startDate, endDate);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, daysOfWeek);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                breakfastSpinner.setAdapter(adapter);
+                lunchSpinner.setAdapter(adapter);
+                dinnerSpinner.setAdapter(adapter);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Optionally handle incorrect date format or show some error to the user
+        }
     }
 
     // Generate list of dates between start and end dates
@@ -139,7 +157,7 @@ public class MealPlanning extends AppCompatActivity {
         calendar.setTime(startDate);
         while (!calendar.getTime().after(endDate)) {
             Date currentDate = calendar.getTime();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
             String dateString = dateFormat.format(currentDate);
             daysOfWeek.add(dateString);
             calendar.add(Calendar.DATE, 1);
