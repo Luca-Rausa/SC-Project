@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +32,7 @@ public class SignIn extends AppCompatActivity {
                 String password = editTextPassword.getText().toString().trim();
 
                 // Check if username and password match the hardcoded values
-                if (username.equals("testusername") && password.equals("testpassword")) {
+                if (username.equals("test") && password.equals("test")) {
                     // Set the global isLoggedIn variable to true
                     MainActivity.isLoggedIn = true;
                     startActivity(new Intent(SignIn.this, Home.class));

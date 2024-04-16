@@ -37,6 +37,13 @@
 
         <!-- Home Activity -->
         <activity android:name=".Home" />
+
+        <!-- Travel Itinerary Activity -->
+        <activity android:name=".TravelItinerary" />
+
+        <!-- Meal Planning Activity -->
+        <activity android:name=".MealPlanning" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

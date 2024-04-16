@@ -40,8 +40,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,9 +69,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextLastName"
             android:layout_width="250dp"
             android:layout_height="35dp"
             android:fontFamily="@font/abeezee"
+            android:textColor="#000000"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,53 +115,65 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/cs"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@android:color/transparent"
         android:fontFamily="@font/abeezee"
         android:text="CS"
+        android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:strokeColor="#3F51B5"
+        app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/pgsButton"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@android:color/transparent"
         android:fontFamily="@font/abeezee"
         android:text="PGS"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toEndOf="@+id/cs"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:strokeColor="#3F51B5"
+        app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/archButton"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@android:color/transparent"
         android:fontFamily="@font/abeezee"
         android:text="Arch"
-        app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toEndOf="@+id/pgsButton"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:strokeColor="#3F51B5"
+        app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/otherButton"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@android:color/transparent"
         android:fontFamily="@font/abeezee"
         android:text="Other"
+        android:textColor="#3F51B5"
         android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintStart_toEndOf="@+id/archButton"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:strokeColor="#3F51B5"
+        app:strokeWidth="1dp" />
 
     <TextView
         android:id="@+id/textView10"
@@ -169,7 +185,7 @@
         android:text="What days will you require meals?"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/cs" />
 
     <EditText
         android:id="@+id/editTextDate2"
@@ -178,7 +194,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         android:ems="10"
+        android:fontFamily="@font/abeezee"
         android:inputType="date"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -189,7 +207,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:ems="10"
+        android:fontFamily="@font/abeezee"
         android:inputType="date"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/editTextDate2"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -252,7 +272,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioButton" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/breakfastSpinner"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
@@ -270,10 +290,10 @@
         android:text="What days will you be attending lunch?"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+        app:layout_constraintTop_toBottomOf="@+id/breakfastSpinner" />
 
     <Spinner
-        android:id="@+id/spinner4"
+        android:id="@+id/lunchSpinner"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
@@ -291,10 +311,10 @@
         android:text="What days will you be attending dinner?"
         android:textColor="#3F51B5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner4" />
+        app:layout_constraintTop_toBottomOf="@+id/lunchSpinner" />
 
     <Spinner
-        android:id="@+id/spinner5"
+        android:id="@+id/dinnerSpinner"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
@@ -303,7 +323,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
@@ -312,6 +332,6 @@
         android:fontFamily="@font/abeezee"
         android:text="Submit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+        app:layout_constraintTop_toBottomOf="@+id/dinnerSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
