@@ -1,5 +1,6 @@
 package com.example.myapplication4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +26,7 @@ public class MealPlanning extends AppCompatActivity {
     private String programStudy;
     private EditText startDateEditText, endDateEditText;
     private Spinner breakfastSpinner, lunchSpinner, dinnerSpinner;
+    private Button submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,9 @@ public class MealPlanning extends AppCompatActivity {
         lunchSpinner = findViewById(R.id.lunchSpinner);
         dinnerSpinner = findViewById(R.id.dinnerSpinner);
 
+        // Initialize buttons
+        submitButton = findViewById(R.id.submitButton);
+
         // Add TextWatchers to date EditTexts
         TextWatcher dateTextWatcher = new TextWatcher() {
             @Override
@@ -72,6 +77,14 @@ public class MealPlanning extends AppCompatActivity {
 
         // Configure RadioButtons to change background color on selection
         configureButtons();
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start sign in activity
+                startActivity(new Intent(MealPlanning.this, Home.class));
+            }
+        });
     }
 
     private void configureButtons() {
