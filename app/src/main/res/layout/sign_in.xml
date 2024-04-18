@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="84dp"
         android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:elevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,8 +21,8 @@
         android:id="@+id/signIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="292dp"
         android:fontFamily="@font/abeezee"
         android:text="Sign In"
         android:textSize="40sp"
@@ -27,70 +30,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/abeezee"
-        android:text="Email"
-        android:textColor="#3F51B5"
-        android:textSize="13sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signIn" />
-
     <EditText
         android:id="@+id/enterEmail"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/form_box"
+        android:backgroundTint="@color/grey"
         android:ems="10"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
+        android:hint="      Email"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/abeezee"
-        android:text="Password"
-        android:textColor="#3F51B5"
-        android:textSize="13sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterEmail" />
+        tools:layout_editor_absoluteY="392dp" />
 
     <EditText
         android:id="@+id/enterPass"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/form_box"
+        android:backgroundTint="@color/grey"
         android:ems="10"
+        android:hint="      Password"
         android:inputType="textPassword"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        tools:layout_editor_absoluteY="474dp" />
 
     <Button
         android:id="@+id/signin"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#3F51B5"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#274C77"
         android:fontFamily="@font/abeezee"
         android:text="Sign In"
         android:textSize="13sp"
-        app:iconTint="#3F51B5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterPass"
         app:rippleColor="#3F51B5" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:text="Forgot password?"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterPass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

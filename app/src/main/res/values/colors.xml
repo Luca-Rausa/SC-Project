@@ -5,4 +5,9 @@
     <color name="purple">#3F51B5</color>
     <color name="dark_gray">#8D8D8D</color>
     <color name="darker_gray">#707070</color>
+    <color name="grey">#E7ECEF</color>
+    <color name="dark_blue">#274C77</color>
+    <color name="grey_blue">#6096BA</color>
+    <color name="blue">#A3CEF1</color>
+    <color name="dark_grey">#8B8C89</color>
 </resources>
