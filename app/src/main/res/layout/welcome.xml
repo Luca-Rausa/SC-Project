@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple">
+    android:background="#6096BA">
 
     <TextView
         android:id="@+id/textView2"
@@ -43,7 +42,7 @@
         android:layout_marginTop="13dp"
         android:backgroundTint="@color/white"
         android:text="Sign Up"
-        android:textColor="#898989"
+        android:textColor="#274C77"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
@@ -53,9 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="72dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#274C77"
         android:text="Sign In"
-        android:textColor="#3F51B5"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
