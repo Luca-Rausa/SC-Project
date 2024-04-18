@@ -34,8 +34,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="361dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +43,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextFirstName"
-            android:layout_width="250dp"
-            android:layout_height="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:fontFamily="@font/abeezee"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,8 +63,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="361dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,8 +72,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextLastName"
-            android:layout_width="250dp"
-            android:layout_height="35dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -89,68 +89,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="250dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:fontFamily="@font/abeezee"
-        android:inputType="textEmailAddress"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
-        android:text="Dates of Travel "
-        android:textColor="#3F51B5"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:fontFamily="@font/abeezee"
-        android:inputType="date"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
-
-    <EditText
-        android:id="@+id/endDate"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
-
     <TextView
         android:id="@+id/travelDest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/abeezee"
         android:text="Travel Destination"
         android:textColor="#3F51B5"
         android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        tools:layout_editor_absoluteY="334dp" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -251,5 +200,64 @@
         android:text="Submit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itineraryDesc" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        android:layout_width="361dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/abeezee"
+        android:text="Dates of Travel"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout6"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout6"
+        app:layout_constraintTop_toBottomOf="@+id/textView34">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/endDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

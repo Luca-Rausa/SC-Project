@@ -320,7 +320,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
