@@ -1,10 +1,13 @@
 package com.example.myapplication4;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,14 @@ public class SignIn extends AppCompatActivity {
         editTextUsername = findViewById(R.id.enterEmail);
         editTextPassword = findViewById(R.id.enterPass);
         signInButton = findViewById(R.id.signin);
+
+        // Setting up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enabling the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +54,17 @@ public class SignIn extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Handle toolbar item clicks
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle back button click
+            startActivity(new Intent(SignIn.this, Welcome.class));
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
