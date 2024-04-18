@@ -38,11 +38,11 @@
         <!-- Home Activity -->
         <activity android:name=".Home" />
 
-        <!-- Travel Itinerary Activity -->
-        <activity android:name=".TravelItinerary" />
+        <!-- EventHub Activity -->
+        <activity android:name=".EventHub" />
 
-        <!-- Meal Planning Activity -->
-        <activity android:name=".MealPlanning" />
+        <!-- NewEvent Activity -->
+        <activity android:name=".NewEvent" />
 
         <meta-data
             android:name="preloaded_fonts"
