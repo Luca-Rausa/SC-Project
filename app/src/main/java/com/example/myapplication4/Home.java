@@ -10,6 +10,7 @@ public class Home extends AppCompatActivity {
 
     private Button mealPrepButton;
     private Button travelItineraryButton;
+    private Button signOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class Home extends AppCompatActivity {
         // Initialize buttons
         mealPrepButton = findViewById(R.id.meal);
         travelItineraryButton = findViewById(R.id.travel);
+        signOutButton = findViewById(R.id.signout);
 
         // Set click listeners
         mealPrepButton.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +36,16 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
                 // Start sign up activity
                 startActivity(new Intent(Home.this, TravelItinerary.class));
+            }
+        });
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start sign up activity
+                MainActivity.isLoggedIn = true;
+                startActivity(new Intent(Home.this, SignIn.class));
+                finish();
             }
         });
     }

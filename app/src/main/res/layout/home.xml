@@ -78,11 +78,23 @@
         android:id="@+id/button8"
         android:layout_width="341dp"
         android:layout_height="44dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="26dp"
         android:backgroundTint="#3F51B5"
         android:text="Chatbot"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <Button
+        android:id="@+id/signout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="199dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:text="Sign Out"
+        android:textColor="#3F51B5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
