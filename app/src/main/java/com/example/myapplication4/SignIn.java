@@ -17,6 +17,7 @@ public class SignIn extends AppCompatActivity {
     private EditText editTextUsername;
     private EditText editTextPassword;
     private Button signInButton;
+    private Button signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class SignIn extends AppCompatActivity {
         editTextUsername = findViewById(R.id.enterEmail);
         editTextPassword = findViewById(R.id.enterPass);
         signInButton = findViewById(R.id.signin);
+        signUpButton = findViewById(R.id.button);
 
         // Setting up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -52,6 +54,14 @@ public class SignIn extends AppCompatActivity {
                     // Show error message if credentials are incorrect
                     Toast.makeText(SignIn.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignIn.this, SignUp.class));
+                finish();
             }
         });
     }

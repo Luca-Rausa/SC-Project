@@ -2,5 +2,6 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/abeezee</item>
+        <item>@font/inter</item>
     </array>
 </resources>

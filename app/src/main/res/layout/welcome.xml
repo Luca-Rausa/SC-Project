@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6096BA">
+    android:background="#274C77">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="307dp"
         android:layout_height="46dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/abeezee"
         android:text="Let's Get Started!"
         android:textColor="@color/white"
@@ -23,8 +23,8 @@
         android:id="@+id/welcomeLabel"
         android:layout_width="317dp"
         android:layout_height="51dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="316dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="396dp"
         android:fontFamily="@font/abeezee"
         android:text="Hello."
         android:textAllCaps="false"
@@ -36,25 +36,33 @@
 
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="250dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="13dp"
-        android:backgroundTint="@color/white"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@android:color/transparent"
         android:text="Sign Up"
-        android:textColor="#274C77"
+        android:textColor="#E7ECEF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp" />
+        app:layout_constraintTop_toBottomOf="@+id/signUp"
+        app:strokeColor="#E7ECEF"
+        app:strokeWidth="2sp" />
 
     <Button
         android:id="@+id/signUp"
-        android:layout_width="250dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="72dp"
-        android:backgroundTint="#274C77"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/white"
         android:text="Sign In"
-        android:textColor="@color/white"
+        android:textColor="#274C77"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:strokeColor="#E7ECEF"
+        app:strokeWidth="1sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

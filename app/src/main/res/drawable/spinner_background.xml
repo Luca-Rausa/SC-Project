@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+        <!-- Background color for the spinner -->
+        <item android:drawable="@android:color/grey" />
+        <!-- Arrow color for the spinner -->
+        <item android:drawable="@drawable/spinner_arrow" android:right="8dp" />
+    </layer-list>
+</selector>

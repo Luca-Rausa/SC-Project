@@ -28,7 +28,7 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         // Initialize UI elements
         firstNameEditText = findViewById(R.id.editTextFirstName);
         lastNameEditText = findViewById(R.id.editTextLastName);
-        emailEditText = findViewById(R.id.editTextTextEmailAddress);
+        emailEditText = findViewById(R.id.editTextEmailAddress);
         editTextDate = findViewById(R.id.editTextDate);
         endDateEditText = findViewById(R.id.endDate);
         itineraryDescEditText = findViewById(R.id.itineraryDesc);
