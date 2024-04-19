@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">My Application4</string>
+    <string-array name="roles_array">
+        <item>Staff</item>
+        <item>Student</item>
+    </string-array>
+    <string-array name="destinations">
+        <item>Switzerland</item>
+        <item>Milan</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="groups">
+        <item>PGS</item>
+        <item>Architecture</item>
+        <item>CS</item>
+        <item>Other</item>
+    </string-array>
+    <string name="event_add_a_new_event">Add a new event</string>
+    <string name="event_title">Event Title</string>
+    <string name="event_description">Event Description</string>
+    <string name="event_type">Event Type</string>
+    <string name="event_time">Event Time</string>
+    <string name="event_date">Date</string>
+    <string name="event_start_time">Start Time</string>
+    <string name="event_duration">Duration</string>
+    <string name="event_start_time_field">Time</string>
+    <string name="event_images">Event Images</string>
+    <string name="event_minutes">minutes</string>
+    <string name="first_image_annotation">The first image will be used as the cover image</string>
+    <string name="event_images_uploaded">Images uploaded</string>
+    <string name="event_upload_image">Upload image</string>
+    <string name="event_max_nr_attendees">Maximum number of attendees</string>
+    <string name="event_attendees_number">Attendees\'s number</string>
+    <string name="event_links">Event Links</string>
+    <string name="event_new_link">New Link:</string>
+    <string name="event_link_name">Link name</string>
+    <string name="event_url">URL</string>
+    <string name="event_links_uploaded">Links uploaded</string>
+    <string name="event_add_button">Add New Event</string>
+    <string name="event_add_button_text">Add Event</string>
+    <string name="event_mandatory_fields">Bold fields are required to create a new event</string>
+    <string-array name="eventDurations">
+        <item>less than 30 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>1 hour and 30 minutes</item>
+        <item>2 hours</item>
+        <item>more than two hours</item>
+    </string-array>
 </resources>
