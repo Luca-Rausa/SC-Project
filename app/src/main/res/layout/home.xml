@@ -11,90 +11,66 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/abeezee"
-        android:text="Hello!"
-        android:textSize="27sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/travel"
-        android:layout_width="348dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="88dp"
-        android:backgroundTint="#3F51B5"
-        android:text="Travel Itinerary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/meal"
-        android:layout_width="344dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="160dp"
-        android:backgroundTint="#3F51B5"
-        android:text="Meal Prep"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/abeezee"
-        android:text="Welcome to your dashboard."
-        android:textSize="20dp"
+        android:text="Hello, Sarah!"
+        android:textColor="@color/dark_blue"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/Events"
-        android:layout_width="343dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="94dp"
-        android:backgroundTint="#3F51B5"
-        android:text="Events"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/travel" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="345dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="26dp"
-        android:backgroundTint="#3F51B5"
-        android:text="Feedback"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Events" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="341dp"
         android:layout_height="44dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="26dp"
         android:backgroundTint="#3F51B5"
         android:text="Chatbot"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="671dp" />
+
+    <Button
+        android:id="@+id/Events"
+        android:layout_width="343dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#3F51B5"
+        android:text="Events"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="534dp" />
+
+    <Button
+        android:id="@+id/travel"
+        android:layout_width="348dp"
+        android:layout_height="45dp"
+        android:backgroundTint="#3F51B5"
+        android:text="Travel Itinerary"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="395dp" />
+
+    <Button
+        android:id="@+id/meal"
+        android:layout_width="344dp"
+        android:layout_height="43dp"
+        android:backgroundTint="#3F51B5"
+        android:text="Meal Prep"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="467dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="345dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#3F51B5"
+        android:text="Feedback"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="601dp" />
 
     <Button
         android:id="@+id/signout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="199dp"
-        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:text="Sign Out"
         android:textColor="#3F51B5"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="356dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
