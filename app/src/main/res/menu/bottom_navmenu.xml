@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title=""
+        android:icon="@drawable/baseline_home_filled_24"
+        android:id="@+id/home"/>
+    <item android:title=""
+        android:icon="@drawable/baseline_forms_24"
+        android:id="@+id/forms"/>
+    <item android:title=""
+        android:icon="@drawable/baseline_event_24"
+        android:id="@+id/events"/>
+    <item android:title=""
+        android:icon="@drawable/baseline_star_24"
+        android:id="@+id/feedback"/>
+    <item android:title=""
+        android:icon="@drawable/baseline_chat_bubble_24"
+        android:id="@+id/chatbot"/>
+</menu>
