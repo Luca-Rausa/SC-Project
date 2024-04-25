@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"><!-- Replace with your button color -->
+        <corners android:radius="0dp"/> <!-- This ensures corners are straight -->
+</selector>
+
+<!--    android:shape="rectangle"-->
