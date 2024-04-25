@@ -41,15 +41,14 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="24dp"
-        android:backgroundTint="#274C77"
+        android:backgroundTint="@color/dark_blue"
         android:fontFamily="@font/abeezee"
         android:text="Sign In"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterPass"
-        app:rippleColor="#3F51B5" />
+        app:layout_constraintTop_toBottomOf="@+id/enterPass" />
 
     <Button
         android:id="@+id/button"
@@ -69,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="92dp"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Sign In"
         android:textColor="@color/dark_blue"
         android:textSize="48sp"
@@ -123,6 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter"
         android:text="Welcome back!"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
