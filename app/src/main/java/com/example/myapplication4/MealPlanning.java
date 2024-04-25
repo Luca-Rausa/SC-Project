@@ -45,8 +45,8 @@ public class MealPlanning extends AppCompatActivity {
         otherButton = findViewById(R.id.otherButton);
 
         // Initialize EditText fields for dates
-        startDateEditText = findViewById(R.id.editTextDate2);
-        endDateEditText = findViewById(R.id.editTextDate3);
+        startDateEditText = findViewById(R.id.editStartDate);
+        endDateEditText = findViewById(R.id.editEndDate);
 
         // Initialize Spinners
         breakfastSpinner = findViewById(R.id.breakfastSpinner);

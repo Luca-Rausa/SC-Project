@@ -56,15 +56,16 @@
         app:strokeWidth="1sp" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/bannerButton"
         android:layout_width="407dp"
         android:layout_height="259dp"
         android:layout_marginBottom="396dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/main"
-        tools:layout_editor_absoluteX="2dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/main" />
 
     <TextView
         android:id="@+id/text"
@@ -91,7 +92,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/requiredFormsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -102,18 +103,18 @@
         app:srcCompat="@drawable/forms" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/eventhubButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="344dp"
         android:backgroundTint="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        app:layout_constraintStart_toEndOf="@+id/requiredFormsButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hub" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/feedbackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -124,13 +125,13 @@
         app:srcCompat="@drawable/feedback" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/chatbotButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="516dp"
         android:backgroundTint="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/feedbackButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chat" />
 

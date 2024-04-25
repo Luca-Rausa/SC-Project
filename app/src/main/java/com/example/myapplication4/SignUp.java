@@ -43,7 +43,7 @@ public class SignUp extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextTextPassword);
         editTextFirstName = findViewById(R.id.editTextTextFirst);
         editTextLastName = findViewById(R.id.editTextTextLast);
-        signInButton = findViewById(R.id.button7);
+        signInButton = findViewById(R.id.signInButton);
         spinner = findViewById(R.id.spinner);
         signUpButton = findViewById(R.id.signUp);
 

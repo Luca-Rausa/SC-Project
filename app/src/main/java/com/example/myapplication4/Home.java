@@ -3,13 +3,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.net.Uri;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Home extends AppCompatActivity {
 
-    private Button mealPrepButton;
-    private Button travelItineraryButton;
+    private ImageButton requiredForms, eventHub, feedback, chatbot, banner;
     private Button signOutButton;
 
     @Override
@@ -18,24 +19,58 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.home);
 
         // Initialize buttons
-        mealPrepButton = findViewById(R.id.meal);
-        travelItineraryButton = findViewById(R.id.travel);
+        requiredForms = findViewById(R.id.requiredFormsButton);
+        eventHub = findViewById(R.id.eventhubButton);
+        feedback = findViewById(R.id.feedbackButton);
+        chatbot = findViewById(R.id.chatbotButton);
+        banner = findViewById(R.id.bannerButton);
         signOutButton = findViewById(R.id.signout);
 
         // Set click listeners
-        mealPrepButton.setOnClickListener(new View.OnClickListener() {
+        requiredForms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start sign in activity
-                startActivity(new Intent(Home.this, MealPlanning.class));
+                startActivity(new Intent(Home.this, Forms.class));
             }
         });
 
-        travelItineraryButton.setOnClickListener(new View.OnClickListener() {
+        eventHub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start sign up activity
-                startActivity(new Intent(Home.this, TravelItinerary.class));
+                startActivity(new Intent(Home.this, EventHub.class));
+            }
+        });
+
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start sign in activity
+                startActivity(new Intent(Home.this, Feedback.class));
+            }
+        });
+
+        chatbot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start sign up activity
+                startActivity(new Intent(Home.this, Chatbot.class));
+            }
+        });
+
+        banner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to SC website
+                String url = "https://stegercenter.vt.edu";
+
+                // Create an Intent
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+
+                // Start the web browser activity
+                startActivity(intent);
             }
         });
 
@@ -43,7 +78,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start sign up activity
-                MainActivity.isLoggedIn = true;
+                MainActivity.isLoggedIn = false;
                 startActivity(new Intent(Home.this, SignIn.class));
                 finish();
             }
