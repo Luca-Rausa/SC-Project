@@ -44,6 +44,15 @@
         <!-- NewEvent Activity -->
         <activity android:name=".NewEvent" />
 
+        <!-- Forms Activity -->
+        <activity android:name=".Forms" />
+
+        <!-- Chatbot Activity -->
+        <activity android:name=".Chatbot" />
+
+        <!-- Feedback Activity -->
+        <activity android:name=".Feedback" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
