@@ -45,12 +45,19 @@ public class SignIn extends AppCompatActivity {
                 String password = editTextPassword.getText().toString().trim();
 
                 // Check if username and password match the hardcoded values
-                if (username.equals("test@gmail.com") && password.equals("test")) {
+                if (username.equals("student@gmail.com") && password.equals("student")) {
                     // Set the global isLoggedIn variable to true
                     MainActivity.isLoggedIn = true;
                     startActivity(new Intent(SignIn.this, Home.class));
                     finish();
-                } else {
+                } else if (username.equals("staff@gmail.com") && password.equals("staff")) {
+                    // Set the global isLoggedIn variable to true
+                    MainActivity.isLoggedIn = true;
+                    MainActivity.isStaff = true;
+                    startActivity(new Intent(SignIn.this, Home.class));
+                    finish();
+                }
+                else {
                     // Show error message if credentials are incorrect
                     Toast.makeText(SignIn.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }

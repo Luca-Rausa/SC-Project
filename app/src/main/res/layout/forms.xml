@@ -3,58 +3,148 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/inter"
         android:text="Forms"
-        android:textColor="#3B8198"
-        android:textSize="27sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="409dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/form_button"
-        android:backgroundTint="@color/blue"
-        android:text="Meal Planning"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="84dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:elevation="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?android:attr/homeAsUpIndicator" />
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="409dp"
+    <RelativeLayout
+        android:id="@+id/button"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/form_button"
-        android:text="Travel Itinerary"
-        android:textAlignment="viewStart"
-
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="350dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/inter"
-        android:text="Results"
-        android:textAlignment="textEnd"
-        android:textColor="#3B8198"
-        app:layout_constraintStart_toStartOf="@+id/button9"
-        app:layout_constraintTop_toTopOf="@+id/button9" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp"
+                android:paddingTop="18dp"
+                android:text="Meal Planning"
+                android:textSize="16dp">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/mealResults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp"
+                android:text="View Results"
+                android:textColor="@color/dark_blue"
+                android:textSize="14dp">
+            </Button>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/mealButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:scaleType="centerInside"
+            android:layout_marginLeft="370dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/form_page_arrow">
+        </ImageButton>
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/form_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp"
+                android:paddingTop="18dp"
+                android:text="Travel Itinerary"
+                android:textSize="16dp"/>
+
+            <Button
+                android:id="@+id/travelResults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp"
+                android:text="View Results"
+                android:textColor="@color/dark_blue"
+                android:textSize="14dp"/>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/travelButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="370dp"
+            android:scaleType="centerInside"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/form_page_arrow"/>
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="301dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

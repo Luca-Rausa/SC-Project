@@ -6,6 +6,7 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isLoggedIn = false;
+    public static boolean isStaff = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
