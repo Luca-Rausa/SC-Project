@@ -19,42 +19,97 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="409dp"
+    <RelativeLayout
+        android:id="@+id/button"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/form_button"
-        android:backgroundTint="@color/blue"
-        android:text="Meal Planning"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="409dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp"
+                android:paddingTop="18dp"
+                android:text="Meal Planning"
+                android:textColor="@color/black"
+                android:textSize="16dp">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp"
+                android:text="Results"
+                android:textColor="@color/darker_gray"
+                android:textSize="14dp">
+
+            </TextView>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/form_page_arrow"
+            android:layout_marginLeft="370dp"
+            android:layout_marginTop="30dp">
+
+        </ImageView>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginTop="220dp"
         android:background="@drawable/form_button"
-        android:text="Travel Itinerary"
-        android:textAlignment="viewStart"
-
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="350dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/inter"
-        android:text="Results"
-        android:textAlignment="textEnd"
-        android:textColor="#3B8198"
-        app:layout_constraintStart_toStartOf="@+id/button9"
-        app:layout_constraintTop_toTopOf="@+id/button9" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Travel Itinerary"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp"
+                android:paddingTop="18dp" >
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Results"
+                android:textColor="@color/darker_gray"
+                android:textSize="14dp"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="20dp" >
+            </TextView>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/form_page_arrow"
+            android:layout_marginLeft="370dp"
+            android:layout_marginTop="30dp">
+
+        </ImageView>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
