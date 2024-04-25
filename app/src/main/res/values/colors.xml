@@ -10,4 +10,9 @@
     <color name="grey_blue">#6096BA</color>
     <color name="blue">#A3CEF1</color>
     <color name="dark_grey">#8B8C89</color>
+    <color name="primary">#1C2E46</color>
+    <color name="primary_dark">#142232</color>
+    <color name="primary_text">#212121</color>
+    <color name="input_background">#ECECEC</color>
+    <color name="icon_background">#20FFFFFF</color>
 </resources>
