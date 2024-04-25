@@ -23,7 +23,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:color/white"
-                android:fontFamily="@font/abeezee"
+                android:fontFamily="@font/inter"
                 android:text="@string/event_add_a_new_event"
                 android:textColor="@color/dark_blue"
                 android:textSize="25sp"
@@ -50,7 +50,10 @@
             <EditText
                 android:id="@+id/edTxtEventTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:paddingStart="17dp"
+                android:backgroundTint="@color/grey"
+                android:background="@drawable/form_box"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:hint="@string/event_title"
@@ -68,7 +71,10 @@
             <EditText
                 android:id="@+id/edTxtEventDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:paddingStart="17dp"
+                android:backgroundTint="@color/grey"
+                android:background="@drawable/form_box"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:hint="@string/event_description"
@@ -92,7 +98,10 @@
                 <Spinner
                     android:id="@+id/spinnerEventType"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
                     android:layout_marginStart="10dp" />
             </LinearLayout>
 
@@ -114,7 +123,10 @@
                 <EditText
                     android:id="@+id/edTxtEventAttendees"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
                     android:layout_marginStart="10dp"
                     android:hint="@string/event_attendees_number"
                     android:inputType="number"
@@ -146,7 +158,10 @@
                 <EditText
                     android:id="@+id/edTxtEventDate"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="30dp"
                     android:clickable="true"
@@ -304,7 +319,10 @@
                 <EditText
                     android:id="@+id/edTxtEventLinkName"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:hint="@string/event_link_name"
@@ -313,7 +331,10 @@
                 <EditText
                     android:id="@+id/edTxtEventLinkURL"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
                     android:layout_marginStart="10dp"
                     android:layout_weight="4"
                     android:hint="@string/event_url"
@@ -353,12 +374,14 @@
 
             <Button
                 android:id="@+id/btnAddEvent"
-                android:layout_width="wrap_content"
+                android:layout_width="342dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
+                android:backgroundTint="@color/dark_blue"
                 android:text="@string/event_add_button_text"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

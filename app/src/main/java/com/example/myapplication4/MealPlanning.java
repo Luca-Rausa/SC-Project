@@ -91,7 +91,7 @@ public class MealPlanning extends AppCompatActivity {
         csButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                csButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                csButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.dark_blue)));
                 csButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
                 resetOtherButtons(csButton);
                 programStudy = "CS";
@@ -101,7 +101,7 @@ public class MealPlanning extends AppCompatActivity {
         pgsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pgsButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                pgsButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.dark_blue)));
                 pgsButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
                 resetOtherButtons(pgsButton);
                 programStudy = "Postgraduate Studies";
@@ -111,7 +111,7 @@ public class MealPlanning extends AppCompatActivity {
         archButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                archButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                archButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.dark_blue)));
                 archButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
                 resetOtherButtons(archButton);
                 programStudy = "Architecture";
@@ -121,7 +121,7 @@ public class MealPlanning extends AppCompatActivity {
         otherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                otherButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.purple)));
+                otherButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MealPlanning.this, R.color.dark_blue)));
                 otherButton.setTextColor(ContextCompat.getColor(MealPlanning.this, R.color.white));
                 resetOtherButtons(otherButton);
                 programStudy = "Other";

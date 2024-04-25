@@ -48,7 +48,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/form_box"
             android:backgroundTint="#E7ECEF"
-            android:fontFamily="@font/abeezee"
+            android:fontFamily="@font/inter"
             android:hint="First Name"
             android:textColor="@color/darker_gray"
             android:textSize="16sp" />
@@ -115,6 +115,7 @@
         android:layout_width="361dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
+        android:paddingStart="14dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/form_box"
         android:backgroundTint="#E7ECEF"
@@ -175,6 +176,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="214dp"
         android:layout_marginTop="4dp"
+        android:paddingStart="14dp"
         android:background="@drawable/form_box"
         android:backgroundTint="#E7ECEF"
         app:layout_constraintStart_toStartOf="parent"
@@ -199,7 +201,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/dark_blue"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Submit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
