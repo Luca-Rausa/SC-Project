@@ -14,16 +14,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/event_add_a_new_event"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
+                android:background="@android:color/white"
+                android:text="@string/event_add_a_new_event"
+                android:textColor="@color/dark_blue"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -32,49 +35,55 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/event_mandatory_fields"
                 android:textColor="@color/dark_gray"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/event_title"
-                android:textStyle="bold"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginStart="15dp"
-                android:textSize="15sp"/>
+                android:text="@string/event_title"
+                android:textColor="@color/darker_gray"
+                android:textSize="15sp" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/event_title"
                 android:id="@+id/edTxtEventTitle"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingStart="17dp"
+                android:backgroundTint="@color/grey"
+                android:background="@drawable/form_box"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:textSize="14sp"/>
+                android:hint="@string/event_title"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/event_description"
-                android:textStyle="bold"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
-                android:textSize="15sp"/>
+                android:layout_marginTop="15dp"
+                android:text="@string/event_description"
+                android:textColor="@color/darker_gray"
+                android:textSize="15sp" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/event_description"
                 android:id="@+id/edTxtEventDescription"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingStart="17dp"
+                android:backgroundTint="@color/grey"
+                android:background="@drawable/form_box"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:textSize="14sp"/>
+                android:hint="@string/event_description"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
                 android:orientation="horizontal">
 
@@ -82,67 +91,82 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="@string/event_type"
-                    android:textStyle="bold"
-                    android:textSize="15sp"/>
+                    android:textColor="@color/darker_gray"
+                    android:textSize="15sp" />
 
                 <Spinner
                     android:id="@+id/spinnerEventType"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
+                    android:layout_marginStart="10dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/event_max_nr_attendees"
-                    android:textSize="15sp"/>
+                    android:textColor="@color/darker_gray"
+                    android:textSize="15sp" />
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/event_attendees_number"
                     android:id="@+id/edTxtEventAttendees"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
                     android:layout_marginStart="10dp"
-                    android:textSize="14sp"
-                    android:inputType="number"/>
+                    android:hint="@string/event_attendees_number"
+                    android:inputType="number"
+                    android:textSize="14sp" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/event_time"
-                android:textStyle="bold"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
-                android:textSize="15sp"/>
+                android:layout_marginTop="15dp"
+                android:text="@string/event_time"
+                android:textColor="@color/darker_gray"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/event_date"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/darker_gray"
+                    android:textSize="14sp" />
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/event_date"
                     android:id="@+id/edTxtEventDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="30dp"
-                    android:textSize="14sp"
+                    android:clickable="true"
                     android:focusable="false"
-                    android:clickable="true"/>
+                    android:hint="@string/event_date"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -151,56 +175,59 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/event_start_time"
-                    android:textStyle="bold"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/darker_gray"
+                    android:textSize="14sp" />
 
                 <EditText
-                    android:layout_width="wrap_content"
-                    android:minWidth="50dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/event_start_time_field"
                     android:id="@+id/edTxtEventStartTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="20dp"
-                    android:textSize="14sp"
+                    android:clickable="true"
                     android:focusable="false"
-                    android:clickable="true"/>
+                    android:hint="@string/event_start_time_field"
+                    android:minWidth="50dp"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/event_duration"
-                    android:textStyle="bold"
+                    android:textColor="@color/darker_gray"
 
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/edTxtEventDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="@string/event_duration"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="10dp"
-                    android:textSize="14sp"/>
+                    android:hint="@string/event_duration"
+                    android:inputType="number"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/event_minutes"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/event_images"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
-                android:textSize="15sp"/>
+                android:layout_marginTop="15dp"
+                android:text="@string/event_images"
+                android:textColor="@color/darker_gray"
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -209,20 +236,22 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/first_image_annotation"
                 android:textColor="@color/dark_gray"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:text="@string/event_images_uploaded"
+                    android:textColor="@color/darker_gray"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -230,42 +259,46 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/event_upload_image"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/darker_gray"
+                        android:textSize="14sp" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/btnUploadImage"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:backgroundTint="@color/dark_gray"
                         android:src="@drawable/plus_icon"
                         app:fabCustomSize="20dp"
                         app:maxImageSize="10dp"
-                        android:backgroundTint="@color/dark_gray"
-                        android:layout_gravity="center_vertical"
-                        app:rippleColor="@color/darker_gray"/>
+                        app:rippleColor="@color/darker_gray" />
 
                 </LinearLayout>
             </LinearLayout>
+
             <ListView
                 android:id="@+id/imagesListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="60dp"
-                android:scrollbars="none"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="60dp"
                 android:isScrollContainer="false"
-                android:layout_marginEnd="60dp"/>
+                android:scrollbars="none" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/event_links"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
-                android:textSize="15sp"/>
+                android:layout_marginTop="15dp"
+                android:text="@string/event_links"
+                android:textColor="@color/darker_gray"
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -273,67 +306,82 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="@string/event_new_link"
-                    android:textSize="15sp"/>
+                    android:textColor="@color/darker_gray"
+                    android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/edTxtEventLinkName"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:hint="@string/event_link_name"
-                    android:layout_marginStart="10dp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/edTxtEventLinkURL"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingStart="17dp"
+                    android:backgroundTint="@color/grey"
+                    android:background="@drawable/form_box"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="4"
                     android:hint="@string/event_url"
-                    android:layout_marginStart="10dp"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/btnUploadLink"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/dark_gray"
                     android:src="@drawable/plus_icon"
                     app:fabCustomSize="20dp"
                     app:maxImageSize="10dp"
-                    android:backgroundTint="@color/dark_gray"
-                    android:layout_gravity="center_vertical"
-                    app:rippleColor="@color/darker_gray"/>
+                    app:rippleColor="@color/darker_gray" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="5dp"                android:text="@string/event_links_uploaded"
+                android:text="@string/event_links_uploaded"
+                android:textColor="@color/darker_gray"
                 android:textSize="14sp" />
+
             <ListView
                 android:id="@+id/linkListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="60dp"
-                android:scrollbars="none"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="60dp"
                 android:isScrollContainer="false"
-                android:layout_marginEnd="60dp"/>
+                android:scrollbars="none" />
+
             <Button
                 android:id="@+id/btnAddEvent"
-                android:layout_width="wrap_content"
+                android:layout_width="342dp"
                 android:layout_height="wrap_content"
-                android:text="@string/event_add_button_text"
                 android:layout_gravity="end"
-                android:textSize="14sp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="5dp"/>
+                android:backgroundTint="@color/dark_blue"
+                android:text="@string/event_add_button_text"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

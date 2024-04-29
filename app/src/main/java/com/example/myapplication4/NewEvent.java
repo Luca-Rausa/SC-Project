@@ -124,8 +124,8 @@ public class NewEvent extends AppCompatActivity {
         eventDuration.addTextChangedListener(textWatcher);
         addEventButton.setOnClickListener(view -> {
             // CREATE EVENT ...
-            String dateFormat = "yyyy-MM-dd HH:mm:ss";
-            String strDate = eventDate.getText().toString() + " " + eventStartTime;
+            String dateFormat = "dd/MM/yyyy HH:mm";
+            String strDate = eventDate.getText().toString() + " " + eventStartTime.getText().toString();
             SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
             Date date = new Date();
             try {
@@ -162,7 +162,9 @@ public class NewEvent extends AppCompatActivity {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 (view, year, monthOfYear, dayOfMonth) -> {
-                    String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                    String dayString = (dayOfMonth < 10) ? "0" + dayOfMonth : String.valueOf(dayOfMonth);
+                    String monthString = ((monthOfYear + 1) < 10) ? "0" + (monthOfYear + 1) : String.valueOf(monthOfYear + 1);
+                    String selectedDate = dayString + "/" + monthString + "/" + year;
                     eventDate.setText(selectedDate);
                 }, yearNow, monthNow, dayOfMonthNow);
 

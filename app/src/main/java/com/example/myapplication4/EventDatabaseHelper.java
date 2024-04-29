@@ -82,7 +82,7 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<Event> getAllEvents() {
+    /*public List<Event> getAllEvents() {
         SQLiteDatabase db = getReadableDatabase();
         List<Event> eventList = new ArrayList<>();
 
@@ -108,7 +108,7 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return eventList;
-    }
+    }*/
 
     private String fromListToString(List<Uri> mList) {
         StringBuilder finalString = new StringBuilder();
