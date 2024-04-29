@@ -1,5 +1,6 @@
 package com.example.myapplication4;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Pair;
 import java.util.Date;
@@ -12,19 +13,19 @@ public class Event {
     private int attendees;
     private Date date;
     private int duration;
-    private List<Uri> image_paths;
+    private List<Bitmap> images;
     private List<Pair<String,String>> links;
     private String creatorUsername;
 
     public Event(String title, String description, EventType type, int attendees, Date date,
-                 int duration, List<Uri> image_paths, List<Pair<String,String>> links, String creatorUsername) {
+                 int duration, List<Bitmap> images, List<Pair<String,String>> links, String creatorUsername) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.attendees = attendees;
         this.date = date;
         this.duration = duration;
-        this.image_paths = image_paths;
+        this.images = images;
         this.links = links;
         this.creatorUsername = creatorUsername;
     }
@@ -88,12 +89,12 @@ public class Event {
         this.duration = duration;
     }
 
-    public List<Uri> getImage_paths() {
-        return image_paths;
+    public List<Bitmap> getImages() {
+        return images;
     }
 
-    public void setImage_paths(List<Uri> image_paths) {
-        this.image_paths = image_paths;
+    public void setImages(List<Bitmap> image_paths) {
+        this.images = image_paths;
     }
 
     public List<Pair<String, String>> getLinks() {

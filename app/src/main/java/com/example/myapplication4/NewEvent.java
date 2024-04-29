@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -24,6 +26,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -73,13 +79,15 @@ public class NewEvent extends AppCompatActivity {
         eventDate.setOnClickListener(v -> showDatePickerDialog());
         eventStartTime.setOnClickListener(v -> showTimePickerDialog());
 
-        List<Uri> fileList = new ArrayList<>();
+        List<Bitmap> fileList = new ArrayList<>();
+        List<Uri> uriList = new ArrayList<>();
         ActivityResultLauncher<String> filePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 result -> {
                     if (result != null) {
-                        fileList.add(result);
+                        uriList.add(result);
+                        fileList.add(convertUriToBitmap(result));
                         List<String> fileNames = new ArrayList<>();
-                        for (Uri uri : fileList) {
+                        for (Uri uri : uriList) {
                             String fileName = getFileNameFromUri(uri);
                             fileNames.add(fileName);
                         }
@@ -145,7 +153,7 @@ public class NewEvent extends AppCompatActivity {
             if(!eventAttendees.getText().toString().isEmpty())
                 event.setAttendees(Integer.parseInt(eventAttendees.getText().toString()));
             if(fileList.size() != 0)
-                event.setImage_paths(fileList);
+                event.setImages(fileList);
             if(linksList.size() != 0)
                 event.setLinks(linksList);
 
@@ -238,5 +246,15 @@ public class NewEvent extends AppCompatActivity {
                 !eventStartTime.getText().toString().isEmpty() &&
                 !eventDuration.getText().toString().isEmpty();
         addEventButton.setEnabled(allFieldsFilled);
+    }
+
+    private Bitmap convertUriToBitmap(Uri uri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            return BitmapFactory.decodeStream(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

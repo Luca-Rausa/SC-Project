@@ -17,7 +17,7 @@
 
         <!-- Main Activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".EventHub"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,8 +38,8 @@
         <!-- Home Activity -->
         <activity android:name=".Home" />
 
-        <!-- EventHub Activity -->
-        <activity android:name=".EventHub" />
+        <!-- EventHub Activity
+        <activity android:name=".EventHub" />-->
 
         <!-- NewEvent Activity -->
         <activity android:name=".NewEvent" />
