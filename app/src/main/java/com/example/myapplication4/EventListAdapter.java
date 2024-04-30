@@ -1,12 +1,16 @@
 package com.example.myapplication4;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,9 +22,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class EventListAdapter extends ArrayAdapter<Event> {
-
-    public EventListAdapter(Context context, List<Event> events) {
+    private int selected_item = -1;
+    private static final long CLICK_DELAY = 10;
+    private final int layout;
+    public EventListAdapter(Context context, List<Event> events, int layout) {
         super(context, 0, events);
+        this.layout = layout;
     }
 
     @NonNull
@@ -28,12 +35,24 @@ public class EventListAdapter extends ArrayAdapter<Event> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Event event = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(layout, parent, false);
         }
         int backgroundColor = position % 2 == 0 ? Color.rgb(255,255,255) : Color.rgb(220,220,220);
         GradientDrawable drawable = (GradientDrawable) ContextCompat.getDrawable(getContext(), R.drawable.event_list_item_background);
-        if (drawable != null) {
+        if(position==selected_item) {
+            float[] hsv = new float[3];
+            Color.colorToHSV(backgroundColor, hsv);
+            hsv[2] *= 0.8f;
+            backgroundColor = Color.HSVToColor(hsv);
+            convertView.postDelayed(() -> {
+                selected_item = -1;
+                notifyDataSetChanged();
+            }, CLICK_DELAY);
+        }
+        if(drawable != null) {
+            drawable.setShape(GradientDrawable.RECTANGLE);
             drawable.setColor(backgroundColor);
+            drawable.setCornerRadius(8);
             convertView.setBackground(drawable);
         }
         TextView textViewEventTitle = convertView.findViewById(R.id.textViewEventTitle);
@@ -46,6 +65,34 @@ public class EventListAdapter extends ArrayAdapter<Event> {
             textViewEventType.setText(event.getType().getStringValue());
         }
 
+        ImageView imageView = convertView.findViewById(R.id.imageViewRedCross);
+        if(imageView != null) {
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (imageViewClickListener != null) {
+                        imageViewClickListener.onImageViewClick(position);
+                    }
+                }
+            });
+        }
+
         return convertView;
+    }
+
+    public void setSelectedItem(int position) {
+        selected_item = position;
+        notifyDataSetChanged();
+    }
+
+    public interface OnImageViewClickListener {
+        void onImageViewClick(int position);
+    }
+
+    private OnImageViewClickListener imageViewClickListener;
+
+    public void setOnImageViewClickListener(OnImageViewClickListener listener) {
+        if (layout == R.layout.my_event_list_item)
+            imageViewClickListener = listener;
     }
 }

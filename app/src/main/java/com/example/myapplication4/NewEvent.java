@@ -2,10 +2,12 @@ package com.example.myapplication4;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -22,6 +24,7 @@ import android.widget.Spinner;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -243,6 +246,10 @@ public class NewEvent extends AppCompatActivity {
                 !eventDate.getText().toString().isEmpty() &&
                 !eventStartTime.getText().toString().isEmpty() &&
                 !eventDuration.getText().toString().isEmpty();
+        if(allFieldsFilled)
+            addEventButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.dark_blue));
+        else
+            addEventButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.light_gray));
         addEventButton.setEnabled(allFieldsFilled);
     }
 

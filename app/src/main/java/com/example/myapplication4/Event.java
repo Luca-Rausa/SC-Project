@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Event implements Parcelable {
+    private long id;
     private String title;
     private String description;
     private EventType type;
@@ -159,5 +160,13 @@ public class Event implements Parcelable {
 
     public void setCreatorUsername(String creatorUsername) {
         this.creatorUsername = creatorUsername;
+    }
+
+    public void setId(long id) {
+        this. id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 }

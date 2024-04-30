@@ -1,49 +1,33 @@
 package com.example.myapplication4;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventHub extends AppCompatActivity {
+public class MyEvents extends AppCompatActivity implements EventListAdapter.OnImageViewClickListener{
     private List<Event> events;
     private ListView eventListView;
     private EventListAdapter eventListAdapter;
     private EventDatabaseHelper eventDatabaseHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_hub);
-
-        Button btnNewEvent = findViewById(R.id.btnNewEvent);
-        btnNewEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(EventHub.this, NewEvent.class));
-            }
-        });
-
-        Button btnMyEvents = findViewById(R.id.btnMyEvents);
-        btnMyEvents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(EventHub.this, MyEvents.class));
-            }
-        });
+        setContentView(R.layout.my_events);
 
         eventDatabaseHelper = new EventDatabaseHelper(this);
         events = eventDatabaseHelper.getAllEvents();
         eventListView = findViewById(R.id.eventListView);
-        eventListAdapter = new EventListAdapter(this, events, R.layout.event_list_item);
+        eventListAdapter = new EventListAdapter(this, events, R.layout.my_event_list_item);
         eventListView.setAdapter(eventListAdapter);
 
         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -55,10 +39,22 @@ public class EventHub extends AppCompatActivity {
                     selectedEvent.setImages(new ArrayList<>());
                 if(selectedEvent.getLinks() == null)
                     selectedEvent.setLinks(new ArrayList<>());
-                Intent intent = new Intent(EventHub.this, SingleEventDisplay.class);
+                Intent intent = new Intent(MyEvents.this, SingleEventDisplay.class);
                 intent.putExtra("event", selectedEvent);
                 startActivity(intent);
             }
         });
+
+        eventListAdapter.setOnImageViewClickListener((this));
+    }
+
+    @Override
+    public void onImageViewClick(int position) {
+            Event eventToRemove = events.get(position);
+            if (eventToRemove != null) {
+                eventDatabaseHelper.removeEvent(eventToRemove);
+                events.remove(position);
+                eventListAdapter.notifyDataSetChanged();
+            }
     }
 }

@@ -15,4 +15,5 @@
     <color name="primary_text">#212121</color>
     <color name="input_background">#ECECEC</color>
     <color name="icon_background">#20FFFFFF</color>
+    <color name="light_gray">#D3D3D3</color>
 </resources>

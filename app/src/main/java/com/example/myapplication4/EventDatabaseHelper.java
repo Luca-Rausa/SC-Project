@@ -98,6 +98,7 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 Event event = new Event();
+                event.setId(cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID)));
                 event.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)));
                 event.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
                 event.setType(EventType.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TYPE))));
@@ -133,6 +134,16 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return eventList;
+    }
+
+    public boolean removeEvent(Event event) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        int result = sqLiteDatabase.delete("events","_id=?", new String[]{String.valueOf(event.getId())});
+        sqLiteDatabase.close();
+        if(result==0)
+            return false;
+        else
+            return true;
     }
 
     private List<Bitmap> deserializeImages(byte[] imageData) {
