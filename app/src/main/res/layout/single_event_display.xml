@@ -31,7 +31,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@android:color/white"
-                android:text="Event Title"
                 android:textColor="@color/dark_blue"
                 android:textSize="20sp"
                 android:layout_gravity="center_horizontal"
@@ -43,40 +42,47 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Type:"
-                    android:textColor="@color/darker_gray"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:id="@+id/displayEventType"
+                    android:layout_weight="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/event_display_type"
+                        android:textColor="@color/darker_gray"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/displayEventType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@color/darker_gray"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Event Type"
-                    android:layout_marginStart="5dp"
-                    android:textColor="@color/darker_gray"
-                    android:textSize="16sp"
-                    android:layout_weight="2"/>
+                    android:layout_weight="3"
+                    android:gravity="end">
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Created by"
+                    android:text="@string/event_display_creator"
                     android:textColor="@color/darker_gray"
                     android:textSize="16sp"
                     android:textAlignment="textEnd"
-                    android:layout_weight="2"/>
+                    android:layout_gravity="end"/>
                 <TextView
                     android:id="@+id/displayEventCreator"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="[user]"
                     android:textColor="@color/darker_gray"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:layout_marginStart="5dp"
-                    android:layout_weight="4"/>
+                    android:layout_gravity="end"/>
+                </LinearLayout>
             </LinearLayout>
             <FrameLayout
                 android:id="@+id/viewPagerContainer"
@@ -86,7 +92,7 @@
                 android:layout_marginStart="75dp"
                 android:layout_marginEnd="75dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/viewpager_border"> <!-- Aggiungi questo attributo per il bordo -->
+                android:background="@drawable/viewpager_border">
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/displayViewPager"
@@ -102,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Event Places Availability"
+                    android:text="@string/event_display_availability"
                     android:textColor="@color/darker_gray"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -111,7 +117,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Places"
                     android:textColor="@color/darker_gray"
                     android:textSize="16sp"/>
             </LinearLayout>
@@ -120,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="15dp"
-                android:text="Event Description"
+                android:text="@string/event_display_description"
                 android:textColor="@color/darker_gray"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -131,7 +136,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
-                android:text="Socialize with other students, enjoy some local food and music by the bonfire."
                 android:textColor="@color/darker_gray"
                 android:textSize="14sp"/>
             <TextView
@@ -152,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="25dp"
-                    android:text="Date"
+                    android:text="@string/event_display_date"
                     android:textColor="@color/darker_gray"
                     android:textSize="15sp"/>
                 <TextView
@@ -161,7 +165,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
-                    android:text="Date"
                     android:textColor="@color/darker_gray"
                     android:textSize="15sp"/>
             </LinearLayout>
@@ -171,7 +174,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"
-                android:text="The event will last about X minutes"
                 android:textColor="@color/darker_gray"
                 android:textSize="15sp"/>
             <TextView
@@ -179,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="15dp"
-                android:text="Event Links"
+                android:text="@string/event_display_links"
                 android:textColor="@color/darker_gray"
                 android:textSize="16sp"
                 android:textStyle="bold" />

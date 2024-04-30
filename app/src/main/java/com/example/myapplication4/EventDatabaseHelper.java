@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -100,7 +102,16 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
                 event.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
                 event.setType(EventType.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TYPE))));
                 event.setAttendees(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ATTENDEES)));
-                event.setDate(new Date(cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE))));
+                SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+                DateFormat outputDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.getDefault());
+                try {
+                    String strDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE));
+                    Date date = inputDateFormat.parse(strDate);
+                    String formattedDate = outputDateFormat.format(date);
+                    event.setDate(outputDateFormat.parse(formattedDate));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 event.setDuration(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DURATION)));
                 event.setCreatorUsername(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CREATOR_USERNAME)));
                 int imageIndex = cursor.getColumnIndexOrThrow(COLUMN_IMAGES);

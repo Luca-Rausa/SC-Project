@@ -42,6 +42,13 @@
     <string name="event_single_event_display">Single Event Display</string>
     <string name="event_single_event_duration">The event will last about %s minutes</string>
     <string name="event_see_my_events">My Events</string>
+    <string name="event_display_type">Type:</string>
+    <string name="event_display_creator">Created by</string>
+    <string name="event_display_availability">Event Places Availability</string>
+    <string name="event_display_description">Event Description</string>
+    <string name="event_display_date">Date</string>
+    <string name="event_display_links">Event Links</string>
+    <string name="event_hub">Event Hub</string>
     <string-array name="eventDurations">
         <item>less than 30 minutes</item>
         <item>30 minutes</item>
