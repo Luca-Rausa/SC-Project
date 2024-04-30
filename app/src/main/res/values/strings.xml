@@ -49,6 +49,7 @@
     <string name="event_display_date">Date</string>
     <string name="event_display_links">Event Links</string>
     <string name="event_hub">Event Hub</string>
+    <string name="event_list">Event List:</string>
     <string-array name="eventDurations">
         <item>less than 30 minutes</item>
         <item>30 minutes</item>

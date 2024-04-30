@@ -16,7 +16,7 @@ import java.util.List;
 public class EventHub extends AppCompatActivity {
     private List<Event> events;
     private ListView eventListView;
-    private ArrayAdapter<String> eventListAdapter;
+    private EventListAdapter eventListAdapter;
     private EventDatabaseHelper eventDatabaseHelper;
 
     @Override
@@ -41,10 +41,10 @@ public class EventHub extends AppCompatActivity {
         });
 
         eventDatabaseHelper = new EventDatabaseHelper(this);
+        events = eventDatabaseHelper.getAllEvents();
         eventListView = findViewById(R.id.eventListView);
-        eventListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        eventListAdapter = new EventListAdapter(this, events);
         eventListView.setAdapter(eventListAdapter);
-        loadEvents();
 
         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -59,16 +59,5 @@ public class EventHub extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private void loadEvents() {
-        events = eventDatabaseHelper.getAllEvents();
-        List<String> eventTitles = new ArrayList<>();
-        for (Event event : events) {
-            eventTitles.add(event.getTitle());
-        }
-        eventListAdapter.clear();
-        eventListAdapter.addAll(eventTitles);
-        eventListAdapter.notifyDataSetChanged();
     }
 }

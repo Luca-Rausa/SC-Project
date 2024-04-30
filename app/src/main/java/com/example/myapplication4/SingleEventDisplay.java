@@ -1,6 +1,7 @@
 package com.example.myapplication4;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class SingleEventDisplay  extends AppCompatActivity{
@@ -55,6 +57,10 @@ public class SingleEventDisplay  extends AppCompatActivity{
                 linksListAdapter = new LinksAdapter(this, event.getLinks());
                 eventLinks.setAdapter(linksListAdapter);
             }
+
+            List<Bitmap> images = event.getImages();
+            ImagePagerAdapter pagerAdapter = new ImagePagerAdapter(images);
+            eventImageViewer.setAdapter(pagerAdapter);
         }
     }
 }

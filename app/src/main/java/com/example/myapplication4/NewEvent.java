@@ -130,7 +130,6 @@ public class NewEvent extends AppCompatActivity {
         eventStartTime.addTextChangedListener(textWatcher);
         eventDuration.addTextChangedListener(textWatcher);
         addEventButton.setOnClickListener(view -> {
-            // CREATE EVENT ...
             String dateFormat = "dd/MM/yyyy HH:mm";
             String strDate = eventDate.getText().toString() + " " + eventStartTime.getText().toString();
             SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
