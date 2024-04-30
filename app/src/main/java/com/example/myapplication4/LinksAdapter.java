@@ -9,11 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import java.util.List;
 
-public class LinksAdapter extends ArrayAdapter<Pair<String, String>> {
-    private final List<Pair<String, String>> linkList;
+public class LinksAdapter extends ArrayAdapter<CustomPair<String, String>> {
+    private final List<CustomPair<String, String>> linkList;
     private final LayoutInflater inflater;
 
-    public LinksAdapter(Context context, List<Pair<String, String>> linkList) {
+    public LinksAdapter(Context context, List<CustomPair<String, String>> linkList) {
         super(context, 0, linkList);
         this.linkList = linkList;
         inflater = LayoutInflater.from(context);
@@ -33,7 +33,7 @@ public class LinksAdapter extends ArrayAdapter<Pair<String, String>> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Pair<String, String> pair = linkList.get(position);
+        CustomPair<String, String> pair = linkList.get(position);
         viewHolder.textViewName.setText(pair.first);
         viewHolder.textViewUrl.setText(pair.second);
 

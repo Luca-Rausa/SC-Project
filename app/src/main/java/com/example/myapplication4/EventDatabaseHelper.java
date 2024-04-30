@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.Pair;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -78,7 +77,7 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DATE, event.getDate().toString());
         values.put(COLUMN_DURATION, event.getDuration());
         values.put(COLUMN_IMAGES, serializeImages(event.getImages()));
-        Pair<String,String> linksList = fromPairListToString(event.getLinks());
+        CustomPair<String,String> linksList = fromPairListToString(event.getLinks());
         if(linksList != null) {
             values.put(COLUMN_LINK_NAMES, linksList.first);
             values.put(COLUMN_LINK_URL, linksList.second);
@@ -103,6 +102,7 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
                 event.setAttendees(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ATTENDEES)));
                 event.setDate(new Date(cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE))));
                 event.setDuration(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DURATION)));
+                event.setCreatorUsername(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CREATOR_USERNAME)));
                 int imageIndex = cursor.getColumnIndexOrThrow(COLUMN_IMAGES);
                 if(!cursor.isNull(imageIndex)) {
                     byte[] imageData = cursor.getBlob(imageIndex);
@@ -148,29 +148,29 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         return outputStream.toByteArray();
     }
 
-    private Pair<String,String> fromPairListToString(List<Pair<String,String>> mList) {
+    private CustomPair<String,String> fromPairListToString(List<CustomPair<String,String>> mList) {
         StringBuilder names = new StringBuilder();
         StringBuilder url = new StringBuilder();
         if(mList != null) {
-            for (Pair<String, String> mPair : mList) {
+            for (CustomPair<String, String> mPair : mList) {
                 names.append(mPair.first).append(";");
                 url.append(mPair.second).append(";");
             }
             String strNames = names.substring(0, names.length() - 1);
             String strUrl = url.substring(0, url.length() - 1);
-            return new Pair<>(strNames, strUrl);
+            return new CustomPair<>(strNames, strUrl);
         } else {
             return null;
         }
     }
 
-    private List<Pair<String, String>> fromStringToPairList(String names, String urls) {
-        List<Pair<String, String>> linkList = new ArrayList<>();
+    private List<CustomPair<String, String>> fromStringToPairList(String names, String urls) {
+        List<CustomPair<String, String>> linkList = new ArrayList<>();
         if (names != null && urls != null) {
             String[] nameArray = names.split(";");
             String[] urlArray = urls.split(";");
             for (int i = 0; i < Math.min(nameArray.length, urlArray.length); i++) {
-                linkList.add(new Pair<>(nameArray[i], urlArray[i]));
+                linkList.add(new CustomPair<>(nameArray[i], urlArray[i]));
             }
         }
         return linkList;

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/white"
+                android:text="@string/event_single_event_display"
+                android:textColor="@color/dark_blue"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/displayEventTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/white"
+                android:text="Event Title"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold|italic" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Type:"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/displayEventType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Event Type"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="16sp"
+                    android:layout_weight="2"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Created by"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="16sp"
+                    android:textAlignment="textEnd"
+                    android:layout_weight="2"/>
+                <TextView
+                    android:id="@+id/displayEventCreator"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="[user]"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="14sp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="4"/>
+            </LinearLayout>
+            <FrameLayout
+                android:id="@+id/viewPagerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginEnd="75dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/viewpager_border"> <!-- Aggiungi questo attributo per il bordo -->
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/displayViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event Places Availability"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/displayEventMaxAttendees"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Places"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="Event Description"
+                android:textColor="@color/darker_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/displayEventDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="Socialize with other students, enjoy some local food and music by the bonfire."
+                android:textColor="@color/darker_gray"
+                android:textSize="14sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="Event Time"
+                android:textColor="@color/darker_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="25dp"
+                    android:text="Date"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/displayEventDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Date"
+                    android:textColor="@color/darker_gray"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/displayEventDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="25dp"
+                android:text="The event will last about X minutes"
+                android:textColor="@color/darker_gray"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="Event Links"
+                android:textColor="@color/darker_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <ListView
+                android:id="@+id/displayEventLinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

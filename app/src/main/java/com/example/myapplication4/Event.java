@@ -1,12 +1,14 @@
 package com.example.myapplication4;
 
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.util.Pair;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Event {
+public class Event implements Parcelable {
     private String title;
     private String description;
     private EventType type;
@@ -14,11 +16,11 @@ public class Event {
     private Date date;
     private int duration;
     private List<Bitmap> images;
-    private List<Pair<String,String>> links;
+    private List<CustomPair<String, String>> links;
     private String creatorUsername;
 
     public Event(String title, String description, EventType type, int attendees, Date date,
-                 int duration, List<Bitmap> images, List<Pair<String,String>> links, String creatorUsername) {
+                 int duration, List<Bitmap> images, List<CustomPair<String, String>> links, String creatorUsername) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -30,16 +32,62 @@ public class Event {
         this.creatorUsername = creatorUsername;
     }
 
-    public Event(String title, String description, EventType type, Date date, int duration, String creatorUsername) {
+    public Event(){}
+
+    protected Event(Parcel in) {
+        title = in.readString();
+        description = in.readString();
+        type = (EventType) in.readSerializable();
+        attendees = in.readInt();
+        date = new Date(in.readLong());
+        duration = in.readInt();
+        images = new ArrayList<>();
+        in.readList(images, Bitmap.class.getClassLoader());
+        links = new ArrayList<>();
+        in.readList(links, CustomPair.class.getClassLoader());
+        creatorUsername = in.readString();
+    }
+
+    public Event(String title, String description, EventType eventType, Date date, int duration, String creatorUsername) {
         this.title = title;
         this.description = description;
-        this.type = type;
+        this.type = eventType;
         this.date = date;
-        this.duration = duration;
+        this. duration = duration;
         this.creatorUsername = creatorUsername;
     }
 
-    public Event() {}
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeSerializable(type);
+        dest.writeInt(attendees);
+        dest.writeLong(date.getTime());
+        dest.writeInt(duration);
+        if (images != null)
+            dest.writeList(images);
+        if (links != null)
+            dest.writeList(links);
+        dest.writeString(creatorUsername);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -93,15 +141,15 @@ public class Event {
         return images;
     }
 
-    public void setImages(List<Bitmap> image_paths) {
-        this.images = image_paths;
+    public void setImages(List<Bitmap> images) {
+        this.images = images;
     }
 
-    public List<Pair<String, String>> getLinks() {
+    public List<CustomPair<String, String>> getLinks() {
         return links;
     }
 
-    public void setLinks(List<Pair<String,String>> links) {
+    public void setLinks(List<CustomPair<String, String>> links) {
         this.links = links;
     }
 

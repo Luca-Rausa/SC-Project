@@ -44,6 +44,9 @@
         <!-- NewEvent Activity -->
         <activity android:name=".NewEvent" />
 
+        <!-- SingleEventDisplay Activity -->
+        <activity android:name=".SingleEventDisplay" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
