@@ -19,8 +19,11 @@ public class SignUp extends AppCompatActivity {
 
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextFirstName;
+    private EditText editTextLastName;
     private Spinner spinner;
     private Button signUpButton;
+    private Button signInButton;
     private String selectedRole;
 
     @Override
@@ -38,6 +41,9 @@ public class SignUp extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.editTextTextEmailAddress);
         editTextPassword = findViewById(R.id.editTextTextPassword);
+        editTextFirstName = findViewById(R.id.editTextTextFirst);
+        editTextLastName = findViewById(R.id.editTextTextLast);
+        signInButton = findViewById(R.id.signInButton);
         spinner = findViewById(R.id.spinner);
         signUpButton = findViewById(R.id.signUp);
 
@@ -66,6 +72,8 @@ public class SignUp extends AppCompatActivity {
                 // Get user inputs
                 String email = editTextEmail.getText().toString().trim();
                 String password = editTextPassword.getText().toString().trim();
+                String firstname = editTextFirstName.getText().toString().trim();
+                String lastname = editTextLastName.getText().toString().trim();
 
                 // Validate inputs
                 if (email.isEmpty() || password.isEmpty()) {
@@ -73,8 +81,24 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
 
-                // TODO: Save user data
+                // Save user data to SQLite database
+                LoginHelper dbHelper = new LoginHelper(SignUp.this);
+                boolean success = dbHelper.addUser(firstname, lastname, email, password, selectedRole);
+                if (success) {
+                    Toast.makeText(SignUp.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SignUp.this, "Sign up failed", Toast.LENGTH_SHORT).show();
+                }
 
+                // Navigate to home page
+                startActivity(new Intent(SignUp.this, SignIn.class));
+                finish();
+            }
+        });
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 // Navigate to home page
                 startActivity(new Intent(SignUp.this, SignIn.class));
                 finish();

@@ -12,12 +12,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 public class SignIn extends AppCompatActivity {
 
     private EditText editTextUsername;
     private EditText editTextPassword;
     private Button signInButton;
     private Button signUpButton;
+    private LoginHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class SignIn extends AppCompatActivity {
         editTextPassword = findViewById(R.id.enterPass);
         signInButton = findViewById(R.id.signin);
         signUpButton = findViewById(R.id.button);
+        dbHelper = new LoginHelper(this);
 
         // Setting up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -44,10 +48,24 @@ public class SignIn extends AppCompatActivity {
                 String username = editTextUsername.getText().toString().trim();
                 String password = editTextPassword.getText().toString().trim();
 
-                // Check if username and password match the hardcoded values
-                if (username.equals("test@gmail.com") && password.equals("test")) {
+                // Query the database for the user with the given email and password
+                User user = dbHelper.getUser(username, password);
+                MainActivity.user = user;
+
+                if (user == null) {
+                    // Show error message if credentials are incorrect
+                    Toast.makeText(SignIn.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                }
+
+                // Check if user is student or staff
+                if (user != null) {
                     // Set the global isLoggedIn variable to true
                     MainActivity.isLoggedIn = true;
+
+                    if (Objects.equals(user.getRole(), "Staff")) {
+                        MainActivity.isStaff = true;
+                    }
+                    Toast.makeText(SignIn.this, "Sign in successful!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SignIn.this, Home.class));
                     finish();
                 } else {

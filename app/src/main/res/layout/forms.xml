@@ -3,21 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/inter"
         android:text="Forms"
-        android:textColor="#3B8198"
-        android:textSize="27sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="84dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?android:attr/homeAsUpIndicator" />
 
     <RelativeLayout
         android:id="@+id/button"
@@ -41,33 +52,41 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="18dp"
                 android:text="Meal Planning"
-                android:textColor="@color/black"
                 android:textSize="16dp">
 
             </TextView>
 
-            <TextView
+            <Button
+                android:id="@+id/mealResults"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
                 android:fontFamily="@font/inter"
                 android:paddingLeft="20dp"
-                android:text="Results"
-                android:textColor="@color/darker_gray"
+                android:text="View Results"
+                android:textColor="@color/dark_blue"
                 android:textSize="14dp">
-
-            </TextView>
+            </Button>
         </LinearLayout>
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/mealButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/form_page_arrow"
+            android:scaleType="centerInside"
             android:layout_marginLeft="370dp"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:src="@drawable/form_page_arrow">
+        </ImageButton>
 
-        </ImageView>
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/button2"
         android:layout_width="match_parent"
@@ -85,31 +104,47 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Travel Itinerary"
-                android:textColor="@color/black"
-                android:textSize="16dp"
                 android:fontFamily="@font/inter"
                 android:paddingLeft="20dp"
-                android:paddingTop="18dp" >
-            </TextView>
-            <TextView
+                android:paddingTop="18dp"
+                android:text="Travel Itinerary"
+                android:textSize="16dp"/>
+
+            <Button
+                android:id="@+id/travelResults"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Results"
-                android:textColor="@color/darker_gray"
-                android:textSize="14dp"
+                android:backgroundTint="@android:color/transparent"
                 android:fontFamily="@font/inter"
-                android:paddingLeft="20dp" >
-            </TextView>
+                android:paddingLeft="20dp"
+                android:text="View Results"
+                android:textColor="@color/dark_blue"
+                android:textSize="14dp"/>
         </LinearLayout>
-        <ImageView
+
+        <ImageButton
+            android:id="@+id/travelButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/form_page_arrow"
             android:layout_marginLeft="370dp"
-            android:layout_marginTop="30dp">
+            android:scaleType="centerInside"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/form_page_arrow"/>
 
-        </ImageView>
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
     </RelativeLayout>
+
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="301dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

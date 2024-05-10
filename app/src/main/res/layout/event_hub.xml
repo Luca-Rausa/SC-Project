@@ -4,31 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".EventHub">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="340dp"
+        android:layout_height="229dp"
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-75dp"
+        android:src="@drawable/blue_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/event_add_button"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:background="#3F51B5"
-            android:id="@+id/btnNewEvent" />
-      <!--  <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/eventsListView"/> -->
-    </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    <Button
+        android:id="@+id/signout"
+        android:layout_width="115dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Sign Out"
+        android:textColor="@color/dark_grey"
+        app:cornerRadius="5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/dark_grey"
+        app:strokeWidth="1sp" />
+
+    <Button
+        android:id="@+id/btnNewEvent"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="@string/event_add_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="384dp"
+        android:layout_height="670dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fake_events" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:text="EventsHub"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fillViewport="true"-->
+<!--        tools:layout_editor_absoluteX="71dp"-->
+<!--        tools:layout_editor_absoluteY="0dp">-->
+
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:orientation="vertical"-->
+        <!--        android:gravity="center_horizontal">-->
+        <!--        &lt;!&ndash;  <ListView-->
+        <!--              android:layout_width="match_parent"-->
+        <!--              android:layout_height="match_parent"-->
+        <!--              android:id="@+id/eventsListView"/> &ndash;&gt;-->
+        <!--    </LinearLayout>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btnNewEvent"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:layout_marginBottom="50dp"-->
+<!--            android:background="#3F51B5"-->
+<!--            android:text="@string/event_add_button" />-->
+<!--    </androidx.core.widget.NestedScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

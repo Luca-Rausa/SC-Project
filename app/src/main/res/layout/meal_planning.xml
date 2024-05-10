@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@android:color/white">
 
     <TextView
         android:id="@+id/mealTitle"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Meal Prep"
         android:textColor="@color/dark_blue"
         android:textSize="27sp"
@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/abeezee"
         android:text="First Name"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -39,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Last Name"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -63,7 +61,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/form_box"
             android:backgroundTint="#E7ECEF"
-            android:fontFamily="@font/abeezee"
+            android:fontFamily="@font/inter"
             android:textColor="#000000"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -74,7 +72,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Email"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -87,7 +84,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Program of Study"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -161,7 +157,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="What days will you require meals?"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -174,7 +169,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="What meals will you be attending?"
         android:textColor="@color/dark_gray"
         android:textSize="16sp"
@@ -187,7 +181,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Breakfast"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -200,7 +194,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Lunch"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -213,7 +207,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Dinner"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -226,7 +220,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="What days will you be attending breakfast?"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -239,6 +232,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
+        android:paddingStart="14dp"
         android:background="@drawable/form_box"
         android:backgroundTint="#E7ECEF"
         app:layout_constraintStart_toStartOf="parent"
@@ -250,7 +244,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="What days will you be attending lunch?"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -263,6 +256,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
+        android:paddingStart="14dp"
         android:background="@drawable/form_box"
         android:backgroundTint="#E7ECEF"
         app:layout_constraintStart_toStartOf="parent"
@@ -314,6 +308,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextFirstName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/form_box"
@@ -332,6 +327,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextEmailAddress2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/form_box"
@@ -361,6 +357,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editStartDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/form_box"
@@ -378,6 +375,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editEndDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/form_box"

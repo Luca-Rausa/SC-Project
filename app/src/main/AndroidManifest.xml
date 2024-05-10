@@ -44,6 +44,27 @@
         <!-- NewEvent Activity -->
         <activity android:name=".NewEvent" />
 
+        <!-- Forms Activity -->
+        <activity android:name=".Forms" />
+
+        <!-- Chatbot Activity -->
+        <activity android:name=".Chatbot" />
+
+        <!-- Feedback Activity -->
+        <activity android:name=".Feedback" />
+
+        <!-- Meal Planning Activity -->
+        <activity android:name=".MealPlanning" />
+
+        <!-- Travel Itinerary Activity -->
+        <activity android:name=".TravelItinerary" />
+
+        <!-- Travel Results Activity -->
+        <activity android:name=".TravelResults" />
+
+        <!-- Meal Results Activity -->
+        <activity android:name=".MealResults" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

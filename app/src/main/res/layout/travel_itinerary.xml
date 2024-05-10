@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Travel Itinerary"
-        android:textAlignment="center"
         android:textColor="@color/dark_blue"
-        android:textSize="20sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
+        android:layout_marginTop="8dp"
         android:text="First Name"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -50,7 +48,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/form_box"
             android:backgroundTint="#E7ECEF"
-            android:fontFamily="@font/abeezee"
+            android:fontFamily="@font/inter"
             android:hint="First Name"
             android:textColor="@color/darker_gray"
             android:textSize="16sp" />
@@ -94,7 +92,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Email"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -107,7 +104,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Travel Destination"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -119,6 +115,7 @@
         android:layout_width="361dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
+        android:paddingStart="14dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/form_box"
         android:backgroundTint="#E7ECEF"
@@ -131,7 +128,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Traveling With Others?"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -168,11 +164,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="214dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Travel Group"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
-        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
@@ -182,6 +176,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="214dp"
         android:layout_marginTop="4dp"
+        android:paddingStart="14dp"
         android:background="@drawable/form_box"
         android:backgroundTint="#E7ECEF"
         app:layout_constraintStart_toStartOf="parent"
@@ -193,7 +188,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Itinerary"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
@@ -205,15 +199,15 @@
         android:layout_width="361dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/dark_blue"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Submit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextEmailAddress"
+        android:id="@+id/textInputLayout5"
         android:layout_width="361dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -222,7 +216,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailAddress"
+            android:id="@+id/editTextEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/form_box"
@@ -234,16 +228,15 @@
 
     <TextView
         android:id="@+id/textView34"
-        android:layout_width="361dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
         android:text="Dates of Travel"
         android:textColor="@color/darker_gray"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout6"
@@ -316,38 +309,13 @@
     <ScrollView
         android:layout_width="409dp"
         android:layout_height="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottomNavigationView">
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/grey"
-        app:menu="@menu/bottom_navmenu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-         />
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
