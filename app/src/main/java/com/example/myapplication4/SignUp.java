@@ -81,7 +81,14 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
 
-                // TODO: Save user data
+                // Save user data to SQLite database
+                LoginHelper dbHelper = new LoginHelper(SignUp.this);
+                boolean success = dbHelper.addUser(firstname, lastname, email, password, selectedRole);
+                if (success) {
+                    Toast.makeText(SignUp.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SignUp.this, "Sign up failed", Toast.LENGTH_SHORT).show();
+                }
 
                 // Navigate to home page
                 startActivity(new Intent(SignUp.this, SignIn.class));

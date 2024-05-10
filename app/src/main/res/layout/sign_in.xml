@@ -43,7 +43,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/dark_blue"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Sign In"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"

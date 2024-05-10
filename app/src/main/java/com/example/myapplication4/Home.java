@@ -7,16 +7,27 @@ import android.widget.ImageButton;
 import android.net.Uri;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
 
     private ImageButton requiredForms, eventHub, feedback, chatbot, banner;
     private Button signOutButton;
+    private TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        name = findViewById(R.id.textView2);
+
+        if (MainActivity.user != null) {
+            String firstName = MainActivity.user.getFirstname() + ","; // Get the user's first name
+
+            // Update the TextView text to display the user's first name
+            name.setText(firstName);
+        }
 
         // Initialize buttons
         requiredForms = findViewById(R.id.requiredFormsButton);
