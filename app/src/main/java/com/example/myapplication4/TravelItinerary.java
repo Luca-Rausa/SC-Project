@@ -23,7 +23,7 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.travel_itinerary);
+        setContentView(R.layout.travel_itinerary2);
 
         // Initialize UI elements
         firstNameEditText = findViewById(R.id.editTextFirstName);

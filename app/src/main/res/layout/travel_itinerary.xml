@@ -28,31 +28,24 @@
         android:layout_marginTop="8dp"
         android:text="First Name"
         android:textColor="@color/darker_gray"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/travelItin" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+    <EditText
+        android:id="@+id/editTextFirstName"
         android:layout_width="361dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-
+        android:layout_marginTop="5dp"
+        android:background="@drawable/form_box"
+        android:backgroundTint="#E7ECEF"
+        android:fontFamily="@font/inter"
+        android:hint="First Name"
+        android:paddingStart="17dp"
+        android:textColor="@color/darker_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/form_box"
-            android:backgroundTint="#E7ECEF"
-            android:fontFamily="@font/inter"
-            android:hint="First Name"
-            android:textColor="@color/darker_gray"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
     <TextView
         android:id="@+id/lastName"
@@ -62,29 +55,24 @@
         android:layout_marginTop="10dp"
         android:text="Last Name"
         android:textColor="@color/darker_gray"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+    <EditText
+        android:id="@+id/editTextLastName"
         android:layout_width="361dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/form_box"
+        android:backgroundTint="#E7ECEF"
+        android:hint="Last Name"
+        android:textColor="@color/darker_gray"
+        android:textSize="16sp"
+        android:paddingStart="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastName">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextLastName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/form_box"
-            android:backgroundTint="#E7ECEF"
-            android:hint="Last Name"
-            android:textColor="@color/darker_gray"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/lastName"
+       />
 
     <TextView
         android:id="@+id/email"
@@ -94,9 +82,8 @@
         android:layout_marginTop="10dp"
         android:text="Email"
         android:textColor="@color/darker_gray"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
 
     <TextView
         android:id="@+id/travelDest"
@@ -206,25 +193,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout5"
+    <EditText
+        android:id="@+id/editTextEmailAddress"
         android:layout_width="361dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="5dp"
+        android:paddingStart="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/form_box"
-            android:backgroundTint="#E7ECEF"
-            android:hint="Email"
-            android:textColor="@color/darker_gray"
-            android:textSize="16sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        android:background="@drawable/form_box"
+        android:backgroundTint="#E7ECEF"
+        android:hint="Email"
+        android:textColor="@color/darker_gray"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView34"
@@ -234,66 +216,48 @@
         android:layout_marginTop="10dp"
         android:text="Dates of Travel"
         android:textColor="@color/darker_gray"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout6"
+    <EditText
+        android:id="@+id/editTextDate"
         android:layout_width="170dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView34">
+        android:background="@drawable/form_box"
+        android:backgroundTint="#E7ECEF"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Start Date"
+        android:paddingStart="17dp"
+        android:textColor="@color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/textView34"
+        tools:layout_editor_absoluteX="242dp" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/form_box"
-            android:backgroundTint="#E7ECEF"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="Start Date"
-            android:textColor="@color/darker_gray" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/endDate"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toEndOf="@+id/textInputLayout6"
-        app:layout_constraintTop_toBottomOf="@+id/textView34">
+        android:paddingStart="17dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView34"
+        android:background="@drawable/form_box"
+        android:backgroundTint="#E7ECEF"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="End Date" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/endDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/form_box"
-            android:backgroundTint="#E7ECEF"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="End Date" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout7"
-        android:layout_width="361dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itinDescription">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/itineraryDesc"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="361dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/form_box"
             android:backgroundTint="#E7ECEF"
-            android:hint="Enter a brief description" />
+            android:hint="Enter a brief description"
+            app:layout_constraintTop_toBottomOf="@+id/itinDescription" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -304,7 +268,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
-    </com.google.android.material.textfield.TextInputLayout>
 
     <ScrollView
         android:layout_width="409dp"
