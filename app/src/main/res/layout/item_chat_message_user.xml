@@ -9,7 +9,7 @@
         android:id="@+id/textViewMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         android:background="@drawable/bubble_outgoing"
         android:padding="8dp"
         android:textColor="#FFFFFF" />
