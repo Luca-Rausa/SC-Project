@@ -25,6 +25,7 @@ public class EventListAdapter extends ArrayAdapter<Event> {
     private int selected_item = -1;
     private static final long CLICK_DELAY = 10;
     private final int layout;
+
     public EventListAdapter(Context context, List<Event> events, int layout) {
         super(context, 0, events);
         this.layout = layout;

@@ -25,12 +25,13 @@ public class SingleEventDisplay  extends AppCompatActivity{
     private TextView eventDuration;
     private ListView eventLinks;
     private LinksAdapter linksListAdapter;
-
+    private EventDatabaseHelper eventDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_event_display);
+        eventDatabaseHelper = new EventDatabaseHelper(this);
 
         eventTitle = findViewById(R.id.displayEventTitle);
         eventDescription = findViewById(R.id.displayEventDescription);
@@ -43,8 +44,9 @@ public class SingleEventDisplay  extends AppCompatActivity{
         eventLinks = findViewById(R.id.displayEventLinks);
 
         Intent intent = getIntent();
-        Event event = intent.getParcelableExtra("event");
-        if(event != null) {
+        long eventId = intent.getLongExtra("event", -1);
+        if(eventId != -1) {
+            Event event = eventDatabaseHelper.getEvent(eventId);
             eventTitle.setText(event.getTitle());
             eventDescription.setText(event.getDescription());
             eventType.setText(event.getType().getStringValue());

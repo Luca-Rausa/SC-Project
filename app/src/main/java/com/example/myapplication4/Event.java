@@ -3,12 +3,13 @@ package com.example.myapplication4;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Event implements Parcelable {
+public class Event{
     private long id;
     private String title;
     private String description;
@@ -17,11 +18,11 @@ public class Event implements Parcelable {
     private Date date;
     private int duration;
     private List<Bitmap> images;
-    private List<CustomPair<String, String>> links;
+    private List<Pair<String, String>> links;
     private String creatorUsername;
 
     public Event(String title, String description, EventType type, int attendees, Date date,
-                 int duration, List<Bitmap> images, List<CustomPair<String, String>> links, String creatorUsername) {
+                 int duration, List<Bitmap> images, List<Pair<String, String>> links, String creatorUsername) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -45,7 +46,7 @@ public class Event implements Parcelable {
         images = new ArrayList<>();
         in.readList(images, Bitmap.class.getClassLoader());
         links = new ArrayList<>();
-        in.readList(links, CustomPair.class.getClassLoader());
+        in.readList(links, Pair.class.getClassLoader());
         creatorUsername = in.readString();
     }
 
@@ -57,38 +58,6 @@ public class Event implements Parcelable {
         this. duration = duration;
         this.creatorUsername = creatorUsername;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(description);
-        dest.writeSerializable(type);
-        dest.writeInt(attendees);
-        dest.writeLong(date.getTime());
-        dest.writeInt(duration);
-        if (images != null)
-            dest.writeList(images);
-        if (links != null)
-            dest.writeList(links);
-        dest.writeString(creatorUsername);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Event> CREATOR = new Creator<Event>() {
-        @Override
-        public Event createFromParcel(Parcel in) {
-            return new Event(in);
-        }
-
-        @Override
-        public Event[] newArray(int size) {
-            return new Event[size];
-        }
-    };
 
     public String getTitle() {
         return title;
@@ -146,11 +115,11 @@ public class Event implements Parcelable {
         this.images = images;
     }
 
-    public List<CustomPair<String, String>> getLinks() {
+    public List<Pair<String, String>> getLinks() {
         return links;
     }
 
-    public void setLinks(List<CustomPair<String, String>> links) {
+    public void setLinks(List<Pair<String, String>> links) {
         this.links = links;
     }
 

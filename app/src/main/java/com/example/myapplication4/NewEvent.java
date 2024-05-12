@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -105,13 +106,13 @@ public class NewEvent extends AppCompatActivity {
         fileListAdapter = new ArrayAdapter<>(this, R.layout.event_spinner_item);
         imagesListView.setAdapter(fileListAdapter);
 
-        List<CustomPair<String,String>> linksList = new ArrayList<>();
+        List<Pair<String,String>> linksList = new ArrayList<>();
         FloatingActionButton btnUploadLink = findViewById(R.id.btnUploadLink);
         btnUploadLink.setOnClickListener(view -> {
             String strLinkName = eventLinkName.getText().toString();
             String strLinkUrl = eventLinkUrl.getText().toString();
             if(!strLinkName.isEmpty() && isValidUrl(strLinkUrl)) {
-                linksList.add(new CustomPair<>(strLinkName, strLinkUrl));
+                linksList.add(new Pair<>(strLinkName, strLinkUrl));
                 eventLinkName.setText("");
                 eventLinkUrl.setText("");
 
@@ -133,9 +134,8 @@ public class NewEvent extends AppCompatActivity {
         eventStartTime.addTextChangedListener(textWatcher);
         eventDuration.addTextChangedListener(textWatcher);
         addEventButton.setOnClickListener(view -> {
-            String dateFormat = "dd/MM/yyyy HH:mm";
             String strDate = eventDate.getText().toString() + " " + eventStartTime.getText().toString();
-            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             Date date = new Date();
             try {
                 date = sdf.parse(strDate);

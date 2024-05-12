@@ -45,20 +45,23 @@ public class EventHub extends AppCompatActivity {
         eventListView = findViewById(R.id.eventListView);
         eventListAdapter = new EventListAdapter(this, events, R.layout.event_list_item);
         eventListView.setAdapter(eventListAdapter);
-
         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 eventListAdapter.setSelectedItem(position);
                 Event selectedEvent = events.get(position);
-                if(selectedEvent.getImages() == null)
-                    selectedEvent.setImages(new ArrayList<>());
-                if(selectedEvent.getLinks() == null)
-                    selectedEvent.setLinks(new ArrayList<>());
                 Intent intent = new Intent(EventHub.this, SingleEventDisplay.class);
-                intent.putExtra("event", selectedEvent);
+                intent.putExtra("event", selectedEvent.getId());
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        eventListAdapter.clear();
+        eventListAdapter.addAll(eventDatabaseHelper.getAllEvents());
+        eventListAdapter.notifyDataSetChanged();
     }
 }

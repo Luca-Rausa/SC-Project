@@ -35,12 +35,8 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 eventListAdapter.setSelectedItem(position);
                 Event selectedEvent = events.get(position);
-                if(selectedEvent.getImages() == null)
-                    selectedEvent.setImages(new ArrayList<>());
-                if(selectedEvent.getLinks() == null)
-                    selectedEvent.setLinks(new ArrayList<>());
                 Intent intent = new Intent(MyEvents.this, SingleEventDisplay.class);
-                intent.putExtra("event", selectedEvent);
+                intent.putExtra("event", selectedEvent.getId());
                 startActivity(intent);
             }
         });
