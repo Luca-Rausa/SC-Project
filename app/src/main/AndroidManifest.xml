@@ -44,6 +44,12 @@
         <!-- NewEvent Activity -->
         <activity android:name=".NewEvent" />
 
+        <!-- SingleEventsDisplay Activity -->
+        <activity android:name=".SingleEventDisplay" />
+
+        <!-- MyEvents Activity -->
+        <activity android:name=".MyEvents" />
+
         <!-- Forms Activity -->
         <activity android:name=".Forms" />
 

@@ -148,7 +148,7 @@ public class NewEvent extends AppCompatActivity {
                     EventType.valueOf(eventTypeSpinner.getSelectedItem().toString()),
                     date,
                     Integer.parseInt(eventDuration.getText().toString()),
-                    "Luca Rausa"
+                    MainActivity.user.getEmail()
             );
 
             if(!eventAttendees.getText().toString().isEmpty())
@@ -159,7 +159,7 @@ public class NewEvent extends AppCompatActivity {
                 event.setLinks(linksList);
 
             eventDatabaseHelper.addEvent(event);
-            startActivity(new Intent(NewEvent.this, Home.class));
+            startActivity(new Intent(NewEvent.this, EventHub.class));
         });
     }
 

@@ -35,17 +35,10 @@
                 android:textSize="20sp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle="bold|italic" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2">
+                    android:layout_marginStart="15dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,18 +55,17 @@
                         android:textSize="16sp"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:gravity="end">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/event_display_creator"
                     android:textColor="@color/darker_gray"
                     android:textSize="16sp"
-                    android:textAlignment="textEnd"
-                    android:layout_gravity="end"/>
+                    android:textAlignment="textEnd"/>
                 <TextView
                     android:id="@+id/displayEventCreator"
                     android:layout_width="wrap_content"
@@ -83,7 +75,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_gravity="end"/>
                 </LinearLayout>
-            </LinearLayout>
             <FrameLayout
                 android:id="@+id/viewPagerContainer"
                 android:layout_width="match_parent"
