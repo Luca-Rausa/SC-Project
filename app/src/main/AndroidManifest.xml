@@ -17,7 +17,7 @@
 
         <!-- Main Activity -->
         <activity
-            android:name=".EventHub"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,17 +38,32 @@
         <!-- Home Activity -->
         <activity android:name=".Home" />
 
-        <!-- EventHub Activity
-        <activity android:name=".EventHub" />-->
+        <!-- EventHub Activity -->
+        <activity android:name=".EventHub" />
 
         <!-- NewEvent Activity -->
         <activity android:name=".NewEvent" />
 
-        <!-- SingleEventDisplay Activity -->
-        <activity android:name=".SingleEventDisplay" />
+        <!-- Forms Activity -->
+        <activity android:name=".Forms" />
 
-        <!-- MyEvents Activity -->
-        <activity android:name=".MyEvents" />
+        <!-- Chatbot Activity -->
+        <activity android:name=".Chatbot" />
+
+        <!-- Feedback Activity -->
+        <activity android:name=".Feedback" />
+
+        <!-- Meal Planning Activity -->
+        <activity android:name=".MealPlanning" />
+
+        <!-- Travel Itinerary Activity -->
+        <activity android:name=".TravelItinerary" />
+
+        <!-- Travel Results Activity -->
+        <activity android:name=".TravelResults" />
+
+        <!-- Meal Results Activity -->
+        <activity android:name=".MealResults" />
 
         <meta-data
             android:name="preloaded_fonts"

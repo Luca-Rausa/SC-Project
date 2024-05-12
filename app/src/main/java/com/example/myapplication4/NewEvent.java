@@ -159,7 +159,7 @@ public class NewEvent extends AppCompatActivity {
                 event.setLinks(linksList);
 
             eventDatabaseHelper.addEvent(event);
-            startActivity(new Intent(NewEvent.this, EventHub.class));
+            startActivity(new Intent(NewEvent.this, Home.class));
         });
     }
 
