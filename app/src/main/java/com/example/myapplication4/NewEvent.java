@@ -2,12 +2,10 @@ package com.example.myapplication4;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -29,9 +27,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -55,7 +51,7 @@ public class NewEvent extends AppCompatActivity {
     private EditText eventLinkName;
     private EditText eventLinkUrl;
     private Button addEventButton;
-    private EventDatabaseHelper eventDatabaseHelper;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +68,7 @@ public class NewEvent extends AppCompatActivity {
         eventLinkName = findViewById(R.id.edTxtEventLinkName);
         eventLinkUrl = findViewById(R.id.edTxtEventLinkURL);
 
-        eventDatabaseHelper = new EventDatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this);
 
         EventType[] eventTypes = EventType.values();
         EventTypeAdapter eventTypeAdapter = new EventTypeAdapter(this, R.layout.event_spinner_item, eventTypes);
@@ -158,8 +154,9 @@ public class NewEvent extends AppCompatActivity {
             if(linksList.size() != 0)
                 event.setLinks(linksList);
 
-            eventDatabaseHelper.addEvent(event);
-            startActivity(new Intent(NewEvent.this, EventHub.class));
+            databaseHelper.addEvent(event);
+            //startActivity(new Intent(NewEvent.this, EventHub.class));
+            finish();
         });
     }
 

@@ -3,7 +3,6 @@ package com.example.myapplication4;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,13 +24,13 @@ public class SingleEventDisplay  extends AppCompatActivity{
     private TextView eventDuration;
     private ListView eventLinks;
     private LinksAdapter linksListAdapter;
-    private EventDatabaseHelper eventDatabaseHelper;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_event_display);
-        eventDatabaseHelper = new EventDatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this);
 
         eventTitle = findViewById(R.id.displayEventTitle);
         eventDescription = findViewById(R.id.displayEventDescription);
@@ -46,7 +45,7 @@ public class SingleEventDisplay  extends AppCompatActivity{
         Intent intent = getIntent();
         long eventId = intent.getLongExtra("event", -1);
         if(eventId != -1) {
-            Event event = eventDatabaseHelper.getEvent(eventId);
+            Event event = databaseHelper.getEvent(eventId);
             eventTitle.setText(event.getTitle());
             eventDescription.setText(event.getDescription());
             eventType.setText(event.getType().getStringValue());

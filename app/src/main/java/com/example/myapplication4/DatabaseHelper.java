@@ -1,6 +1,5 @@
 package com.example.myapplication4;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,15 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Pair;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,9 +18,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class EventDatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "eventDB";
-    private static final int DATABASE_VERSION = 2;
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "SC.db";
+    private static final int DATABASE_VERSION = 1;
+
+    // Events
     private static final String TABLE_EVENTS = "events";
     private static final String COLUMN_EVENT_ID = "_id";
     private static final String COLUMN_TITLE = "title";
@@ -40,12 +35,22 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_LINK_URL = "link_url";
     private static final String COLUMN_CREATOR_USERNAME = "creator_username";
 
+    // Images
     private static final String TABLE_IMAGES = "images";
     private static final String COLUMN_IMAGE_ID = "_id";
     private static final String COLUMN_IMAGE = "image";
     private static final String COLUMN_EVENT = "event_id";
 
-    public EventDatabaseHelper(Context context) {
+    // UserInfo
+    private static final String TABLE_USER = "user";
+    private static final String COL_ID = "id";
+    private static final String COL_FIRSTNAME = "firstname";
+    private static final String COL_LASTNAME = "lastname";
+    private static final String COL_EMAIL = "email";
+    private static final String COL_PASSWORD = "password";
+    private static final String COL_ROLE = "role";
+
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -73,12 +78,22 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
                 ")";
 
         sqLiteDatabase.execSQL(CREATE_IMAGES_TABLE);
+
+        String createTable = "CREATE TABLE " + TABLE_USER + " (" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_FIRSTNAME + " TEXT, " +
+                COL_LASTNAME + " TEXT, " +
+                COL_EMAIL + " TEXT, " +
+                COL_PASSWORD + " TEXT, " +
+                COL_ROLE + " TEXT)";
+        sqLiteDatabase.execSQL(createTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(sqLiteDatabase);
     }
 
@@ -178,6 +193,43 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(TABLE_IMAGES, COLUMN_EVENT + " = ?", new String[]{String.valueOf(event.getId())});
         sqLiteDatabase.close();
         return result>0;
+    }
+
+    public boolean addUser(String firstname, String lastname, String email, String password, String role) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_FIRSTNAME, firstname);
+        contentValues.put(COL_LASTNAME, lastname);
+        contentValues.put(COL_EMAIL, email);
+        contentValues.put(COL_PASSWORD, password);
+        contentValues.put(COL_ROLE, role);
+
+        long result = db.insert(TABLE_USER, null, contentValues);
+        return result != -1;
+    }
+
+    public User getUser(String email, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_USER + " WHERE " +
+                COL_EMAIL + " = ? AND " +
+                COL_PASSWORD + " = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{email, password});
+        User user = null;
+
+        if (cursor.moveToFirst()) {
+            int userId = cursor.getInt(cursor.getColumnIndex(COL_ID));
+            String firstname = cursor.getString(cursor.getColumnIndex(COL_FIRSTNAME));
+            String lastname = cursor.getString(cursor.getColumnIndex(COL_LASTNAME));
+            String userEmail = cursor.getString(cursor.getColumnIndex(COL_EMAIL));
+            String userPassword = cursor.getString(cursor.getColumnIndex(COL_PASSWORD));
+            String role = cursor.getString(cursor.getColumnIndex(COL_ROLE));
+
+            user = new User(userId, firstname, lastname, userEmail, userPassword, role);
+        }
+
+        cursor.close();
+        return user;
     }
 
     private List<Bitmap> getImagesForEvent(SQLiteDatabase database, long eventId) {

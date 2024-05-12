@@ -6,18 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventHub extends AppCompatActivity {
     private List<Event> events;
     private ListView eventListView;
     private EventListAdapter eventListAdapter;
-    private EventDatabaseHelper eventDatabaseHelper;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +38,8 @@ public class EventHub extends AppCompatActivity {
             }
         });
 
-        eventDatabaseHelper = new EventDatabaseHelper(this);
-        events = eventDatabaseHelper.getAllEvents();
+        databaseHelper = new DatabaseHelper(this);
+        events = databaseHelper.getAllEvents();
         eventListView = findViewById(R.id.eventListView);
         eventListAdapter = new EventListAdapter(this, events, R.layout.event_list_item);
         eventListView.setAdapter(eventListAdapter);
@@ -61,7 +59,7 @@ public class EventHub extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         eventListAdapter.clear();
-        eventListAdapter.addAll(eventDatabaseHelper.getAllEvents());
+        eventListAdapter.addAll(databaseHelper.getAllEvents());
         eventListAdapter.notifyDataSetChanged();
     }
 }
