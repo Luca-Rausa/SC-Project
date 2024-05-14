@@ -3,91 +3,169 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/dark_blue"
+        android:fontFamily="@font/inter"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cs" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="84dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?android:attr/homeAsUpIndicator" />
 
     <TextView
-        android:id="@+id/resultsTitle"
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Total students travelling:"
+        android:textColor="@color/darker_gray"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submit" />
+
+    <TextView
+        android:id="@+id/travelNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="26"
+        android:textColor="@color/dark_blue"
+        android:textSize="60sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result" />
+
+    <TextView
+        android:id="@+id/groupNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="26"
+        android:textColor="@color/dark_blue"
+        android:textSize="60sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groups" />
+
+    <TextView
+        android:id="@+id/groups"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="22dp"
+        android:text="Students travelling in groups:"
+        android:textColor="@color/darker_gray"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/travelNum" />
+
+    <TextView
+        android:id="@+id/mealTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/abeezee"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/inter"
         android:text="Travel Results"
+        android:textColor="@color/dark_blue"
         android:textSize="27sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/abeezee"
+        android:layout_marginTop="15dp"
         android:text="Program of Study"
-        android:textColor="#3F51B5"
+        android:textColor="@color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultsTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/mealTitle" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cs"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
-        android:fontFamily="@font/abeezee"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/inter"
         android:text="CS"
+        android:textColor="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/pos"
+        app:strokeColor="@color/dark_blue"
+        app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/pgsButton"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
-        android:fontFamily="@font/abeezee"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/inter"
         android:text="PGS"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:textColor="@color/dark_blue"
+        app:layout_constraintStart_toEndOf="@+id/cs"
+        app:layout_constraintTop_toBottomOf="@+id/pos"
+        app:strokeColor="@color/dark_blue"
+        app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/archButton"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/inter"
         android:text="Arch"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:textColor="@color/dark_blue"
+        app:layout_constraintStart_toEndOf="@+id/pgsButton"
+        app:layout_constraintTop_toBottomOf="@+id/pos"
+        app:strokeColor="@color/dark_blue"
+        app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/otherButton"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
-        android:backgroundTint="#3F51B5"
-        android:fontFamily="@font/abeezee"
+        android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/inter"
         android:text="Other"
+        android:textColor="@color/dark_blue"
         android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toEndOf="@+id/archButton"
+        app:layout_constraintTop_toBottomOf="@+id/pos"
+        app:strokeColor="@color/dark_blue"
+        app:strokeWidth="1dp" />
 
-    <TextView
-        android:id="@+id/studTrav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/abeezee"
-        android:text="Students Traveling"
-        android:textColor="#3F51B5"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

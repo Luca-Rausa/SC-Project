@@ -82,7 +82,7 @@ public class MealPlanning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start sign in activity
-                startActivity(new Intent(MealPlanning.this, Home.class));
+                startActivity(new Intent(MealPlanning.this, Forms.class));
             }
         });
     }

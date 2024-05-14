@@ -74,4 +74,19 @@ public class LoginHelper extends SQLiteOpenHelper {
         cursor.close();
         return user;
     }
+
+    public void createSurveyTable(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String tableName = "Survey_" + userId;
+        String createTable = "CREATE TABLE IF NOT EXISTS " + tableName + " (" +
+                "response_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "start_date TEXT, " +
+                "end_date TEXT, " +
+                "itinerary_description TEXT, " +
+                "traveling_with_others INTEGER, " + // 1 for Yes, 0 for No
+                "travel_group TEXT)";
+
+        db.execSQL(createTable);
+    }
+
 }

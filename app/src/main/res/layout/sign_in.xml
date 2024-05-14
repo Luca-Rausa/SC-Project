@@ -29,6 +29,7 @@
         android:ems="10"
         android:hint="Email"
         android:paddingStart="17dp"
+        android:textColor="#373636"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView37"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +46,7 @@
         android:backgroundTint="@color/dark_blue"
         android:fontFamily="@font/inter"
         android:text="Sign In"
+        android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.23"
@@ -56,12 +58,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="483dp"
+        android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
         android:text="Sign up"
         android:textColor="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/signin" />
 
     <TextView
         android:id="@+id/signIn"
@@ -102,22 +104,12 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingStart="17dp"
+        android:textColor="#373636"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView35" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:text="Forgot password?"
-        android:textColor="@color/dark_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterPass" />
 
     <TextView
         android:id="@+id/textView35"
@@ -127,6 +119,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/inter"
         android:text="Welcome back!"
+        android:textColor="#373636"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signIn" />

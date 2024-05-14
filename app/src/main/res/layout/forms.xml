@@ -10,10 +10,11 @@
         android:id="@+id/textView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="84dp"
         android:fontFamily="@font/inter"
         android:text="Forms"
+        android:textColor="@color/dark_blue"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +53,7 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="18dp"
                 android:text="Meal Planning"
+                android:textColor="#373636"
                 android:textSize="16dp">
 
             </TextView>
@@ -108,7 +110,8 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="18dp"
                 android:text="Travel Itinerary"
-                android:textSize="16dp"/>
+                android:textColor="#373636"
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/travelResults"
