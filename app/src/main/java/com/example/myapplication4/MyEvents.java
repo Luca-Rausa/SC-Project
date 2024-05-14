@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +22,7 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
         setContentView(R.layout.my_events);
 
         databaseHelper = new DatabaseHelper(this);
-        events = databaseHelper.getAllEvents();
+        events = databaseHelper.getAllEventsByCreator(MainActivity.user.getEmail());
         eventListView = findViewById(R.id.eventListView);
         eventListAdapter = new EventListAdapter(this, events, R.layout.my_event_list_item);
         eventListView.setAdapter(eventListAdapter);
@@ -47,6 +48,7 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
                 databaseHelper.removeEvent(eventToRemove);
                 events.remove(position);
                 eventListAdapter.notifyDataSetChanged();
+                Toast.makeText(this, "Event removed successfully!", Toast.LENGTH_SHORT).show();
             }
     }
 }

@@ -105,7 +105,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DESCRIPTION, event.getDescription());
         values.put(COLUMN_TYPE, event.getType().toString());
         values.put(COLUMN_ATTENDEES, event.getAttendees());
-        values.put(COLUMN_DATE, event.getDate().toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        String strDate = sdf.format(event.getDate());
+        values.put(COLUMN_DATE, strDate);
         values.put(COLUMN_DURATION, event.getDuration());
         Pair<String,String> linksList = fromPairListToString(event.getLinks());
         if(linksList != null) {
@@ -116,34 +118,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         long eventId = db.insert(TABLE_EVENTS, null, values);
 
-        for(Bitmap image: event.getImages()) {
-            ContentValues imageValues = new ContentValues();
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.PNG, 0, stream);
-            imageValues.put(COLUMN_EVENT, eventId);
-            imageValues.put(COLUMN_IMAGE, stream.toByteArray());
-            db.insert(TABLE_IMAGES, null, imageValues);
+        if(event.getImages() != null) {
+            for (Bitmap image : event.getImages()) {
+                ContentValues imageValues = new ContentValues();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.PNG, 0, stream);
+                imageValues.put(COLUMN_EVENT, eventId);
+                imageValues.put(COLUMN_IMAGE, stream.toByteArray());
+                db.insert(TABLE_IMAGES, null, imageValues);
+            }
         }
         db.close();
     }
 
     public List<Event> getAllEvents() {
-        List<Event> eventList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EVENTS, null);
-        if(cursor.moveToFirst()) {
-            do {
-                long eventId = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_EVENT_ID));
-                Event event = getEvent(eventId);
-                if (event != null) {
-                    eventList.add(event);
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
+        List<Event> eventList = getEventsWithQuery(cursor);
         db.close();
+        return eventList;
+    }
 
+    public List<Event> getAllEventsByCreator(String creator) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_EVENTS, null, COLUMN_CREATOR_USERNAME + "=?",
+                new String[]{creator}, null, null, null);
+        List<Event> eventList = getEventsWithQuery(cursor);
+        db.close();
         return eventList;
     }
 
@@ -160,13 +161,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             event.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
             event.setType(EventType.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TYPE))));
             event.setAttendees(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ATTENDEES)));
-            SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
-            DateFormat outputDateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.getDefault());
             try {
                 String strDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE));
-                Date date = inputDateFormat.parse(strDate);
-                String formattedDate = outputDateFormat.format(date);
-                event.setDate(outputDateFormat.parse(formattedDate));
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+                event.setDate(sdf.parse(strDate));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -193,6 +191,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(TABLE_IMAGES, COLUMN_EVENT + " = ?", new String[]{String.valueOf(event.getId())});
         sqLiteDatabase.close();
         return result>0;
+    }
+
+    public void removeExpiredEvents() {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        String currentDate = dateFormat.format(new Date());
+
+        String query = "DELETE FROM " + TABLE_EVENTS + " WHERE " + COLUMN_DATE + " < ?";
+        sqLiteDatabase.execSQL(query, new String[]{currentDate});
+        sqLiteDatabase.close();
     }
 
     public boolean addUser(String firstname, String lastname, String email, String password, String role) {
@@ -245,6 +254,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return images;
+    }
+
+    private List<Event> getEventsWithQuery(Cursor query) {
+        List<Event> eventList = new ArrayList<>();
+
+        if(query.moveToFirst()) {
+            do {
+                long eventId = query.getLong(query.getColumnIndexOrThrow(COLUMN_EVENT_ID));
+                Event event = getEvent(eventId);
+                if (event != null) {
+                    eventList.add(event);
+                }
+            } while (query.moveToNext());
+        }
+        query.close();
+        return eventList;
     }
 
     private Pair<String,String> fromPairListToString(List<Pair<String,String>> mList) {

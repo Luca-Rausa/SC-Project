@@ -39,6 +39,7 @@ public class EventHub extends AppCompatActivity {
         });
 
         databaseHelper = new DatabaseHelper(this);
+        databaseHelper.removeExpiredEvents();
         events = databaseHelper.getAllEvents();
         eventListView = findViewById(R.id.eventListView);
         eventListAdapter = new EventListAdapter(this, events, R.layout.event_list_item);
@@ -58,6 +59,7 @@ public class EventHub extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        databaseHelper.removeExpiredEvents();
         eventListAdapter.clear();
         eventListAdapter.addAll(databaseHelper.getAllEvents());
         eventListAdapter.notifyDataSetChanged();

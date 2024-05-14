@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -131,7 +133,7 @@ public class NewEvent extends AppCompatActivity {
         eventDuration.addTextChangedListener(textWatcher);
         addEventButton.setOnClickListener(view -> {
             String strDate = eventDate.getText().toString() + " " + eventStartTime.getText().toString();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
             Date date = new Date();
             try {
                 date = sdf.parse(strDate);
@@ -154,6 +156,7 @@ public class NewEvent extends AppCompatActivity {
             if(linksList.size() != 0)
                 event.setLinks(linksList);
 
+            Toast.makeText(this, "Event created successfully!", Toast.LENGTH_SHORT).show();
             databaseHelper.addEvent(event);
             //startActivity(new Intent(NewEvent.this, EventHub.class));
             finish();
@@ -243,11 +246,23 @@ public class NewEvent extends AppCompatActivity {
                 !eventDate.getText().toString().isEmpty() &&
                 !eventStartTime.getText().toString().isEmpty() &&
                 !eventDuration.getText().toString().isEmpty();
-        if(allFieldsFilled)
+
+        boolean dateIsAfterToday = false;
+        String strDate = eventDate.getText().toString() + " " + eventStartTime.getText().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        try {
+            Date eventDateTime = sdf.parse(strDate);
+            Date currentDateTime = new Date();
+            dateIsAfterToday = eventDateTime.after(currentDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(allFieldsFilled && dateIsAfterToday)
             addEventButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.dark_blue));
         else
             addEventButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.light_gray));
-        addEventButton.setEnabled(allFieldsFilled);
+        addEventButton.setEnabled(allFieldsFilled && dateIsAfterToday);
     }
 
     private Bitmap convertUriToBitmap(Uri uri) {
