@@ -50,6 +50,8 @@
     <string name="event_display_links">Event Links</string>
     <string name="event_hub">Event Hub</string>
     <string name="event_list">Event List:</string>
+    <string name="myevent_list">List of my events:</string>
+    <string name="myattend_list">List of events I attend:</string>
     <string name="my_events_managements">My Events Managements</string>
     <string name="attend_event">Attend this event</string>
     <string-array name="eventDurations">

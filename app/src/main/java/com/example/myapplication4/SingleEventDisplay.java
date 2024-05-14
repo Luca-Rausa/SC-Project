@@ -3,10 +3,12 @@ package com.example.myapplication4;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +25,7 @@ public class SingleEventDisplay  extends AppCompatActivity{
     private TextView eventDate;
     private TextView eventDuration;
     private ListView eventLinks;
+    private Button btnAttendEvent;
     private LinksAdapter linksListAdapter;
     private DatabaseHelper databaseHelper;
 
@@ -41,6 +44,7 @@ public class SingleEventDisplay  extends AppCompatActivity{
         eventDuration = findViewById(R.id.displayEventDuration);
         eventImageViewer = findViewById(R.id.displayViewPager);
         eventLinks = findViewById(R.id.displayEventLinks);
+        btnAttendEvent = findViewById(R.id.btnAttendEvent);
 
         Intent intent = getIntent();
         long eventId = intent.getLongExtra("event", -1);
@@ -62,6 +66,20 @@ public class SingleEventDisplay  extends AppCompatActivity{
             List<Bitmap> images = event.getImages();
             ImagePagerAdapter pagerAdapter = new ImagePagerAdapter(images);
             eventImageViewer.setAdapter(pagerAdapter);
+
+            boolean isUserAttendingEvent = databaseHelper.isUserAttendingEvent(MainActivity.user.getId(), eventId);
+            boolean isUserEventCreator = databaseHelper.isUserEventCreator(MainActivity.user.getEmail(), eventId);
+            boolean isEventFull = databaseHelper.isEventFull(eventId);
+            if(!isUserAttendingEvent && !isUserEventCreator && !isEventFull)
+                btnAttendEvent.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.dark_blue));
+            else
+                btnAttendEvent.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.light_gray));
+            btnAttendEvent.setEnabled(!isUserAttendingEvent && !isUserEventCreator && !isEventFull);
+
+            btnAttendEvent.setOnClickListener(v -> {
+                databaseHelper.attendEvent(MainActivity.user.getId(), eventId);
+                finish();
+            });
         }
     }
 }

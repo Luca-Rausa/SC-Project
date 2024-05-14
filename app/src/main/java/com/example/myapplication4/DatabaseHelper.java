@@ -41,6 +41,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_IMAGE = "image";
     private static final String COLUMN_EVENT = "event_id";
 
+    // Attendees
+    private static final String TABLE_ATTENDEES = "attendees";
+    private static final String COLUMN_ATTENDEE_ID = "attendee_id";
+
     // UserInfo
     private static final String TABLE_USER = "user";
     private static final String COL_ID = "id";
@@ -76,7 +80,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_IMAGE + " BLOB," +
                 "FOREIGN KEY(" + COLUMN_EVENT + ") REFERENCES " + TABLE_EVENTS + "(" + COLUMN_EVENT_ID + ")"+
                 ")";
-
         sqLiteDatabase.execSQL(CREATE_IMAGES_TABLE);
 
         String createTable = "CREATE TABLE " + TABLE_USER + " (" +
@@ -87,12 +90,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_PASSWORD + " TEXT, " +
                 COL_ROLE + " TEXT)";
         sqLiteDatabase.execSQL(createTable);
+
+        String CREATE_ATTENDEES_TABLE = "CREATE TABLE " + TABLE_ATTENDEES + "(" +
+                COLUMN_ATTENDEE_ID + " INTEGER," +
+                COLUMN_EVENT + " INTEGER," +
+                "FOREIGN KEY(" + COLUMN_ATTENDEE_ID + ") REFERENCES " + TABLE_USER + "(" + COL_ID + ")," +
+                "FOREIGN KEY(" + COLUMN_EVENT + ") REFERENCES " + TABLE_EVENTS + "(" + COLUMN_EVENT_ID + "),"+
+                "PRIMARY KEY(" + COLUMN_ATTENDEE_ID + ", " + COLUMN_EVENT + ")" +
+                ")";
+        sqLiteDatabase.execSQL(CREATE_ATTENDEES_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDEES);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         onCreate(sqLiteDatabase);
     }
@@ -187,8 +200,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean removeEvent(Event event) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        int result = sqLiteDatabase.delete(TABLE_EVENTS,COLUMN_EVENT_ID+"=?", new String[]{String.valueOf(event.getId())});
-        sqLiteDatabase.delete(TABLE_IMAGES, COLUMN_EVENT + " = ?", new String[]{String.valueOf(event.getId())});
+        sqLiteDatabase.beginTransaction();
+        int result = 0;
+        try {
+            sqLiteDatabase.delete(TABLE_IMAGES, COLUMN_EVENT + " = ?", new String[]{String.valueOf(event.getId())});
+            sqLiteDatabase.delete(TABLE_ATTENDEES, COLUMN_EVENT + " = ?", new String[]{String.valueOf(event.getId())});
+
+            result = sqLiteDatabase.delete(TABLE_EVENTS, COLUMN_EVENT_ID + "=?", new String[]{String.valueOf(event.getId())});
+            sqLiteDatabase.setTransactionSuccessful();
+        } finally {
+            sqLiteDatabase.endTransaction();
+        }
         sqLiteDatabase.close();
         return result>0;
     }
@@ -199,9 +221,110 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         String currentDate = dateFormat.format(new Date());
 
-        String query = "DELETE FROM " + TABLE_EVENTS + " WHERE " + COLUMN_DATE + " < ?";
-        sqLiteDatabase.execSQL(query, new String[]{currentDate});
+        sqLiteDatabase.beginTransaction();
+        try {
+            String deleteImagesQuery = "DELETE FROM " + TABLE_IMAGES + " WHERE "
+                    + COLUMN_EVENT + " IN (SELECT " + COLUMN_EVENT_ID + " FROM " + TABLE_EVENTS + " WHERE " + COLUMN_DATE + " < ?)";
+            sqLiteDatabase.execSQL(deleteImagesQuery, new String[]{currentDate});
+
+            String deleteAttendeesQuery = "DELETE FROM " + TABLE_ATTENDEES + " WHERE "
+                    + COLUMN_EVENT + " IN (SELECT " + COLUMN_EVENT_ID + " FROM " + TABLE_EVENTS + " WHERE " + COLUMN_DATE + " < ?)";
+            sqLiteDatabase.execSQL(deleteAttendeesQuery, new String[]{currentDate});
+
+            String query = "DELETE FROM " + TABLE_EVENTS + " WHERE " + COLUMN_DATE + " < ?";
+            sqLiteDatabase.execSQL(query, new String[]{currentDate});
+        } finally {
+            sqLiteDatabase.endTransaction();
+        }
         sqLiteDatabase.close();
+    }
+
+    public boolean isUserAttendingEvent(long userId, long eventId) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        boolean isAttending = false;
+
+        Cursor cursor = sqLiteDatabase.query(TABLE_ATTENDEES, null, COLUMN_EVENT + "=? AND " + COLUMN_ATTENDEE_ID + "=?",
+                new String[]{String.valueOf(eventId), String.valueOf(userId)}, null, null, null);
+
+        if(cursor != null) {
+            if(cursor.moveToFirst())
+                isAttending = true;
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return isAttending;
+    }
+
+    public boolean isUserEventCreator(String mail, long eventId) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        boolean isCreator = false;
+
+        Cursor cursor = sqLiteDatabase.query(TABLE_EVENTS, new String[]{COLUMN_CREATOR_USERNAME},
+                COLUMN_EVENT_ID + "=?",
+                new String[]{String.valueOf(eventId)}, null, null, null);
+
+        if(cursor != null) {
+            if(cursor.moveToFirst()) {
+                String creatorMail = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CREATOR_USERNAME));
+                isCreator = creatorMail.equals(mail);
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return isCreator;
+    }
+
+    public void attendEvent(long userId, long eventId) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ATTENDEE_ID, userId);
+        values.put(COLUMN_EVENT, eventId);
+        sqLiteDatabase.insert(TABLE_ATTENDEES, null, values);
+
+        String updateQuery = "UPDATE " + TABLE_EVENTS + " SET " + COLUMN_ATTENDEES + " = " + COLUMN_ATTENDEES + " - 1 WHERE " + COLUMN_EVENT_ID + " = ?";
+        sqLiteDatabase.execSQL(updateQuery, new String[]{String.valueOf(eventId)});
+        sqLiteDatabase.close();
+    }
+
+    public List<Event> getAttendedEvents(long userId) {
+        List<Event> attendedEvents = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        Cursor cursor = sqLiteDatabase.query(TABLE_ATTENDEES, new String[]{COLUMN_EVENT},
+                COLUMN_ATTENDEE_ID + "=?",
+                new String[]{String.valueOf(userId)}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                long eventId = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_EVENT));
+                Event event = getEvent(eventId);
+                if (event != null) {
+                    attendedEvents.add(event);
+                }
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        sqLiteDatabase.close();
+        return attendedEvents;
+    }
+
+    public boolean isEventFull(long eventId) {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        boolean isFull = false;
+
+        Cursor cursor = sqLiteDatabase.query(TABLE_EVENTS, new String[]{COLUMN_ATTENDEES},
+                COLUMN_EVENT_ID + "=? AND " + COLUMN_ATTENDEES + " <= 0",
+                new String[]{String.valueOf(eventId)}, null, null, null);
+
+        if (cursor != null) {
+            isFull = cursor.getCount() > 0;
+            cursor.close();
+        }
+
+        sqLiteDatabase.close();
+        return isFull;
     }
 
     public boolean addUser(String firstname, String lastname, String email, String password, String role) {
