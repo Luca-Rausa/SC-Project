@@ -3,6 +3,8 @@ package com.example.myapplication4;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,6 +29,11 @@ public class SingleEventDisplay  extends AppCompatActivity{
     private TextView eventDuration;
     private ListView eventLinks;
     private Button btnAttendEvent;
+    private ListView attendeesListView;
+
+    private TextView attendeesTextView;
+    private List<String> attendingUsers;
+    private ArrayAdapter<String> attendeesAdapter;
     private LinksAdapter linksListAdapter;
     private DatabaseHelper databaseHelper;
 
@@ -45,6 +53,8 @@ public class SingleEventDisplay  extends AppCompatActivity{
         eventImageViewer = findViewById(R.id.displayViewPager);
         eventLinks = findViewById(R.id.displayEventLinks);
         btnAttendEvent = findViewById(R.id.btnAttendEvent);
+        attendeesListView = findViewById(R.id.attendeesListView);
+        attendeesTextView = findViewById(R.id.attendeesTextView);
 
         Intent intent = getIntent();
         long eventId = intent.getLongExtra("event", -1);
@@ -70,16 +80,30 @@ public class SingleEventDisplay  extends AppCompatActivity{
             boolean isUserAttendingEvent = databaseHelper.isUserAttendingEvent(MainActivity.user.getId(), eventId);
             boolean isUserEventCreator = databaseHelper.isUserEventCreator(MainActivity.user.getEmail(), eventId);
             boolean isEventFull = databaseHelper.isEventFull(eventId);
-            if(!isUserAttendingEvent && !isUserEventCreator && !isEventFull)
-                btnAttendEvent.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.dark_blue));
-            else
-                btnAttendEvent.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.light_gray));
-            btnAttendEvent.setEnabled(!isUserAttendingEvent && !isUserEventCreator && !isEventFull);
+            if(!isUserEventCreator) {
+                attendeesListView.setVisibility(View.GONE);
+                attendeesTextView.setVisibility(View.GONE);
+                btnAttendEvent.setVisibility(View.VISIBLE);
 
-            btnAttendEvent.setOnClickListener(v -> {
-                databaseHelper.attendEvent(MainActivity.user.getId(), eventId);
-                finish();
-            });
+                if (!isUserAttendingEvent && !isEventFull)
+                    btnAttendEvent.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.dark_blue));
+                else
+                    btnAttendEvent.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.light_gray));
+                btnAttendEvent.setEnabled(!isUserAttendingEvent && !isEventFull);
+
+                btnAttendEvent.setOnClickListener(v -> {
+                    databaseHelper.attendEvent(MainActivity.user.getId(), eventId);
+                    finish();
+                });
+            } else {
+                attendeesListView.setVisibility(View.VISIBLE);
+                attendeesTextView.setVisibility(View.VISIBLE);
+                btnAttendEvent.setVisibility(View.GONE);
+
+                attendingUsers = databaseHelper.getAttendingUsersMail(eventId);
+                attendeesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, attendingUsers);
+                attendeesListView.setAdapter(attendeesAdapter);
+            }
         }
     }
 }

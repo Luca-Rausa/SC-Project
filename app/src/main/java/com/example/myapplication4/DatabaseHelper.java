@@ -327,6 +327,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return isFull;
     }
 
+    public List<String> getAttendingUsersMail(long eventId) {
+        List<String> attendingUserMails = new ArrayList<>();
+
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            String query = "SELECT " + COL_EMAIL + " FROM " + TABLE_USER + " INNER JOIN " +
+                    TABLE_ATTENDEES + " ON " + TABLE_USER + "." + COL_ID + " = " +
+                    TABLE_ATTENDEES + "." + COLUMN_ATTENDEE_ID + " WHERE " +
+                    COLUMN_EVENT + " = ?";
+            cursor = sqLiteDatabase.rawQuery(query, new String[]{String.valueOf(eventId)});
+
+            if(cursor != null) {
+                if(cursor.moveToFirst()) {
+                    do {
+                        String mail = cursor.getString(cursor.getColumnIndexOrThrow(COL_EMAIL));
+                        attendingUserMails.add(mail);
+                    }while (cursor.moveToNext());
+                }
+            }
+        } finally {
+            if(cursor != null)
+                cursor.close();
+        }
+        return attendingUserMails;
+    }
+
     public boolean addUser(String firstname, String lastname, String email, String password, String role) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

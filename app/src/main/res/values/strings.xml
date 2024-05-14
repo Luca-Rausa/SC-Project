@@ -54,6 +54,7 @@
     <string name="myattend_list">List of events I attend:</string>
     <string name="my_events_managements">My Events Managements</string>
     <string name="attend_event">Attend this event</string>
+    <string name="event_attendees_mail">Participants\' email list:</string>
     <string-array name="eventDurations">
         <item>less than 30 minutes</item>
         <item>30 minutes</item>
