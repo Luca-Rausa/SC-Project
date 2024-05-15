@@ -1,6 +1,7 @@
 package com.example.myapplication4;
 
 import android.app.DatePickerDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
     private String travelDestination, travelGroup;
     private Spinner spinner, spinner2;
     private Button submitButton;
+    private EditText activeDateField; // Added to track the active date field
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +112,8 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         });
     }
 
-    // Method to show DatePickerDialog
     private void showDatePickerDialog(EditText editText) {
+        activeDateField = editText; // Set the active EditText
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 this,
@@ -122,12 +124,10 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         datePickerDialog.show();
     }
 
-    // Callback method for DatePickerDialog
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        // Set the selected date to the EditText field
+        // Format the picked date and set it on the active EditText field
         String date = String.format(Locale.getDefault(), "%d/%02d/%02d", year, month + 1, dayOfMonth);
-        editTextDate.setText(date);
-        endDateEditText.setText(date); // You can set the end date EditText as well if needed
+        activeDateField.setText(date);
     }
 }

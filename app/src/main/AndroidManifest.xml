@@ -65,6 +65,9 @@
         <!-- Meal Results Activity -->
         <activity android:name=".MealResults" />
 
+        <!-- Navigation Bar Activity -->
+        <activity android:name=".NavigationBar" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

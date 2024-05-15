@@ -1,13 +1,18 @@
 package com.example.myapplication4;
 
+import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import java.text.ParseException;
@@ -18,25 +23,31 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import android.content.res.ColorStateList;
+import android.widget.Toast;
+
 import androidx.core.content.ContextCompat;
 
 public class MealPlanning extends AppCompatActivity {
     private EditText firstNameEditText, lastNameEditText, emailEditText;
     private Button csButton, pgsButton, archButton, otherButton;
     private String programStudy;
+    private MealHelper dbHelper;
     private EditText startDateEditText, endDateEditText;
-    private Spinner breakfastSpinner, lunchSpinner, dinnerSpinner;
+    private RadioButton breakfast, lunch, dinner;
     private Button submitButton;
+    private EditText activeDateField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.meal_planning);
 
+        //dbHelper = new MealHelper(this);
+
         // Initialize EditText fields
         firstNameEditText = findViewById(R.id.editTextFirstName);
         lastNameEditText = findViewById(R.id.editTextLastName);
-        emailEditText = findViewById(R.id.editTextTextEmailAddress2);
+        emailEditText = findViewById(R.id.editTextEmailAddress);
 
         // Initialize Buttons
         csButton = findViewById(R.id.cs);
@@ -48,43 +59,110 @@ public class MealPlanning extends AppCompatActivity {
         startDateEditText = findViewById(R.id.editStartDate);
         endDateEditText = findViewById(R.id.editEndDate);
 
-        // Initialize Spinners
-        breakfastSpinner = findViewById(R.id.breakfastSpinner);
-        lunchSpinner = findViewById(R.id.lunchSpinner);
-        dinnerSpinner = findViewById(R.id.dinnerSpinner);
+        breakfast = findViewById(R.id.radioButton);
+        lunch = findViewById(R.id.radioButton2);
+        dinner = findViewById(R.id.radioButton3);
 
         // Initialize buttons
         submitButton = findViewById(R.id.submitButton);
 
-        // Add TextWatchers to date EditTexts
-        TextWatcher dateTextWatcher = new TextWatcher() {
+        // Set onClickListener for the date fields
+        startDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onClick(View v) {
+                showDatePickerDialog(startDateEditText);
             }
+        });
 
+        endDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onClick(View v) {
+                showDatePickerDialog(endDateEditText);
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                updateDateSpinners();
-            }
-        };
-
-        startDateEditText.addTextChangedListener(dateTextWatcher);
-        endDateEditText.addTextChangedListener(dateTextWatcher);
-
+        });
         // Configure RadioButtons to change background color on selection
         configureButtons();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start sign in activity
-                startActivity(new Intent(MealPlanning.this, Home.class));
+                // Get user inputs from EditText fields
+                String firstName = firstNameEditText.getText().toString();
+                String lastName = lastNameEditText.getText().toString();
+                String email = emailEditText.getText().toString();
+                String startDate = startDateEditText.getText().toString();
+                String endDate = endDateEditText.getText().toString();
+                String mealTimings = "";
+                if (breakfast.isChecked()) {
+                    mealTimings += "Breakfast ";
+                }
+                if (lunch.isChecked()) {
+                    mealTimings += "Lunch ";
+                }
+                if (dinner.isChecked()) {
+                    mealTimings += "Dinner ";
+                }
+
+                // Trim any extra space at the end
+                mealTimings = mealTimings.trim();
+
+                // Save data to SQLite database
+                saveData(firstName, lastName, email, startDate, endDate, programStudy, mealTimings);
+
+                // Navigate to the home page
+                startActivity(new Intent(MealPlanning.this, Forms.class));
+                finish();
             }
         });
+    }
+    private void showDatePickerDialog(EditText editText) {
+        activeDateField = editText; // Set the active EditText
+        Calendar calendar = Calendar.getInstance();
+//        DatePickerDialog datePickerDialog = new DatePickerDialog(
+//                this,
+//                this,
+//                Calendar.getInstance().get(Calendar.YEAR),
+//                Calendar.getInstance().get(Calendar.MONTH),
+//                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year, month, dayOfMonth) -> onDateSet(view, year, month, dayOfMonth),
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        // Format the picked date and set it on the active EditText field
+        String date = String.format(Locale.getDefault(), "%d/%02d/%02d", year, month + 1, dayOfMonth);
+        activeDateField.setText(date);
+    }
+    private void saveData(String firstName, String lastName, String email, String startDate,
+                          String endDate, String programStudy, String mealTimings) {
+        // Gets the data repository in write mode
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(MealHelper.COLUMN_FIRST_NAME, firstName);
+        values.put(MealHelper.COLUMN_LAST_NAME, lastName);
+        values.put(MealHelper.COLUMN_EMAIL, email);
+        values.put(MealHelper.COLUMN_START_DATE, startDate);
+        values.put(MealHelper.COLUMN_END_DATE, endDate);
+        values.put(MealHelper.COLUMN_PROGRAM_OF_STUDY, programStudy);
+        values.put(MealHelper.COLUMN_MEAL_TIMINGS, mealTimings);
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(MealHelper.TABLE_NAME, null, values);
+        System.out.println(MealHelper.TABLE_NAME);
+        // You can handle the result of the insertion if needed
+        if (newRowId != -1) {
+            Toast.makeText(this, "Data saved successfully!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Failed to save data", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void configureButtons() {
@@ -139,44 +217,6 @@ public class MealPlanning extends AppCompatActivity {
         }
     }
 
-    private void updateDateSpinners() {
-        String startDateString = startDateEditText.getText().toString();
-        String endDateString = endDateEditText.getText().toString();
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-        Date startDate = null;
-        Date endDate = null;
-        try {
-            startDate = dateFormat.parse(startDateString);
-            endDate = dateFormat.parse(endDateString);
-            if (startDate != null && endDate != null && !startDate.after(endDate)) {
-                List<String> daysOfWeek = generateDates(startDate, endDate);
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, daysOfWeek);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                breakfastSpinner.setAdapter(adapter);
-                lunchSpinner.setAdapter(adapter);
-                dinnerSpinner.setAdapter(adapter);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-            // Optionally handle incorrect date format or show some error to the user
-        }
-    }
-
-    // Generate list of dates between start and end dates
-    private List<String> generateDates(Date startDate, Date endDate) {
-        List<String> daysOfWeek = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startDate);
-        while (!calendar.getTime().after(endDate)) {
-            Date currentDate = calendar.getTime();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-            String dateString = dateFormat.format(currentDate);
-            daysOfWeek.add(dateString);
-            calendar.add(Calendar.DATE, 1);
-        }
-        return daysOfWeek;
-    }
 
     // TODO: Connect to database
 }

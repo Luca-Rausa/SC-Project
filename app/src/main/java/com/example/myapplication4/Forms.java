@@ -11,7 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class Forms extends AppCompatActivity {
+
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +72,43 @@ public class Forms extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Forms.this, TravelResults.class));
+            }
+        });
+
+        //Navigation Bar
+        bottomNavigationView = findViewById(R.id.bottomNavView);
+        bottomNavigationView.setSelectedItemId(R.id.forms);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.home) {
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                else if (itemId == R.id.forms) {
+//                    startActivity(new Intent(getApplicationContext(), Forms.class));
+//                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                else if (itemId == R.id.events) {
+                    startActivity(new Intent(getApplicationContext(), EventHub.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                else if (itemId == R.id.feedback) {
+                    startActivity(new Intent(getApplicationContext(), Feedback.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                else if (itemId == R.id.chatbot) {
+                    startActivity(new Intent(getApplicationContext(), Chatbot.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
             }
         });
     }

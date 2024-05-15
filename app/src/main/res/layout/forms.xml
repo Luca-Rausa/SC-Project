@@ -71,12 +71,13 @@
 
         <ImageButton
             android:id="@+id/mealButton"
-            android:layout_width="25dp"
+            android:layout_width="55dp"
             android:layout_height="25dp"
             android:scaleType="centerInside"
-            android:layout_marginLeft="370dp"
+            android:layout_marginLeft="350dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/form_page_arrow">
+            android:background="col"
+            android:src="@drawable/arrowfinal">
         </ImageButton>
 
         <View
@@ -124,12 +125,13 @@
 
         <ImageButton
             android:id="@+id/travelButton"
-            android:layout_width="25dp"
+            android:layout_width="55dp"
             android:layout_height="25dp"
-            android:layout_marginLeft="370dp"
             android:scaleType="centerInside"
+            android:layout_marginLeft="350dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/form_page_arrow"/>
+            android:background="col"
+            android:src="@drawable/arrowfinal"/>
 
         <View
             android:id="@+id/divider5"
@@ -146,5 +148,7 @@
         android:background="?android:attr/listDivider"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="301dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

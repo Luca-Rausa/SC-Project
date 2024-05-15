@@ -146,5 +146,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chat" />
 
+    <include
+        android:id="@+id/navigationBar"
+        layout="@layout/navigation_bar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
