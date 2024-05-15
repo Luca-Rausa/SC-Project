@@ -34,12 +34,17 @@
 
     <TextView
         android:id="@+id/date2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="53dp"
+        android:background="@drawable/form_box"
+        android:text="End date"
+        android:paddingTop="15sp"
+        android:paddingStart="17sp"
+        android:textSize="17sp"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/dark_grey"
         android:layout_marginStart="33dp"
         android:layout_marginTop="12dp"
-        android:text="02/28/2024"
-        android:textColor="@color/dark_blue"
         app:layout_constraintStart_toEndOf="@+id/date1"
         app:layout_constraintTop_toBottomOf="@+id/dates" />
 
@@ -48,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="5dp"
         android:text="to"
         android:textColor="@color/dark_gray"
@@ -59,34 +64,49 @@
 
     <TextView
         android:id="@+id/date1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="53dp"
+        android:background="@drawable/form_box"
+        android:text="Start date"
+        android:paddingTop="15sp"
+        android:paddingStart="17sp"
+        android:textSize="17sp"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/dark_grey"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="02/21/2024"
-        android:textColor="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dates" />
 
     <TextView
         android:id="@+id/firstResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="356dp"
+        android:layout_height="53dp"
+        android:background="@drawable/form_box"
+        android:text="First name"
+        android:paddingTop="15sp"
+        android:paddingStart="17sp"
+        android:textSize="17sp"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/dark_grey"
         android:layout_marginStart="24dp"
         android:layout_marginTop="9dp"
-        android:text="Sharanya"
-        android:textColor="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first" />
 
     <TextView
         android:id="@+id/lastResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="356dp"
+        android:layout_height="53dp"
+        android:background="@drawable/form_box"
+        android:text="Last name"
+        android:paddingTop="15sp"
+        android:paddingStart="17sp"
+        android:textSize="17sp"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/dark_grey"
         android:layout_marginStart="24dp"
         android:layout_marginTop="9dp"
-        android:text="Pathakota"
-        android:textColor="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/last" />
 
@@ -95,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/inter_semibold"
         android:text="First Name:"
         android:textColor="@color/darker_gray"
@@ -134,8 +154,8 @@
         android:id="@+id/mealTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/inter"
         android:text="Meal Results"
         android:textColor="@color/dark_blue"
@@ -149,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="220dp"
         android:fontFamily="@font/inter"
         android:text="Student Meal Information"
         android:textColor="@color/dark_blue"
@@ -173,7 +193,7 @@
         android:id="@+id/search"
         android:layout_width="356dp"
         android:layout_height="53dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="96dp"
         android:background="@drawable/form_box"
         android:backgroundTint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
@@ -182,87 +202,48 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/prog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/attendance"
+        android:layout_width="356dp"
+        android:layout_height="53dp"
+        android:background="@drawable/form_box"
+        android:text="First name"
+        android:paddingTop="15sp"
+        android:paddingStart="17sp"
+        android:textSize="17sp"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/dark_grey"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:text="lunch"
-        android:textColor="@color/dark_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meal" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="13dp"
         android:fontFamily="@font/inter_semibold"
-        android:text="Days Attending Breakfast:"
+        android:text="Travel Group:"
         android:textColor="@color/darker_gray"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prog" />
+        app:layout_constraintTop_toBottomOf="@+id/attendance" />
 
     <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter"
-        android:text="monday"
-        android:textColor="@color/dark_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/group"
+        android:layout_width="356dp"
+        android:layout_height="53dp"
+        android:background="@drawable/form_box"
+        android:text="Group"
+        android:paddingTop="15sp"
+        android:paddingStart="17sp"
+        android:textSize="17sp"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/dark_grey"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/inter_semibold"
-        android:text="Days Attending Lunch:"
-        android:textColor="@color/darker_gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter"
-        android:text="monday"
-        android:textColor="@color/dark_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/inter_semibold"
-        android:text="Days Attending Dinner:"
-        android:textColor="@color/darker_gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter"
-        android:text="monday"
-        android:textColor="@color/dark_blue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

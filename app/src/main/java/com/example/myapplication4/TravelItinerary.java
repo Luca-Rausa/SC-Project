@@ -27,7 +27,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class TravelItinerary extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private EditText firstNameEditText, lastNameEditText, emailEditText, editTextDate, endDateEditText, itineraryDescEditText;
-    private String travelDestination, travelGroup;
+    private String travelGroup;
     private RadioGroup radioGroup;
     private Spinner spinner2;
     private Button submitButton;

@@ -81,6 +81,11 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
 
+                if (password.length() != 8) {
+                    Toast.makeText(SignUp.this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 // Save user data to SQLite database
                 LoginHelper dbHelper = new LoginHelper(SignUp.this);
                 boolean success = dbHelper.addUser(firstname, lastname, email, password, selectedRole);

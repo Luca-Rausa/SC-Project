@@ -75,7 +75,7 @@
             android:layout_height="25dp"
             android:layout_marginLeft="350dp"
             android:layout_marginTop="30dp"
-            android:background="col"
+            android:background="@android:color/transparent"
             android:scaleType="centerInside"
             android:src="@drawable/form_page_arrow"></ImageButton>
 
@@ -128,7 +128,7 @@
             android:layout_height="25dp"
             android:layout_marginLeft="350dp"
             android:layout_marginTop="30dp"
-            android:background="col"
+            android:background="@android:color/transparent"
             android:scaleType="centerInside"
             android:src="@drawable/form_page_arrow" />
 
