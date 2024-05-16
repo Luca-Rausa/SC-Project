@@ -62,9 +62,7 @@ public class SignIn extends AppCompatActivity {
                     // Set the global isLoggedIn variable to true
                     MainActivity.isLoggedIn = true;
 
-                    if (Objects.equals(user.getRole(), "Staff")) {
-                        MainActivity.isStaff = true;
-                    }
+                    MainActivity.isStaff = Objects.equals(user.getRole(), "Staff");
                     Toast.makeText(SignIn.this, "Sign in successful!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SignIn.this, Home.class));
                     finish();

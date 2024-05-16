@@ -69,14 +69,14 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
 
     @Override
     public void onImageViewClick(int position) {
-            Event eventToRemove = events.get(position);
-            if (eventToRemove != null) {
-                databaseHelper.removeEvent(eventToRemove);
-                events.remove(position);
-                eventListAdapter.notifyDataSetChanged();
-                Toast.makeText(MyEvents.this, "Event removed successfully!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(MyEvents.this, "An error occurred while removing the event", Toast.LENGTH_SHORT).show();
-            }
+        Event eventToRemove = events.get(position);
+        if (eventToRemove != null) {
+            databaseHelper.removeEvent(eventToRemove);
+            events.remove(position);
+            eventListAdapter.notifyDataSetChanged();
+            Toast.makeText(MyEvents.this, "Event removed successfully!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MyEvents.this, "An error occurred while removing the event", Toast.LENGTH_SHORT).show();
+        }
     }
 }

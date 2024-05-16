@@ -23,6 +23,13 @@ public class EventHub extends AppCompatActivity {
         setContentView(R.layout.event_hub);
 
         Button btnNewEvent = findViewById(R.id.btnNewEvent);
+
+        if (MainActivity.isStaff) {
+            btnNewEvent.setVisibility(View.VISIBLE);
+        } else {
+            btnNewEvent.setVisibility(View.INVISIBLE);
+        }
+
         btnNewEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

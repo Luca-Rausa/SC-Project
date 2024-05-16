@@ -48,11 +48,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // UserInfo
     private static final String TABLE_USER = "user";
     private static final String COL_ID = "id";
-    private static final String COL_FIRSTNAME = "firstname";
-    private static final String COL_LASTNAME = "lastname";
-    private static final String COL_EMAIL = "email";
+    public static final String COL_FIRSTNAME = "firstname";
+    public static final String COL_LASTNAME = "lastname";
+    public static final String COL_EMAIL = "email";
     private static final String COL_PASSWORD = "password";
     private static final String COL_ROLE = "role";
+
+    // Meals
+    public static final String TABLE_MEALS = "meals";
+    public static final String COLUMN_START_DATE = "startDate";
+    public static final String COLUMN_END_DATE = "endDate";
+    public static final String COLUMN_MEAL_TIMINGS = "mealTimings";
+    public static final String COLUMN_PROGRAM_OF_STUDY = "programOfStudy";
+
+    // Travel
+    public static final String TABLE_ITINERARY = "itinerary";
+    public static final String COLUMN_TRAVEL_DESCRIPTION = "itineraryDesc";
+    public static final String COLUMN_TRAVEL_GROUP = "travelGroup";
+    public static final String COLUMN_PROGRAM_OF_STUDY_GROUP = "groupTravel"; // New column for program of study
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -99,6 +112,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "PRIMARY KEY(" + COLUMN_ATTENDEE_ID + ", " + COLUMN_EVENT + ")" +
                 ")";
         sqLiteDatabase.execSQL(CREATE_ATTENDEES_TABLE);
+
+        // Define SQL statement to create the table with the new column
+        String SQL_CREATE_MEALS =
+                "CREATE TABLE " + TABLE_MEALS + " (" +
+                        COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        COL_FIRSTNAME + " TEXT, " +
+                        COL_LASTNAME + " TEXT, " +
+                        COL_EMAIL + " TEXT, " +
+                        COLUMN_START_DATE + " TEXT, " +
+                        COLUMN_END_DATE + " TEXT, " +
+                        COLUMN_MEAL_TIMINGS + " TEXT, " +
+                        COLUMN_PROGRAM_OF_STUDY + " TEXT)";
+
+        // Execute the SQL statement to create the table
+        sqLiteDatabase.execSQL(SQL_CREATE_MEALS);
+
+        // Define SQL statement to create the table with the new column
+        String SQL_CREATE_ITINERARY =
+                "CREATE TABLE " + TABLE_ITINERARY + " (" +
+                        COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        COL_FIRSTNAME + " TEXT, " +
+                        COL_LASTNAME + " TEXT, " +
+                        COL_EMAIL + " TEXT, " +
+                        COLUMN_START_DATE + " TEXT, " +
+                        COLUMN_END_DATE + " TEXT, " +
+                        COLUMN_TRAVEL_DESCRIPTION + " TEXT, " +
+                        COLUMN_TRAVEL_GROUP + " TEXT, " +
+                        COLUMN_PROGRAM_OF_STUDY_GROUP + " TEXT)";
+
+        // Execute the SQL statement to create the table
+        sqLiteDatabase.execSQL(SQL_CREATE_ITINERARY);
     }
 
     @Override
@@ -107,6 +151,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_IMAGES);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDEES);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MEALS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ITINERARY);
         onCreate(sqLiteDatabase);
     }
 

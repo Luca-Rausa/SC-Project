@@ -32,4 +32,3 @@ public class EventTypeAdapter extends ArrayAdapter<EventType> {
         return view;
     }
 }
-
