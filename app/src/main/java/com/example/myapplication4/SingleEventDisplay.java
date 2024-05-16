@@ -3,13 +3,16 @@ package com.example.myapplication4;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
@@ -55,6 +58,14 @@ public class SingleEventDisplay  extends AppCompatActivity{
         btnAttendEvent = findViewById(R.id.btnAttendEvent);
         attendeesListView = findViewById(R.id.attendeesListView);
         attendeesTextView = findViewById(R.id.attendeesTextView);
+
+        // Setting up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enabling the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
         long eventId = intent.getLongExtra("event", -1);
@@ -105,5 +116,17 @@ public class SingleEventDisplay  extends AppCompatActivity{
                 attendeesListView.setAdapter(attendeesAdapter);
             }
         }
+    }
+
+    // Handle toolbar item clicks
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle back button click
+            startActivity(new Intent(SingleEventDisplay.this, EventHub.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

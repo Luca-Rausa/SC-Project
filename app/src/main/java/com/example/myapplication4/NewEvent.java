@@ -12,6 +12,7 @@ import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Pair;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,7 +24,9 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -69,6 +72,14 @@ public class NewEvent extends AppCompatActivity {
         eventDuration = findViewById(R.id.edTxtEventDuration);
         eventLinkName = findViewById(R.id.edTxtEventLinkName);
         eventLinkUrl = findViewById(R.id.edTxtEventLinkURL);
+
+        // Setting up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enabling the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -273,5 +284,17 @@ public class NewEvent extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
+    }
+
+    // Handle toolbar item clicks
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle back button click
+            startActivity(new Intent(NewEvent.this, EventHub.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
