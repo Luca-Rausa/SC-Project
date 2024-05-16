@@ -69,7 +69,7 @@ public class SingleEventDisplay  extends AppCompatActivity{
         Intent intent = getIntent();
         long eventId = intent.getLongExtra("event", -1);
         if(eventId != -1) {
-            Event event = databaseHelper.getEvent(eventId);
+            Event event = databaseHelper.getEvent(eventId, true);
             eventTitle.setText(event.getTitle());
             eventDescription.setText(event.getDescription());
             eventType.setText(event.getType().getStringValue());

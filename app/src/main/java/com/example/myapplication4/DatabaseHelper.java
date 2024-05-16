@@ -227,7 +227,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             for (Bitmap image : event.getImages()) {
                 ContentValues imageValues = new ContentValues();
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                image.compress(Bitmap.CompressFormat.PNG, 0, stream);
+                image.compress(Bitmap.CompressFormat.JPEG, 50, stream);
                 imageValues.put(COLUMN_EVENT, eventId);
                 imageValues.put(COLUMN_IMAGE, stream.toByteArray());
                 db.insert(TABLE_IMAGES, null, imageValues);
@@ -253,7 +253,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return eventList;
     }
 
-    public Event getEvent(long eventId) {
+    public Event getEvent(long eventId, boolean loadImages) {
         SQLiteDatabase db = this.getReadableDatabase();
         Event event = new Event();
 
@@ -282,8 +282,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String linkUrls = cursor.getString(linkUrlIndex);
                 event.setLinks(fromStringToPairList(linkNames, linkUrls));
             }
-            List<Bitmap> images = getImagesForEvent(db, eventId);
-            event.setImages(images);
+            if(loadImages) {
+                List<Bitmap> images = getImagesForEvent(db, eventId);
+                event.setImages(images);
+            }
         }
 
         db.close();
@@ -390,7 +392,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 long eventId = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_EVENT));
-                Event event = getEvent(eventId);
+                Event event = getEvent(eventId, false);
                 if (event != null) {
                     attendedEvents.add(event);
                 }
@@ -486,16 +488,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private List<Bitmap> getImagesForEvent(SQLiteDatabase database, long eventId) {
         List<Bitmap> images = new ArrayList<>();
-        Cursor cursor = database.query(TABLE_IMAGES, new String[]{COLUMN_IMAGE}, COLUMN_EVENT + " = ?",
-                new String[]{String.valueOf(eventId)}, null, null, null);
-        if(cursor.moveToFirst()) {
-            do {
-                byte[] imageData = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE));
-                Bitmap image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-                images.add(image);
-            } while (cursor.moveToNext());
+        int offset = 0;
+        int size = 1;
+
+        while (true) {
+            Cursor cursor = database.query(TABLE_IMAGES, new String[]{COLUMN_IMAGE}, COLUMN_EVENT + " = ?",
+                    new String[]{String.valueOf(eventId)}, null, null, COLUMN_IMAGE_ID + " ASC",offset + "," + size);
+
+            if(cursor.moveToFirst()) {
+                do {
+                    byte[] imageData = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE));
+                    Bitmap image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                    images.add(image);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            offset += size;
+            if (cursor.getCount() < size) {
+                break;
+            }
         }
-        cursor.close();
+
         return images;
     }
 
@@ -505,7 +518,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(query.moveToFirst()) {
             do {
                 long eventId = query.getLong(query.getColumnIndexOrThrow(COLUMN_EVENT_ID));
-                Event event = getEvent(eventId);
+                Event event = getEvent(eventId, false);
                 if (event != null) {
                     eventList.add(event);
                 }
