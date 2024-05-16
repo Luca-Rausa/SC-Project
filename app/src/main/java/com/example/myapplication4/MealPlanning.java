@@ -5,25 +5,17 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import android.content.res.ColorStateList;
 import android.widget.Toast;

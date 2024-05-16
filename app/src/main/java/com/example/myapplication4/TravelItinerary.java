@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -23,7 +22,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.Calendar;
 import java.util.Locale;
-import androidx.appcompat.widget.Toolbar;
 
 public class TravelItinerary extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private EditText firstNameEditText, lastNameEditText, emailEditText, editTextDate, endDateEditText, itineraryDescEditText;

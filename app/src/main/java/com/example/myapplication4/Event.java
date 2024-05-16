@@ -2,7 +2,6 @@ package com.example.myapplication4;
 
 import android.graphics.Bitmap;
 import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Pair;
 
 import java.util.ArrayList;

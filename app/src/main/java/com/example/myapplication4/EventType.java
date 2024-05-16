@@ -1,7 +1,5 @@
 package com.example.myapplication4;
 
-import java.io.Serializable;
-
 public enum EventType {
     MEETING("Meeting"),
     DEBATE("Debate"),
