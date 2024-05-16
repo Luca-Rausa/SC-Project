@@ -3,6 +3,7 @@ package com.example.myapplication4;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteBlobTooBigException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
@@ -491,22 +492,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int offset = 0;
         int size = 1;
 
-        while (true) {
-            Cursor cursor = database.query(TABLE_IMAGES, new String[]{COLUMN_IMAGE}, COLUMN_EVENT + " = ?",
-                    new String[]{String.valueOf(eventId)}, null, null, COLUMN_IMAGE_ID + " ASC",offset + "," + size);
+        try {
+            while (true) {
+                Cursor cursor = database.query(TABLE_IMAGES, new String[]{COLUMN_IMAGE}, COLUMN_EVENT + " = ?",
+                        new String[]{String.valueOf(eventId)}, null, null, COLUMN_IMAGE_ID + " ASC", offset + "," + size);
 
-            if(cursor.moveToFirst()) {
-                do {
-                    byte[] imageData = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE));
-                    Bitmap image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-                    images.add(image);
-                } while (cursor.moveToNext());
+                if (cursor.moveToFirst()) {
+                    do {
+                        byte[] imageData = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_IMAGE));
+                        Bitmap image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                        images.add(image);
+                    } while (cursor.moveToNext());
+                }
+                cursor.close();
+                offset += size;
+                if (cursor.getCount() < size) {
+                    break;
+                }
             }
-            cursor.close();
-            offset += size;
-            if (cursor.getCount() < size) {
-                break;
-            }
+        }catch (SQLiteBlobTooBigException e) {
+            e.printStackTrace();
+            return images;
         }
 
         return images;
