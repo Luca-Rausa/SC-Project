@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.util.Pair;
 
 import java.io.ByteArrayOutputStream;
-import java.io.PipedReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,12 +66,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TRAVEL_DESCRIPTION = "itineraryDesc";
     public static final String COLUMN_TRAVEL_GROUP = "travelGroup";
     public static final String COLUMN_PROGRAM_OF_STUDY_GROUP = "groupTravel"; // New column for program of study
-
-    // Feedback
-    private static final String TABLE_FEEDBACK = "feedbacks";
-    private static final String COLUMN_FEEDBACK = "feedback";
-    private static final String COLUMN_RATING = "rating";
-
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -150,13 +143,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Execute the SQL statement to create the table
         sqLiteDatabase.execSQL(SQL_CREATE_ITINERARY);
-
-        String SQL_CREATE_FEEDBACK =
-                "CREATE TABLE " + TABLE_FEEDBACK + " (" +
-                        COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_FEEDBACK + " TEXT," +
-                        COLUMN_RATING + " TEXT)";
-        sqLiteDatabase.execSQL(SQL_CREATE_FEEDBACK);
     }
 
     @Override
@@ -167,7 +153,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MEALS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ITINERARY);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_FEEDBACK);
         onCreate(sqLiteDatabase);
     }
 
@@ -451,37 +436,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return user;
-    }
-
-    public FeedBackData getFeedback(long feedbackId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        FeedBackData feedback = new FeedBackData();
-
-        Cursor cursor = db.query(TABLE_FEEDBACK, null, COL_ID + "=?",
-                new String[]{String.valueOf(feedbackId)}, null, null, null);
-
-        if(cursor != null) {
-            feedback.ID = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID));
-            feedback.Feed = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FEEDBACK));
-            feedback.rating = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RATING));
-        }
-
-        cursor.close();
-        db.close();
-        return feedback;
-    }
-
-    public void addFeedback(Feedback feedback) {
-
-    }
-
-    public List<Feedback> getFeedbacks() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_FEEDBACK, null);
-        db.execSQL();
-        List<> feedbackList = getEventsWithQuery(cursor);
-        db.close();
-        return eventList;
     }
 
     private List<Bitmap> getImagesForEvent(SQLiteDatabase database, long eventId) {
