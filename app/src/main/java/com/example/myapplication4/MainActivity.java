@@ -3,6 +3,9 @@ package com.example.myapplication4;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.view.Window;
+import android.view.WindowManager;
+import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean isLoggedIn = false;

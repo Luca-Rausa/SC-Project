@@ -534,6 +534,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return eventList;
     }
 
+    public boolean checkUserExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_USER + " WHERE " + COL_EMAIL + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{email});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
     private Pair<String,String> fromPairListToString(List<Pair<String,String>> mList) {
         StringBuilder names = new StringBuilder();
         StringBuilder url = new StringBuilder();

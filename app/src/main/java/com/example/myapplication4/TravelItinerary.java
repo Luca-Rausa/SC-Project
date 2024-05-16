@@ -114,6 +114,12 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
                 }
                 String selectedGroup = travelGroup;
 
+                if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || startDate.isEmpty()
+                        || endDate.isEmpty() || itineraryDesc.isEmpty() || groupTravel.isEmpty()) {
+                    Toast.makeText(TravelItinerary.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 // Save data to SQLite database
                 saveData(firstName, lastName, email, startDate, endDate, itineraryDesc, groupTravel, selectedGroup);
 
@@ -157,8 +163,8 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         values.put(DatabaseHelper.COLUMN_START_DATE, startDate);
         values.put(DatabaseHelper.COLUMN_END_DATE, endDate);
         values.put(DatabaseHelper.COLUMN_TRAVEL_DESCRIPTION, itineraryDesc);
-        values.put(DatabaseHelper.COLUMN_TRAVEL_GROUP, travelGroup);
-        values.put(DatabaseHelper.COLUMN_PROGRAM_OF_STUDY_GROUP, groupTravel);
+        values.put(DatabaseHelper.COLUMN_TRAVEL_GROUP, groupTravel);
+        values.put(DatabaseHelper.COLUMN_PROGRAM_OF_STUDY_GROUP, travelGroup);
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(DatabaseHelper.TABLE_ITINERARY, null, values);

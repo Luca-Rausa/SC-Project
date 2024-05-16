@@ -49,34 +49,11 @@ public class Feedback extends AppCompatActivity {
                 String user_feedback = feed.getText().toString();
                 dbHelper.AddFeedBack(new FeedBackData(user_feedback,rating));
 
-                // Save data to SQLite database
-                saveData(rating, user_feedback);
-
                 // Navigate to the home page
                 startActivity(new Intent(Feedback.this, ViewFeedback.class));
                 finish();
             }
         });
-    }
-
-    private void saveData(String rating, String userFeedback) {
-        // Gets the data repository in write mode
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.COL_RATING, rating);
-        values.put(DatabaseHelper.COL_FEEDBACK, userFeedback);
-
-        // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(DatabaseHelper.TABLE_FEEDBACK, null, values);
-
-        // You can handle the result of the insertion if needed
-        if (newRowId != -1) {
-            Toast.makeText(this, "Data saved successfully!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Failed to save data", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void showToast(String message){

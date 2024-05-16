@@ -84,6 +84,7 @@ public class MealPlanning extends AppCompatActivity {
                 showDatePickerDialog(endDateEditText);
             }
         });
+
         // Configure RadioButtons to change background color on selection
         configureButtons();
 
@@ -109,6 +110,12 @@ public class MealPlanning extends AppCompatActivity {
 
                 // Trim any extra space at the end
                 mealTimings = mealTimings.trim();
+
+                if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || startDate.isEmpty()
+                    || endDate.isEmpty() || mealTimings.isEmpty()) {
+                    Toast.makeText(MealPlanning.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 // Save data to SQLite database
                 saveData(firstName, lastName, email, startDate, endDate, programStudy, mealTimings);
@@ -231,4 +238,5 @@ public class MealPlanning extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

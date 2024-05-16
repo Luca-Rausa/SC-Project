@@ -170,7 +170,7 @@
         android:backgroundTint="@color/grey"
         android:paddingStart="17sp"
         android:paddingTop="15sp"
-        android:text="First name"
+        android:text="Yes"
         android:textColor="@color/dark_grey"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"

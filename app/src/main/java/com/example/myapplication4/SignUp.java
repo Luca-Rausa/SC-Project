@@ -1,6 +1,7 @@
 package com.example.myapplication4;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,18 +77,30 @@ public class SignUp extends AppCompatActivity {
                 String lastname = editTextLastName.getText().toString().trim();
 
                 // Validate inputs
-                if (email.isEmpty() || password.isEmpty()) {
+                if (email.isEmpty() || password.isEmpty() || firstname.isEmpty() || lastname.isEmpty()) {
                     Toast.makeText(SignUp.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (password.length() != 8) {
+                DatabaseHelper dbHelper = new DatabaseHelper(SignUp.this);
+
+                if (dbHelper.checkUserExists(email)) {
+                    System.out.println(email);
+                    Toast.makeText(SignUp.this, "User already exists", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (password.length() < 8) {
                     Toast.makeText(SignUp.this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                if (!email.contains(".") || !email.contains("@")) {
+                    Toast.makeText(SignUp.this, "Email doesn't exist", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 // Save user data to SQLite database
-                DatabaseHelper dbHelper = new DatabaseHelper(SignUp.this);
                 boolean success = dbHelper.addUser(firstname, lastname, email, password, selectedRole);
                 if (success) {
                     Toast.makeText(SignUp.this, "Sign up successful!", Toast.LENGTH_SHORT).show();

@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
     private EventListAdapter eventListAdapter;
     private EventListAdapter attendeListAdapter;
     private DatabaseHelper databaseHelper;
+    private TextView myEvents;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,11 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
         attendeListAdapter = new EventListAdapter(this, attendedEvents, R.layout.event_list_item);
         attendListView.setAdapter(attendeListAdapter);
 
+        myEvents = findViewById(R.id.myevents);
+
+        if (!MainActivity.isStaff) {
+            myEvents.setVisibility(View.GONE);
+        }
         // Setting up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

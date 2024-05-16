@@ -17,16 +17,14 @@
         android:id="@+id/textViewEventDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/primary_dark"
         android:textSize="14sp"
-        android:textStyle="bold"
         android:layout_weight="3"/>
     <TextView
         android:id="@+id/textViewEventType"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/dark_blue"
+        android:textColor="@color/primary_dark"
         android:textSize="14sp"
-        android:textStyle="bold"
         android:layout_weight="2"/>
 </LinearLayout>
