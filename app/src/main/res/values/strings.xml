@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application4</string>
+    <string name="app_name">StegerReady</string>
     <string-array name="roles_array">
         <item>Staff</item>
         <item>Student</item>
