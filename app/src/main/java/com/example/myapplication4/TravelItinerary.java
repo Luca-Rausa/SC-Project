@@ -31,7 +31,7 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
     private RadioGroup radioGroup;
     private Spinner spinner2;
     private Button submitButton;
-    private TravelHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private EditText activeDateField;
 
     @Override
@@ -39,7 +39,7 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.travel_itinerary);
 
-        dbHelper = new TravelHelper(this);
+        dbHelper = new DatabaseHelper(this);
 
         // Initialize UI elements
         firstNameEditText = findViewById(R.id.editTextFirstName);
@@ -153,18 +153,18 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(TravelHelper.COLUMN_FIRST_NAME, firstName);
-        values.put(TravelHelper.COLUMN_LAST_NAME, lastName);
-        values.put(TravelHelper.COLUMN_EMAIL, email);
-        values.put(TravelHelper.COLUMN_START_DATE, startDate);
-        values.put(TravelHelper.COLUMN_END_DATE, endDate);
-        values.put(TravelHelper.COLUMN_DESCRIPTION, itineraryDesc);
-        values.put(TravelHelper.COLUMN_TRAVEL_GROUP, travelGroup);
-        values.put(TravelHelper.COLUMN_PROGRAM_OF_STUDY, groupTravel);
+        values.put(DatabaseHelper.COL_FIRSTNAME, firstName);
+        values.put(DatabaseHelper.COL_LASTNAME, lastName);
+        values.put(DatabaseHelper.COL_EMAIL, email);
+        values.put(DatabaseHelper.COLUMN_START_DATE, startDate);
+        values.put(DatabaseHelper.COLUMN_END_DATE, endDate);
+        values.put(DatabaseHelper.COLUMN_TRAVEL_DESCRIPTION, itineraryDesc);
+        values.put(DatabaseHelper.COLUMN_TRAVEL_GROUP, travelGroup);
+        values.put(DatabaseHelper.COLUMN_PROGRAM_OF_STUDY_GROUP, groupTravel);
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(TravelHelper.TABLE_NAME, null, values);
-        System.out.println(TravelHelper.TABLE_NAME);
+        long newRowId = db.insert(DatabaseHelper.TABLE_ITINERARY, null, values);
+        System.out.println(DatabaseHelper.TABLE_ITINERARY);
         // You can handle the result of the insertion if needed
         if (newRowId != -1) {
             Toast.makeText(this, "Data saved successfully!", Toast.LENGTH_SHORT).show();

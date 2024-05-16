@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class TravelResults extends AppCompatActivity {
-    private TravelHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private TextView firstResultTextView, lastResultTextView, groupResultsTextView, itinResultsTextView, othersResultsTextView,
             date1TextView, date2TextView;
 
@@ -34,7 +34,7 @@ public class TravelResults extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Initialize database helper
-        dbHelper = new TravelHelper(this);
+        dbHelper = new DatabaseHelper(this);
 
         // Linking XML views to Java variables
         firstResultTextView = findViewById(R.id.firstResult);
@@ -86,7 +86,7 @@ public class TravelResults extends AppCompatActivity {
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         System.out.println(firstName);
         System.out.println(lastName);
-        System.out.println(TravelHelper.TABLE_NAME);
+        System.out.println(DatabaseHelper.TABLE_ITINERARY);
         Cursor cursor = database.rawQuery("SELECT * FROM itinerary WHERE firstName = ? AND lastName = ?", new String[]{firstName, lastName});
 
 

@@ -35,7 +35,7 @@ public class MealPlanning extends AppCompatActivity {
     private EditText firstNameEditText, lastNameEditText, emailEditText;
     private Button csButton, pgsButton, archButton, otherButton;
     private String programStudy;
-    private MealHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private EditText startDateEditText, endDateEditText;
     private RadioButton breakfast, lunch, dinner;
     private Button submitButton;
@@ -54,7 +54,7 @@ public class MealPlanning extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        dbHelper = new MealHelper(this);
+        dbHelper = new DatabaseHelper(this);
 
         // Initialize EditText fields
         firstNameEditText = findViewById(R.id.editTextFirstName);
@@ -158,17 +158,17 @@ public class MealPlanning extends AppCompatActivity {
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(MealHelper.COLUMN_FIRST_NAME, firstName);
-        values.put(MealHelper.COLUMN_LAST_NAME, lastName);
-        values.put(MealHelper.COLUMN_EMAIL, email);
-        values.put(MealHelper.COLUMN_START_DATE, startDate);
-        values.put(MealHelper.COLUMN_END_DATE, endDate);
-        values.put(MealHelper.COLUMN_PROGRAM_OF_STUDY, programStudy);
-        values.put(MealHelper.COLUMN_MEAL_TIMINGS, mealTimings);
+        values.put(DatabaseHelper.COL_FIRSTNAME, firstName);
+        values.put(DatabaseHelper.COL_LASTNAME, lastName);
+        values.put(DatabaseHelper.COL_EMAIL, email);
+        values.put(DatabaseHelper.COLUMN_START_DATE, startDate);
+        values.put(DatabaseHelper.COLUMN_END_DATE, endDate);
+        values.put(DatabaseHelper.COLUMN_PROGRAM_OF_STUDY, programStudy);
+        values.put(DatabaseHelper.COLUMN_MEAL_TIMINGS, mealTimings);
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(MealHelper.TABLE_NAME, null, values);
-        System.out.println(MealHelper.TABLE_NAME);
+        long newRowId = db.insert(DatabaseHelper.TABLE_MEALS, null, values);
+        System.out.println(DatabaseHelper.TABLE_MEALS);
         // You can handle the result of the insertion if needed
         if (newRowId != -1) {
             Toast.makeText(this, "Data saved successfully!", Toast.LENGTH_SHORT).show();

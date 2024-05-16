@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MealResults extends AppCompatActivity  {
-    private MealHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private TextView firstResultTextView, lastResultTextView, date1TextView, date2TextView, mealsAttendingTextView,
             groupTextView;
 
@@ -34,7 +34,7 @@ public class MealResults extends AppCompatActivity  {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Initialize database helper
-        dbHelper = new MealHelper(this);
+        dbHelper = new DatabaseHelper(this);
 
         // Linking XML views to Java variables
         firstResultTextView = findViewById(R.id.firstResult);
@@ -85,7 +85,7 @@ public class MealResults extends AppCompatActivity  {
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         System.out.println(firstName);
         System.out.println(lastName);
-        System.out.println(MealHelper.TABLE_NAME);
+        System.out.println(DatabaseHelper.TABLE_MEALS);
         Cursor cursor = database.rawQuery("SELECT * FROM meals WHERE firstName = ? AND lastName = ?", new String[]{firstName, lastName});
 
 
