@@ -1,9 +1,12 @@
 package com.example.myapplication4;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -29,6 +32,14 @@ public class EventHub extends AppCompatActivity {
         } else {
             btnNewEvent.setVisibility(View.INVISIBLE);
         }
+
+        // Setting up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enabling the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         btnNewEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,5 +81,17 @@ public class EventHub extends AppCompatActivity {
         eventListAdapter.clear();
         eventListAdapter.addAll(databaseHelper.getAllEvents());
         eventListAdapter.notifyDataSetChanged();
+    }
+
+    // Handle toolbar item clicks
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle back button click
+            startActivity(new Intent(EventHub.this, Home.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

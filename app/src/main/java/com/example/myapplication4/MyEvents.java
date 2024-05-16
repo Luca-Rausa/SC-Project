@@ -2,12 +2,15 @@ package com.example.myapplication4;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.List;
 
@@ -33,6 +36,14 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
         eventListView.setAdapter(eventListAdapter);
         attendeListAdapter = new EventListAdapter(this, attendedEvents, R.layout.event_list_item);
         attendListView.setAdapter(attendeListAdapter);
+
+        // Setting up the toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enabling the back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,5 +89,17 @@ public class MyEvents extends AppCompatActivity implements EventListAdapter.OnIm
         } else {
             Toast.makeText(MyEvents.this, "An error occurred while removing the event", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // Handle toolbar item clicks
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle back button click
+            startActivity(new Intent(MyEvents.this, EventHub.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
