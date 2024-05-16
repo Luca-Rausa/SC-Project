@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".mainfeedbackscreen">
 
-    <Button
+    <TextView
         android:id="@+id/feedbtn"
         android:layout_width="150dp"
         android:layout_height="41dp"
         android:background="@drawable/btnround"
-        android:backgroundTint="#274C77"
+        android:backgroundTint="@color/dark_blue"
         android:padding="10dp"
         android:text="Add your feedback!"
         android:textColor="@color/white"
@@ -22,12 +22,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.936" />
 
-    <Button
+    <TextView
         android:id="@+id/backbtn"
         android:layout_width="84dp"
         android:layout_height="43dp"
         android:background="@drawable/btnround"
-        android:backgroundTint="#274C77"
+        android:backgroundTint="@color/dark_blue"
         android:padding="10dp"
         android:text="     Back"
         android:textColor="@color/white"
@@ -44,9 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:layout_weight="1"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Feedback"
-        android:textColor="#274C77"
+        android:textColor="@color/dark_blue"
         android:textColorHint="#050505"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -73,7 +73,7 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/abeezee"
+        android:fontFamily="@font/inter"
         android:text="Previous students' feedback"
         android:textColor="#100F0F"
         android:textSize="24dp"
@@ -96,16 +96,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedlist"
-        android:layout_width="match_parent"
+        android:layout_width="409dp"
         android:layout_height="481dp"
-        android:layout_marginStart="1dp"
-
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/backbtn"
+        app:layout_constraintBottom_toTopOf="@+id/feedbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />

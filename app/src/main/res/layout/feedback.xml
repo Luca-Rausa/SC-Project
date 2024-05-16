@@ -28,7 +28,7 @@
 
     <Button
         android:id="@+id/nextbtn"
-        android:layout_width="370dp"
+        android:layout_width="362dp"
         android:layout_height="51dp"
         android:backgroundTint="@color/dark_blue"
         android:padding="10dp"
@@ -39,7 +39,7 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.954" />
+        app:layout_constraintVertical_bias="0.944" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -53,12 +53,14 @@
         app:navigationIcon="?android:attr/homeAsUpIndicator" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/feedarea"
         android:layout_width="362dp"
         android:layout_height="135dp"
         android:background="@drawable/textround"
         android:backgroundTint="#D3D3D3"
-        android:hint="   write here"
+        android:hint="Steger Center is..."
+        android:paddingStart="17dp"
+        android:paddingBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
@@ -72,7 +74,7 @@
         android:layout_height="78dp"
         android:layout_below="@+id/feedback"
         android:fontFamily="@font/inter"
-        android:text="Share your experience, we value your opinion"
+        android:text="Share your experience, we value your opinion!"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -58,7 +58,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start sign in activity
-                startActivity(new Intent(Home.this, Feedback.class));
+                startActivity(new Intent(Home.this, ViewFeedback.class));
             }
         });
 

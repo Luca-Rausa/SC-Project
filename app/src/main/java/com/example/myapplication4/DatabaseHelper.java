@@ -67,6 +67,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TRAVEL_GROUP = "travelGroup";
     public static final String COLUMN_PROGRAM_OF_STUDY_GROUP = "groupTravel"; // New column for program of study
 
+    // Feedback Info
+    public static final String TABLE_FEEDBACK = "feedback";
+    public static final String COL_RATING = "rating";
+    public static final String COL_FEEDBACK = "userFeedback";
+
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -103,6 +109,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_PASSWORD + " TEXT, " +
                 COL_ROLE + " TEXT)";
         sqLiteDatabase.execSQL(createTable);
+
+
 
         String CREATE_ATTENDEES_TABLE = "CREATE TABLE " + TABLE_ATTENDEES + "(" +
                 COLUMN_ATTENDEE_ID + " INTEGER," +
@@ -143,8 +151,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Execute the SQL statement to create the table
         sqLiteDatabase.execSQL(SQL_CREATE_ITINERARY);
-    }
 
+        String FEEDBACK_SAVE =
+                "CREATE TABLE " + TABLE_FEEDBACK + " (" +
+                        COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        COL_FEEDBACK + " TEXT, " +
+                        COL_RATING + " TEXT) ";
+
+        // Execute the SQL statement to create the table
+        sqLiteDatabase.execSQL(FEEDBACK_SAVE);
+
+    }
+    public void AddFeedBack(FeedBackData feedBackData){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_FEEDBACK, feedBackData.Feed);
+        contentValues.put(COL_RATING, feedBackData.rating);
+        long result = db.insert(TABLE_FEEDBACK, null, contentValues);
+    }
+    public List<FeedBackData> GetFeedbacks(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_FEEDBACK, null);
+
+        List<FeedBackData> FeedtList = new ArrayList<>();
+
+        if(cursor.moveToFirst()) {
+            do {
+                long eventId = cursor.getLong(cursor.getColumnIndexOrThrow(COL_ID));
+                String feedback = cursor.getString(cursor.getColumnIndexOrThrow(COL_FEEDBACK));
+                String rating = cursor.getString(cursor.getColumnIndexOrThrow(COL_RATING));
+                FeedBackData feedBackData= new FeedBackData(feedback,rating);
+                if (feedBackData != null) {
+                    FeedtList.add(feedBackData);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return FeedtList;
+
+    }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
@@ -153,6 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MEALS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ITINERARY);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_FEEDBACK);
         onCreate(sqLiteDatabase);
     }
 
@@ -424,12 +470,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         User user = null;
 
         if (cursor.moveToFirst()) {
-            int userId = cursor.getInt(cursor.getColumnIndex(COL_ID));
-            String firstname = cursor.getString(cursor.getColumnIndex(COL_FIRSTNAME));
-            String lastname = cursor.getString(cursor.getColumnIndex(COL_LASTNAME));
-            String userEmail = cursor.getString(cursor.getColumnIndex(COL_EMAIL));
-            String userPassword = cursor.getString(cursor.getColumnIndex(COL_PASSWORD));
-            String role = cursor.getString(cursor.getColumnIndex(COL_ROLE));
+            int userId = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
+            String firstname = cursor.getString(cursor.getColumnIndexOrThrow(COL_FIRSTNAME));
+            String lastname = cursor.getString(cursor.getColumnIndexOrThrow(COL_LASTNAME));
+            String userEmail = cursor.getString(cursor.getColumnIndexOrThrow(COL_EMAIL));
+            String userPassword = cursor.getString(cursor.getColumnIndexOrThrow(COL_PASSWORD));
+            String role = cursor.getString(cursor.getColumnIndexOrThrow(COL_ROLE));
 
             user = new User(userId, firstname, lastname, userEmail, userPassword, role);
         }

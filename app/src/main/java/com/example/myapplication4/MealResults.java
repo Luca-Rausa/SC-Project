@@ -88,7 +88,6 @@ public class MealResults extends AppCompatActivity  {
         System.out.println(DatabaseHelper.TABLE_MEALS);
         Cursor cursor = database.rawQuery("SELECT * FROM meals WHERE firstName = ? AND lastName = ?", new String[]{firstName, lastName});
 
-
         if (cursor.moveToFirst()) {
             // User found, retrieve travel details
             String date1 = cursor.getString(cursor.getColumnIndex("startDate"));
