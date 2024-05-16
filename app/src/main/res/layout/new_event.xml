@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewEvent">
+    tools:context=".NewEvent"
+    android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -23,7 +24,6 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:color/white"
-                android:fontFamily="@font/inter"
                 android:text="@string/event_add_a_new_event"
                 android:textColor="@color/dark_blue"
                 android:textSize="25sp"
@@ -42,10 +42,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="15dp"
                 android:text="@string/event_title"
                 android:textColor="@color/darker_gray"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/edTxtEventTitle"
@@ -66,7 +67,8 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/event_description"
                 android:textColor="@color/darker_gray"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/edTxtEventDescription"
@@ -93,7 +95,9 @@
                     android:layout_height="match_parent"
                     android:text="@string/event_type"
                     android:textColor="@color/darker_gray"
-                    android:textSize="15sp" />
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <Spinner
                     android:id="@+id/spinnerEventType"
@@ -118,7 +122,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/event_max_nr_attendees"
                     android:textColor="@color/darker_gray"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <EditText
                     android:id="@+id/edTxtEventAttendees"
@@ -140,7 +145,8 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/event_time"
                 android:textColor="@color/darker_gray"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -290,7 +296,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="60dp"
                 android:isScrollContainer="false"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:divider="@null"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -370,14 +377,15 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="60dp"
                 android:isScrollContainer="false"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:divider="@null"/>
 
             <Button
                 android:id="@+id/btnAddEvent"
                 android:layout_width="342dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
                 android:backgroundTint="@color/dark_blue"
                 android:text="@string/event_add_button_text"

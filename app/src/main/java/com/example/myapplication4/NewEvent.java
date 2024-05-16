@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -17,19 +19,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +53,7 @@ public class NewEvent extends AppCompatActivity {
     private EditText eventLinkName;
     private EditText eventLinkUrl;
     private Button addEventButton;
-    private EventDatabaseHelper eventDatabaseHelper;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,7 @@ public class NewEvent extends AppCompatActivity {
         eventLinkName = findViewById(R.id.edTxtEventLinkName);
         eventLinkUrl = findViewById(R.id.edTxtEventLinkURL);
 
-        eventDatabaseHelper = new EventDatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(this);
 
         EventType[] eventTypes = EventType.values();
         EventTypeAdapter eventTypeAdapter = new EventTypeAdapter(this, R.layout.event_spinner_item, eventTypes);
@@ -73,13 +80,15 @@ public class NewEvent extends AppCompatActivity {
         eventDate.setOnClickListener(v -> showDatePickerDialog());
         eventStartTime.setOnClickListener(v -> showTimePickerDialog());
 
-        List<Uri> fileList = new ArrayList<>();
+        List<Bitmap> fileList = new ArrayList<>();
+        List<Uri> uriList = new ArrayList<>();
         ActivityResultLauncher<String> filePickerLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 result -> {
                     if (result != null) {
-                        fileList.add(result);
+                        uriList.add(result);
+                        fileList.add(convertUriToBitmap(result));
                         List<String> fileNames = new ArrayList<>();
-                        for (Uri uri : fileList) {
+                        for (Uri uri : uriList) {
                             String fileName = getFileNameFromUri(uri);
                             fileNames.add(fileName);
                         }
@@ -123,10 +132,8 @@ public class NewEvent extends AppCompatActivity {
         eventStartTime.addTextChangedListener(textWatcher);
         eventDuration.addTextChangedListener(textWatcher);
         addEventButton.setOnClickListener(view -> {
-            // CREATE EVENT ...
-            String dateFormat = "yyyy-MM-dd HH:mm:ss";
-            String strDate = eventDate.getText().toString() + " " + eventStartTime;
-            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+            String strDate = eventDate.getText().toString() + " " + eventStartTime.getText().toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
             Date date = new Date();
             try {
                 date = sdf.parse(strDate);
@@ -139,18 +146,20 @@ public class NewEvent extends AppCompatActivity {
                     EventType.valueOf(eventTypeSpinner.getSelectedItem().toString()),
                     date,
                     Integer.parseInt(eventDuration.getText().toString()),
-                    "Luca Rausa"
+                    MainActivity.user.getEmail()
             );
 
             if(!eventAttendees.getText().toString().isEmpty())
                 event.setAttendees(Integer.parseInt(eventAttendees.getText().toString()));
             if(fileList.size() != 0)
-                event.setImage_paths(fileList);
+                event.setImages(fileList);
             if(linksList.size() != 0)
                 event.setLinks(linksList);
 
-            eventDatabaseHelper.addEvent(event);
-            startActivity(new Intent(NewEvent.this, Home.class));
+            Toast.makeText(this, "Event created successfully!", Toast.LENGTH_SHORT).show();
+            databaseHelper.addEvent(event);
+            //startActivity(new Intent(NewEvent.this, EventHub.class));
+            finish();
         });
     }
 
@@ -162,7 +171,9 @@ public class NewEvent extends AppCompatActivity {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 (view, year, monthOfYear, dayOfMonth) -> {
-                    String selectedDate = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                    String dayString = (dayOfMonth < 10) ? "0" + dayOfMonth : String.valueOf(dayOfMonth);
+                    String monthString = ((monthOfYear + 1) < 10) ? "0" + (monthOfYear + 1) : String.valueOf(monthOfYear + 1);
+                    String selectedDate = dayString + "/" + monthString + "/" + year;
                     eventDate.setText(selectedDate);
                 }, yearNow, monthNow, dayOfMonthNow);
 
@@ -235,6 +246,32 @@ public class NewEvent extends AppCompatActivity {
                 !eventDate.getText().toString().isEmpty() &&
                 !eventStartTime.getText().toString().isEmpty() &&
                 !eventDuration.getText().toString().isEmpty();
-        addEventButton.setEnabled(allFieldsFilled);
+
+        boolean dateIsAfterToday = false;
+        String strDate = eventDate.getText().toString() + " " + eventStartTime.getText().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+        try {
+            Date eventDateTime = sdf.parse(strDate);
+            Date currentDateTime = new Date();
+            dateIsAfterToday = eventDateTime.after(currentDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(allFieldsFilled && dateIsAfterToday)
+            addEventButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.dark_blue));
+        else
+            addEventButton.setBackgroundTintList(ContextCompat.getColorStateList(getApplicationContext(), R.color.light_gray));
+        addEventButton.setEnabled(allFieldsFilled && dateIsAfterToday);
+    }
+
+    private Bitmap convertUriToBitmap(Uri uri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            return BitmapFactory.decodeStream(inputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

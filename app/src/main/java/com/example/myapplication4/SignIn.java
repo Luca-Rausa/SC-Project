@@ -20,7 +20,7 @@ public class SignIn extends AppCompatActivity {
     private EditText editTextPassword;
     private Button signInButton;
     private Button signUpButton;
-    private LoginHelper dbHelper;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class SignIn extends AppCompatActivity {
         editTextPassword = findViewById(R.id.enterPass);
         signInButton = findViewById(R.id.signin);
         signUpButton = findViewById(R.id.button);
-        dbHelper = new LoginHelper(this);
+        dbHelper = new DatabaseHelper(this);
 
         // Setting up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -62,9 +62,7 @@ public class SignIn extends AppCompatActivity {
                     // Set the global isLoggedIn variable to true
                     MainActivity.isLoggedIn = true;
 
-                    if (Objects.equals(user.getRole(), "Staff")) {
-                        MainActivity.isStaff = true;
-                    }
+                    MainActivity.isStaff = Objects.equals(user.getRole(), "Staff");
                     Toast.makeText(SignIn.this, "Sign in successful!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SignIn.this, Home.class));
                     finish();

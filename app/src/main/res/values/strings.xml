@@ -39,6 +39,22 @@
     <string name="event_add_button">Add New Event</string>
     <string name="event_add_button_text">Add Event</string>
     <string name="event_mandatory_fields">Bold fields are required to create a new event</string>
+    <string name="event_single_event_display">Single Event Display</string>
+    <string name="event_single_event_duration">The event will last about %s minutes</string>
+    <string name="event_see_my_events">My Events</string>
+    <string name="event_display_type">Type:</string>
+    <string name="event_display_creator">Created by</string>
+    <string name="event_display_availability">Event Places Availability</string>
+    <string name="event_display_description">Event Description</string>
+    <string name="event_display_date">Date</string>
+    <string name="event_display_links">Event Links</string>
+    <string name="event_hub">Event Hub</string>
+    <string name="event_list">Event List:</string>
+    <string name="myevent_list">List of my events:</string>
+    <string name="myattend_list">List of events I attend:</string>
+    <string name="my_events_managements">My Events Managements</string>
+    <string name="attend_event">Attend this event</string>
+    <string name="event_attendees_mail">Participants\' email list:</string>
     <string-array name="eventDurations">
         <item>less than 30 minutes</item>
         <item>30 minutes</item>

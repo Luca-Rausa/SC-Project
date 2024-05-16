@@ -22,50 +22,52 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:color/white"
-                android:text="@string/event_hub"
+                android:text="@string/my_events_managements"
                 android:textColor="@color/dark_blue"
                 android:textSize="25sp"
                 android:textStyle="bold" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="25dp">
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/event_see_my_events"
-                    android:textSize="14sp"
-                    android:backgroundTint="@color/dark_blue"
-                    android:id="@+id/btnMyEvents" />
-                <Space
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/event_add_button"
-                    android:textSize="14sp"
-                    android:backgroundTint="@color/dark_blue"
-                    android:id="@+id/btnNewEvent" />
-            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/event_list"
+                android:text="@string/myevent_list"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/darker_gray"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-            <ListView
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/eventListView"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ListView
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/eventListView"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myattend_list"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/darker_gray"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ListView
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/attendeeListView"/>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
