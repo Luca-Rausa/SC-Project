@@ -20,7 +20,6 @@ public class Welcome extends AppCompatActivity {
         signInButton = findViewById(R.id.signUp);
         signUpButton = findViewById(R.id.signUpButton);
 
-        // Set click listeners
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

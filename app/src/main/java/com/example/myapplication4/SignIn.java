@@ -48,18 +48,16 @@ public class SignIn extends AppCompatActivity {
                 String username = editTextUsername.getText().toString().trim();
                 String password = editTextPassword.getText().toString().trim();
 
-                // Query the database for the user with the given email and password
+                // Query the database
                 User user = dbHelper.getUser(username, password);
                 MainActivity.user = user;
 
                 if (user == null) {
-                    // Show error message if credentials are incorrect
                     Toast.makeText(SignIn.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
 
                 // Check if user is student or staff
                 if (user != null) {
-                    // Set the global isLoggedIn variable to true
                     MainActivity.isLoggedIn = true;
 
                     MainActivity.isStaff = Objects.equals(user.getRole(), "Staff");
@@ -67,7 +65,6 @@ public class SignIn extends AppCompatActivity {
                     startActivity(new Intent(SignIn.this, Home.class));
                     finish();
                 } else {
-                    // Show error message if credentials are incorrect
                     Toast.makeText(SignIn.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
             }

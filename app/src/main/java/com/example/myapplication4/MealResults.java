@@ -36,7 +36,6 @@ public class MealResults extends AppCompatActivity  {
         // Initialize database helper
         dbHelper = new DatabaseHelper(this);
 
-        // Linking XML views to Java variables
         firstResultTextView = findViewById(R.id.firstResult);
         lastResultTextView = findViewById(R.id.lastResult);
         date1TextView = findViewById(R.id.date1);
@@ -44,7 +43,6 @@ public class MealResults extends AppCompatActivity  {
         mealsAttendingTextView = findViewById(R.id.attendance);
         groupTextView = findViewById(R.id.group);
 
-        // Set up onClickListener for the submit button
         Button submitButton = findViewById(R.id.submit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +64,6 @@ public class MealResults extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    // Method to search for the user based on entered name
     private void searchUser() {
         SearchView searchView = findViewById(R.id.search);
         String fullName = searchView.getQuery().toString();

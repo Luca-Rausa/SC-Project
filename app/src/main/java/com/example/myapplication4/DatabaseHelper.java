@@ -122,7 +122,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ")";
         sqLiteDatabase.execSQL(CREATE_ATTENDEES_TABLE);
 
-        // Define SQL statement to create the table with the new column
         String SQL_CREATE_MEALS =
                 "CREATE TABLE " + TABLE_MEALS + " (" +
                         COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -134,10 +133,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_MEAL_TIMINGS + " TEXT, " +
                         COLUMN_PROGRAM_OF_STUDY + " TEXT)";
 
-        // Execute the SQL statement to create the table
         sqLiteDatabase.execSQL(SQL_CREATE_MEALS);
 
-        // Define SQL statement to create the table with the new column
         String SQL_CREATE_ITINERARY =
                 "CREATE TABLE " + TABLE_ITINERARY + " (" +
                         COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -150,7 +147,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COLUMN_TRAVEL_GROUP + " TEXT, " +
                         COLUMN_PROGRAM_OF_STUDY_GROUP + " TEXT)";
 
-        // Execute the SQL statement to create the table
         sqLiteDatabase.execSQL(SQL_CREATE_ITINERARY);
 
         String FEEDBACK_SAVE =
@@ -159,7 +155,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         COL_FEEDBACK + " TEXT, " +
                         COL_RATING + " TEXT) ";
 
-        // Execute the SQL statement to create the table
         sqLiteDatabase.execSQL(FEEDBACK_SAVE);
 
     }

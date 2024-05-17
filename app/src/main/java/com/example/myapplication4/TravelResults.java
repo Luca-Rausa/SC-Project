@@ -36,7 +36,7 @@ public class TravelResults extends AppCompatActivity {
         // Initialize database helper
         dbHelper = new DatabaseHelper(this);
 
-        // Linking XML views to Java variables
+        // Linking variables
         firstResultTextView = findViewById(R.id.firstResult);
         lastResultTextView = findViewById(R.id.lastResult);
         groupResultsTextView = findViewById(R.id.groupResults);
@@ -45,7 +45,6 @@ public class TravelResults extends AppCompatActivity {
         date1TextView = findViewById(R.id.date1);
         date2TextView = findViewById(R.id.date2);
 
-        // Set up onClickListener for the submit button
         Button submitButton = findViewById(R.id.submit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +66,10 @@ public class TravelResults extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Method to search for the user based on entered name
     private void searchUser() {
         SearchView searchView = findViewById(R.id.search);
         String fullName = searchView.getQuery().toString();
 
-        // Split the full name into first name and last name
         String[] names = fullName.split(" ");
         if (names.length != 2) {
             Toast.makeText(this, "Please enter first name followed by last name", Toast.LENGTH_SHORT).show();
@@ -98,7 +95,6 @@ public class TravelResults extends AppCompatActivity {
             String date1 = cursor.getString(cursor.getColumnIndex("startDate"));
             String date2 = cursor.getString(cursor.getColumnIndex("endDate"));
 
-            // Update TextViews with retrieved information
             firstResultTextView.setText(firstName);
             lastResultTextView.setText(lastName);
             groupResultsTextView.setText(group);

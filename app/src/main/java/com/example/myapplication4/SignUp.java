@@ -54,7 +54,6 @@ public class SignUp extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        // Listen for spinner item selection
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -100,7 +99,7 @@ public class SignUp extends AppCompatActivity {
                     return;
                 }
 
-                // Save user data to SQLite database
+                // Save user data to database
                 boolean success = dbHelper.addUser(firstname, lastname, email, password, selectedRole);
                 if (success) {
                     Toast.makeText(SignUp.this, "Sign up successful!", Toast.LENGTH_SHORT).show();

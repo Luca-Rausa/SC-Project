@@ -85,7 +85,6 @@ public class MealPlanning extends AppCompatActivity {
             }
         });
 
-        // Configure RadioButtons to change background color on selection
         configureButtons();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +107,6 @@ public class MealPlanning extends AppCompatActivity {
                     mealTimings += "Dinner ";
                 }
 
-                // Trim any extra space at the end
                 mealTimings = mealTimings.trim();
 
                 if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || startDate.isEmpty()
@@ -127,14 +125,9 @@ public class MealPlanning extends AppCompatActivity {
         });
     }
     private void showDatePickerDialog(EditText editText) {
-        activeDateField = editText; // Set the active EditText
+        activeDateField = editText;
         Calendar calendar = Calendar.getInstance();
-//        DatePickerDialog datePickerDialog = new DatePickerDialog(
-//                this,
-//                this,
-//                Calendar.getInstance().get(Calendar.YEAR),
-//                Calendar.getInstance().get(Calendar.MONTH),
-//                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
                 (view, year, month, dayOfMonth) -> onDateSet(view, year, month, dayOfMonth),
@@ -146,16 +139,13 @@ public class MealPlanning extends AppCompatActivity {
     }
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        // Format the picked date and set it on the active EditText field
         String date = String.format(Locale.getDefault(), "%d/%02d/%02d", year, month + 1, dayOfMonth);
         activeDateField.setText(date);
     }
     private void saveData(String firstName, String lastName, String email, String startDate,
                           String endDate, String programStudy, String mealTimings) {
-        // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COL_FIRSTNAME, firstName);
         values.put(DatabaseHelper.COL_LASTNAME, lastName);
@@ -165,10 +155,9 @@ public class MealPlanning extends AppCompatActivity {
         values.put(DatabaseHelper.COLUMN_PROGRAM_OF_STUDY, programStudy);
         values.put(DatabaseHelper.COLUMN_MEAL_TIMINGS, mealTimings);
 
-        // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(DatabaseHelper.TABLE_MEALS, null, values);
         System.out.println(DatabaseHelper.TABLE_MEALS);
-        // You can handle the result of the insertion if needed
+
         if (newRowId != -1) {
             Toast.makeText(this, "Data saved successfully!", Toast.LENGTH_SHORT).show();
         } else {

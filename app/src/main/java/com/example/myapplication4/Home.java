@@ -38,7 +38,7 @@ public class Home extends AppCompatActivity {
         name = findViewById(R.id.textView2);
 
         if (MainActivity.user != null) {
-            String firstName = MainActivity.user.getFirstname() + ","; // Get the user's first name
+            String firstName = MainActivity.user.getFirstname() + ",";
 
             // Update the TextView text to display the user's first name
             name.setText(firstName);
@@ -52,7 +52,6 @@ public class Home extends AppCompatActivity {
         banner = findViewById(R.id.bannerButton);
         signOutButton = findViewById(R.id.signout);
 
-        // Set click listeners
         requiredForms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,11 +90,9 @@ public class Home extends AppCompatActivity {
                 // Navigate to SC website
                 String url = "https://stegercenter.vt.edu";
 
-                // Create an Intent
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
 
-                // Start the web browser activity
                 startActivity(intent);
             }
         });

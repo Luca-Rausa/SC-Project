@@ -39,7 +39,7 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
 
         dbHelper = new DatabaseHelper(this);
 
-        // Initialize UI elements
+        // Initialize elements
         firstNameEditText = findViewById(R.id.editTextFirstName);
         lastNameEditText = findViewById(R.id.editTextLastName);
         emailEditText = findViewById(R.id.editTextEmailAddress);
@@ -75,13 +75,11 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
             }
         });
 
-        // Initialize spinner2 with options
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.groups, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
 
-        // Listen for spinner2 item selection
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -94,7 +92,6 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
             }
         });
 
-        // Set onClickListener for the submit button
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +117,7 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
                     return;
                 }
 
-                // Save data to SQLite database
+                // Save data to database
                 saveData(firstName, lastName, email, startDate, endDate, itineraryDesc, groupTravel, selectedGroup);
 
                 // Navigate to the home page
@@ -130,7 +127,6 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         });
     }
 
-    // Method to show DatePickerDialog
     private void showDatePickerDialog(EditText editText) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
@@ -142,20 +138,17 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         datePickerDialog.show();
     }
 
-    // Callback method for DatePickerDialog
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         // Set the selected date to the EditText field
         String date = String.format(Locale.getDefault(), "%d/%02d/%02d", year, month + 1, dayOfMonth);
-        activeDateField.setText(date); // You can set the end date EditText as well if needed
+        activeDateField.setText(date);
     }
 
     private void saveData(String firstName, String lastName, String email, String startDate,
                           String endDate, String itineraryDesc, String groupTravel, String travelGroup) {
-        // Gets the data repository in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COL_FIRSTNAME, firstName);
         values.put(DatabaseHelper.COL_LASTNAME, lastName);
@@ -166,10 +159,8 @@ public class TravelItinerary extends AppCompatActivity implements DatePickerDial
         values.put(DatabaseHelper.COLUMN_TRAVEL_GROUP, groupTravel);
         values.put(DatabaseHelper.COLUMN_PROGRAM_OF_STUDY_GROUP, travelGroup);
 
-        // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(DatabaseHelper.TABLE_ITINERARY, null, values);
         System.out.println(DatabaseHelper.TABLE_ITINERARY);
-        // You can handle the result of the insertion if needed
         if (newRowId != -1) {
             Toast.makeText(this, "Data saved successfully!", Toast.LENGTH_SHORT).show();
         } else {

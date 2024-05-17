@@ -20,8 +20,7 @@ public class Chatbot extends AppCompatActivity {
     private ChatAdapter chatAdapter;
 
     private void sendMessageToAPI(String message) {
-        String url = "https://f2f3-213-180-189-122.ngrok-free.app/chat";
-
+        String url = "https://9776-195-176-32-159.ngrok-free.app/chat";
         // Create JSON object with user input
         JSONObject jsonBody = new JSONObject();
         try {
