@@ -13,14 +13,14 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-public class Chatbot extends AppCompatActivity {
+public class  Chatbot extends AppCompatActivity {
     private Button buttonSend;
     private EditText editTextMessage;
     private RecyclerView recyclerView;
     private ChatAdapter chatAdapter;
 
     private void sendMessageToAPI(String message) {
-        String url = "https://9776-195-176-32-159.ngrok-free.app/chat";
+        String url = "http://10.0.2.2:5000/chat";
         // Create JSON object with user input
         JSONObject jsonBody = new JSONObject();
         try {
